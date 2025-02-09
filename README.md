@@ -18,3 +18,7 @@ Tokens -> Parser -> Abstract Syntax Tree (AST)
 AST -> Assembler -> Assembly Code
 
 Assembly Code -> ??? -> Tessera Program
+
+**OR**
+
+AST -> Intepreter -> Tessera Program (Interpreted)
