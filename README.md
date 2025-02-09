@@ -1,4 +1,10 @@
 # Tessera Programming Language
-TODO: fill out this readme
 
-http://www.tessera-lang.org
+## About
+Tessera is a minimalist toy programming language, created by me.
+
+## Try It Now
+Try it now -> http://www.tessera-lang.org
+
+## Run Locally
+TODO
