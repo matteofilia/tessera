@@ -1,0 +1,39 @@
+#title {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color:antiquewhite;
+    font-size: 48px;
+}
+
+.header {
+    font-size: 24px;
+}
+
+#input-box {
+    width: 300px;
+    height: 200px;
+    background-color:dimgrey;
+    border: solid 3px black;
+}
+
+#output-box {
+    width: 300px;
+    height: 200px;
+    background-color: dimgray;
+    border: solid 3px black;  
+}
+
+#content-holder {
+    margin-left: auto;
+    margin-right: auto;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around
+}
+
+#run-code-button {
+    font-size: 20px;
+    display: block;
+}
