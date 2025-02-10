@@ -1,9 +1,6 @@
 package lexer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 
 public class Lexer {
 
@@ -15,15 +12,27 @@ public class Lexer {
     //  if no match is found, raise an error
     //  convert matching substring into a token
     //  remove matching substring from start of input
-    // TODO: fix name
-    public static void doSomething(String filename) {
+    public static void lexFile(String inputFile, String outputFile) {
         try {
-            FileReader fileReader = new FileReader(new File(filename));
+            FileReader fileReader = new FileReader(new File(inputFile));
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            try {
+                String line = bufferedReader.readLine();
+            } catch (IOException e){
+                System.out.println("Error: IO Exception");
+            }
 
-            bufferedReader
         } catch (FileNotFoundException e) {
             System.out.println("Error: file not found");
         }
+
+        try {
+            Writer writer = new FileWriter(outputFile);
+            writer.write("Hello World");
+            writer.close();;
+        } catch (IOException e) {
+            System.out.println("Error: IO Exception");
+        }
+
     }
 }
