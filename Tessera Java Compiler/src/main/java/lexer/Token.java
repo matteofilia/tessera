@@ -15,4 +15,8 @@ public class Token {
     public Pattern getPattern() {
         return this.pattern;
     }
+
+    public String getName() {
+        return name;
+    }
 }

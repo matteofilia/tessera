@@ -1,8 +1,14 @@
 import assembler.Assembler;
 import lexer.Lexer;
+import lexer.LexerException;
 import parser.Parser;
 
 public class Main {
+
+    public static final int CODE_OK = 0;
+    public static final int CODE_FAIL = 1;
+
+    public static boolean BE_VERBOSE = false;
 
     public static void main(String[] args){
         boolean lex = true;
@@ -20,14 +26,20 @@ public class Main {
                 assemble = false;
             } else if (arg.equals("--parse")) {
                 assemble = false;
-            } else {
+            } else if (arg.equals("-v") || arg.equals("--verbose")) {
+                Main.BE_VERBOSE = true;
+            }else {
                 lexerInputFile = arg;
             }
         }
 
         if (lex) {
             System.out.println("Running Lexer: " + lexerInputFile + " -> " + parserInputFile);
-            Lexer.lexFile(lexerInputFile, parserInputFile);
+            try {
+                Lexer.lexFile(lexerInputFile, parserInputFile);
+            } catch (LexerException e) {
+                System.exit(CODE_FAIL);
+            }
         }
         if (parse) {
             System.out.println("Running Parser: "+parserInputFile+" -> "+ assemblerInputFile);
@@ -37,5 +49,7 @@ public class Main {
             System.out.println("Running Assembler: "+assemblerInputFile+" -> "+ finalOutputFile);
             Assembler.assembleFile(assemblerInputFile, finalOutputFile);
         }
+
+        System.exit(CODE_OK);
     }
 }

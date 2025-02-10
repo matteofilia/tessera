@@ -1,12 +1,13 @@
 package lexer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tokens {
 
-
+    private static boolean loaded = false;
     private static final ArrayList<Token> allTokens = new ArrayList<>();
 
     public static void init() {
@@ -28,19 +29,35 @@ public class Tokens {
     }
 
     public static ArrayList<Token> getAll() {
+        if (!loaded) {
+            init();
+            loaded = true;
+        }
+
         return allTokens;
     }
 
-    public static Token checkMatch(String text) {
+    public static ArrayList<Token> checkMatches(String text) {
+        ArrayList<Token> list = new ArrayList<>();
+        System.out.println("Checking match: "+text);
+
         // Check all tokens for match
-        for (Token token : allTokens) {
-            if (token.getPattern().matcher(text).find()) {
-                return token;
+        int index = 0;
+        for (Token token : getAll()) {
+            Matcher matcher = token.getPattern().matcher(text);
+
+            while (index < text.length()) {
+                if (matcher.find(index)) {
+                    System.out.println("Match found!"+" ("+ token.getName()+")");
+                    list.add(token);
+                    index = matcher.end();
+                } else {
+                    break;
+                }
             }
         }
 
-        // No matching token found
-        return null;
+        return list;
     }
 
     public static Token findLongestMatch(String text) {
@@ -51,7 +68,6 @@ public class Tokens {
         for (Token token : allTokens) {
             Matcher matcher = token.getPattern().matcher(text);
             if (matcher.find()) {
-                
                 return token;
             }
         }

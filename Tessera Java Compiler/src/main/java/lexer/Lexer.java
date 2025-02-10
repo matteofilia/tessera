@@ -12,12 +12,27 @@ public class Lexer {
     //  if no match is found, raise an error
     //  convert matching substring into a token
     //  remove matching substring from start of input
-    public static void lexFile(String inputFile, String outputFile) {
+    public static void lexFile(String inputFile, String outputFile) throws LexerException {
+        StringBuilder output = new StringBuilder();
+
         try {
-            FileReader fileReader = new FileReader(new File(inputFile));
+            FileReader fileReader = new FileReader(inputFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             try {
-                String line = bufferedReader.readLine();
+                for (String line : bufferedReader.lines().toList()) {
+                    line = line.trim();
+
+                    // TODO: should find longest match
+                    // Token token = Tokens.findLongestMatch(line);
+
+                    for (Token token : Tokens.checkMatches(line)) {
+                        // Match Found
+                        output.append(token.getName());
+                        output.append(" ");
+                    }
+                }
+
+                bufferedReader.close();
             } catch (IOException e){
                 System.out.println("Error: IO Exception");
             }
@@ -28,7 +43,7 @@ public class Lexer {
 
         try {
             Writer writer = new FileWriter(outputFile);
-            writer.write("Hello World");
+            writer.write(output.toString());
             writer.close();;
         } catch (IOException e) {
             System.out.println("Error: IO Exception");
