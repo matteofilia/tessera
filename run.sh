@@ -16,8 +16,12 @@ do
 done
 
 echo "Compiling Java using Ant..."
-# ant TODO
+
+cd "Tessera Java Compiler" 
+ant clean
+ant compile
+ant jar
 
 echo "Starting program..."
+ant run 
 
-java -jar main.jar "$@"
