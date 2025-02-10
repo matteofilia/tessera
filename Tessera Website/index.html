@@ -4,6 +4,43 @@
 		<meta charset="UTF-8">
 		<title>Tessera Programming Language</title>
 		<link rel="stylesheet" href="styles.css">
+		<script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function() {
+				var counter = 0;
+				var total_files = 3;
+				
+				load_file = function() {
+					index = (counter % total_files)+1
+					example_url = "code_examples/example"+index+".ts"
+					
+					$.ajax({
+						url : example_url,
+						dataType: "text",
+						success : function(data) {
+							$("#input-box").val(data);
+						}
+					});
+				}
+				
+				$("#button-next").click(function(){
+					counter = counter+1;
+					load_file()
+				})
+				
+				$("#button-previous").click(function(){
+					counter = counter-1;
+					load_file()
+				});
+				
+				$("#button-run-code").click(function(){
+					$("#output-box").text("Hello world");
+				});
+			})
+		</script>
 	</head>
 
 	<body>
@@ -14,15 +51,17 @@
 				<textarea id="input-box" rows="20" cols="50"></textarea>
 				<div id="action-bar">
 					<div id="navigation-controls">
-						<input class="button" id="next-button" type="button" value="Previous"/>
-						<input class="button" id="previous-button" type="button" value="Next"/>
+						<input class="button" id="button-previous" type="button" value="Previous"/>
+						<input class="button" id="button-next" type="button" value="Next"/>
 					</div>
-					<input class="button" id="run-code-button" type="button" value="Run Code"/>
+					<input class="button" id="button-run-code" type="button" value="Run Code"/>
 				</div>
 			</div>
 			<div>
 				<p class="header">Output</p>
-				<div id="output-box"></div>
+				<div id="output-box">
+					<p id="output">Test</p>
+				</div>
 			</div>
 		</div>
 	</body>
