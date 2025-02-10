@@ -15,3 +15,9 @@ Want to work on the website a little bit. I just worry that doing so would be "p
 Okay, got some work done on the website. It looks absolutely awful. That being said, it is workable for now. I know what I want: a simple input/output interface to run code. I'll make it look a little better sometime in the future. Honestly, I kind of like how the website looks. It's so aggresively minimal and terrible. Love it!
 
 Got the previous / next buttons to work and cycle through the example files. This is good progress! Next up: work on the lexer, probably.
+
+## Feb 10, 2025
+
+Took a long time to setup my dev environment for my MacBook today. Honestly, kind of dissapointed. Really enjoy using WSL for development.
+
+Spent some time working on the lexer today, several hours or so. So far, progress has been very slow. Already feel like giving up but need to keep going. Still, I have budgeted more than enough time to get things done. Maybe ten to twenty hours per chapter, for a total of 220 hours. Don't need for everything to be amazing, just need to have the language be able to do the basics.
