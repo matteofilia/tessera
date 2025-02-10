@@ -7,7 +7,8 @@ Tessera is a minimalist toy programming language, created by me.
 Try it now -> http://www.tessera-lang.org
 
 ## Run Locally
-TODO
+
+./run.sh
 
 ## Structure
 
