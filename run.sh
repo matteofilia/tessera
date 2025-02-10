@@ -1,27 +1,6 @@
 #!/bin/bash
 
-# set -o xtrace
-
 echo "Valid arguments: --lex --parse --codegen"
 
-for i in $@;
-do
-	if [[ $i == "--lex" ]]; then
-		echo "Only running lexer"
-	elif [[ $i == "--parse" ]]; then
-		echo "Only running lexer and parser"
-	elif [[ $i == "--codegen" ]]; then
-		echo "Only running lexer, parser, and assembler"
-	fi
-done
-
-echo "Compiling Java using Ant..."
-
-cd "Tessera Java Compiler" 
-ant clean
-ant compile
-ant jar
-
-echo "Starting program..."
-ant run 
-
+cd "Tessera Java Compiler"
+java -jar ./build/jar/main.jar "$@"
