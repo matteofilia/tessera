@@ -8,4 +8,6 @@ Have been reading a lot of code from other toy programming languages. First thin
 
 ## Feb 9, 2025
 
+Got Ant setup, so that is good. Otherwise, haven't made much progress.
 
+Want to work on the website a little bit. I just worry that doing so would be "putting the cart before the horse".
