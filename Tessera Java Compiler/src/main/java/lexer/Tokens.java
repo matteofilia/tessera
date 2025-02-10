@@ -7,7 +7,7 @@ public class Tokens {
 
 
     private static final ArrayList<Token> allTokens = new ArrayList<>();
-    
+
     public static void init() {
         Tokens.add(new Token(Pattern.compile("test\b"), "TOKEN_TEST"));
         Tokens.add(new Token(Pattern.compile("[a-zA-Z_]\\w*\\b"), "TOKEN_IDENTIFIER"));
@@ -28,6 +28,18 @@ public class Tokens {
 
     public static ArrayList<Token> getAll() {
         return allTokens;
+    }
+
+    public static Token checkMatch(String text) {
+        // Check all tokens for match
+        for (Token token : allTokens) {
+            if (token.getPattern().matcher(text).find()) {
+                return token;
+            }
+        }
+
+        // No matching token found
+        return null;
     }
 
     private Tokens() throws Exception {

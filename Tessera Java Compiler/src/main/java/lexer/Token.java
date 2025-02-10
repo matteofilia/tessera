@@ -11,4 +11,8 @@ public class Token {
         this.pattern = pattern;
         this.name = name;
     }
+
+    public Pattern getPattern() {
+        return this.pattern;
+    }
 }
