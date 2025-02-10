@@ -10,6 +10,14 @@ Try it now -> http://www.tessera-lang.org
 
 ./run.sh
 
+## Requirements
+
+- Ant
+
+- Java
+
+- http-server
+
 ## Structure
 
 Tessera Code -> Lexer -> Tokens
