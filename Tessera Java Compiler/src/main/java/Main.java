@@ -9,6 +9,7 @@ public class Main {
     public static final int CODE_FAIL = 1;
 
     public static boolean BE_VERBOSE = false;
+    public static boolean BE_VERY_VERBOSE = false;
 
     public static void main(String[] args){
         boolean lex = true;
@@ -28,7 +29,10 @@ public class Main {
                 assemble = false;
             } else if (arg.equals("-v") || arg.equals("--verbose")) {
                 Main.BE_VERBOSE = true;
-            }else {
+            } else if (arg.equals("-vv") || arg.equals("--very-verbose")) {
+                Main.BE_VERBOSE = true;
+                Main.BE_VERY_VERBOSE = true;
+            } else {
                 lexerInputFile = arg;
             }
         }
