@@ -1,6 +1,7 @@
 package lexer;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tokens {
@@ -40,6 +41,23 @@ public class Tokens {
 
         // No matching token found
         return null;
+    }
+
+    public static Token findLongestMatch(String text) {
+        int maxLength = 0;
+        Token returnToken = null;
+
+        // Check all tokens for match
+        for (Token token : allTokens) {
+            Matcher matcher = token.getPattern().matcher(text);
+            if (matcher.find()) {
+                
+                return token;
+            }
+        }
+
+        // No matching token found
+        return returnToken;
     }
 
     private Tokens() throws Exception {
