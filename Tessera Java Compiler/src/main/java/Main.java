@@ -38,6 +38,7 @@ public class Main {
             try {
                 Lexer.lexFile(lexerInputFile, parserInputFile);
             } catch (LexerException e) {
+                System.out.println("Lexer Failure");
                 System.exit(CODE_FAIL);
             }
         }
