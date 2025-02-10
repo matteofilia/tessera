@@ -11,3 +11,5 @@ Have been reading a lot of code from other toy programming languages. First thin
 Got Ant setup, so that is good. Otherwise, haven't made much progress.
 
 Want to work on the website a little bit. I just worry that doing so would be "putting the cart before the horse".
+
+Okay, got some work done on the website. It looks absolutely awful. That being said, it is workable for now. I know what I want: a simple input/output interface to run code. I'll make it look a little better sometime in the future. Honestly, I kind of like how the website looks. It's so aggresively minimal and terrible. Love it!
