@@ -1,5 +1,3 @@
-package lexer;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

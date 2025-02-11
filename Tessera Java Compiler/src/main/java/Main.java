@@ -1,15 +1,10 @@
-import assembler.Assembler;
-import lexer.Lexer;
-import lexer.LexerException;
-import parser.Parser;
-
 public class Main {
-
-    public static final int CODE_OK = 0;
-    public static final int CODE_FAIL = 1;
 
     public static boolean BE_VERBOSE = false;
     public static boolean BE_VERY_VERBOSE = false;
+
+    public static final int CODE_OK = 0;
+    public static final int CODE_FAIL = 1;
 
     public static void main(String[] args){
         boolean lex = true;

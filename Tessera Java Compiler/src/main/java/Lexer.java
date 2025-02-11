@@ -1,5 +1,3 @@
-package lexer;
-
 import java.io.*;
 
 public class Lexer {
@@ -22,9 +20,6 @@ public class Lexer {
                 String line = bufferedReader.readLine();
                 while (line != null) {
                     line = line.trim();
-
-                    // TODO: should find longest match
-                    // Token token = Tokens.findLongestMatch(line);
 
                     for (Token token : Tokens.checkMatches(line)) {
                         // Match Found
