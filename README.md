@@ -6,9 +6,11 @@ Tessera is a minimalist toy programming language, created by me.
 ## Try It Now
 Try it now -> http://www.tessera-lang.org
 
-## Run Locally
+## Run Tessera
 
-./run.sh
+./run.sh (Run Locally)
+
+./run-web.sh (Run Locally, Web)
 
 ## Requirements
 
@@ -16,7 +18,7 @@ Try it now -> http://www.tessera-lang.org
 
 - Java
 
-- http-server
+- Python3
 
 ## Structure
 
