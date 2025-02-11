@@ -16,7 +16,7 @@
 				
 				load_file = function() {
 					index = (counter % total_files)+1
-					example_url = "code_examples/example"+index+".ts"
+					example_url = "public/code_examples/example"+index+".ts"
 					
 					$.ajax({
 						url : example_url,
@@ -40,13 +40,17 @@
 				$("#button-run-code").click(function(){
 					$("#output-box").text("Hello world");
 				});
+				
+				load_file()
 			})
 		</script>
 		<script>
 			(async function () {
 				await cheerpjInit();
 				await cheerpjRunJar(
-					"demojar/DemoJar.jar");
+					"app/main.jar"
+				);
+				
 			})();
 		</script>
 	</head>
