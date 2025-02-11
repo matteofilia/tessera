@@ -8,6 +8,7 @@
 			  src="https://code.jquery.com/jquery-3.7.1.min.js"
 			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			  crossorigin="anonymous"></script>
+		<script src="https://cjrtnc.leaningtech.com/2.3/loader.js"></script>
 		<script>
 			$(document).ready(function() {
 				var counter = 0;
@@ -30,7 +31,7 @@
 					counter = counter+1;
 					load_file()
 				})
-				
+		
 				$("#button-previous").click(function(){
 					counter = counter-1;
 					load_file()
@@ -40,6 +41,13 @@
 					$("#output-box").text("Hello world");
 				});
 			})
+		</script>
+		<script>
+			(async function () {
+				await cheerpjInit();
+				await cheerpjRunJar(
+					"demojar/DemoJar.jar");
+			})();
 		</script>
 	</head>
 
