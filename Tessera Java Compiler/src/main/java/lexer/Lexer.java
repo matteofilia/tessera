@@ -19,7 +19,8 @@ public class Lexer {
             FileReader fileReader = new FileReader(inputFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             try {
-                for (String line : bufferedReader.lines().toList()) {
+                String line = bufferedReader.readLine();
+                while (line != null) {
                     line = line.trim();
 
                     // TODO: should find longest match
@@ -30,6 +31,8 @@ public class Lexer {
                         output.append(token.getName());
                         output.append(" ");
                     }
+
+                    line = bufferedReader.readLine();
                 }
 
                 bufferedReader.close();
