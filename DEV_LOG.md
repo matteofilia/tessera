@@ -39,3 +39,5 @@ Spring is more complicated than I remember... just want a simple Java webserver 
 Got some of the web code working. Progress is slow but steady. Slow and steady wins the race, yes?
 
 Sloppy, very very sloppy. This code is a mess. Oh well, it works. Good thing that there are no code reviews!
+
+Honestly, my brain feels kind of fried. I think that I have done enough for today. That being said, still haven't completed enough hours. Probably won't have a chance to work on anything tomorrow, unfortunately.

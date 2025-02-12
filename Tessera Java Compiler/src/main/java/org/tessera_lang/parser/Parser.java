@@ -14,12 +14,4 @@ public class Parser {
     public static void parseFile(String inputFile, String outputFile) {
         // TODO
     }
-
-    class ASTNode {
-        private ASTNode parent;
-
-        public ASTNode(ASTNode parent) {
-            this.parent = parent;
-        }
-    }
 }
