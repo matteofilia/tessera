@@ -21,3 +21,9 @@ Got the previous / next buttons to work and cycle through the example files. Thi
 Took a long time to setup my dev environment for my MacBook today. Honestly, kind of dissapointed. Really enjoy using WSL for development.
 
 Spent some time working on the lexer today, several hours or so. So far, progress has been very slow. Already feel like giving up but need to keep going. Still, I have budgeted more than enough time to get things done. Maybe ten to twenty hours per chapter, for a total of 220 hours. Don't need for everything to be amazing, just need to have the language be able to do the basics.
+
+## Feb 11, 2025
+
+Fixed a problem with cheerpj not working. The fix was simple: compile using older version of Java. Proud of myself for figuring that one out! Otherwise, things are going well enough.
+
+So far, we have been making good progress. Hours wise, right now we are ahead of things. Goal is to have this finished by May 10 (my birthday).
