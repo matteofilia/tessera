@@ -31,3 +31,7 @@ So far, we have been making good progress. Hours wise, right now we are ahead of
 Yes, honestly not certain that I will be able to get Java to work with JavaScript. Starting to get mildly concerned that I will need to switch languages... I really hope not! Either way, this problem is tomorrow's problem. I can always think about things later. For now, there are other pressing concerns.
 
 Done some more thinking. Starting to think my ideal of a static website isn't going to work. It's simply too janky, integrating Java and JavaScript. What does this mean? It means that we will have to implement a REST server, most likely. More work!
+
+## Feb 12, 2025
+
+Spring is more complicated than I remember... just want a simple Java webserver to be able to compile code. Man, things are really harder than they look! Should probably learn a little bit more. I think that I still have a book for Spring, should probably read that.
