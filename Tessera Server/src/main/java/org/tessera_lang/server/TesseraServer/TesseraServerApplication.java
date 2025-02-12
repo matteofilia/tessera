@@ -8,6 +8,7 @@ public class TesseraServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TesseraServerApplication.class, args);
+		System.out.println("System is running");
 	}
 
 }

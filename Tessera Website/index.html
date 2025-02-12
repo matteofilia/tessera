@@ -13,6 +13,8 @@
 			$(document).ready(function() {
 				var counter = 0;
 				var total_files = 3;
+
+				var API_URL = "http://localhost:8080"
 				
 				load_file = function() {
 					index = (counter % total_files)+1
@@ -38,7 +40,13 @@
 				});
 				
 				$("#button-run-code").click(function(){
-					$("#output-box").text("Hello world");
+					$.ajax({
+						url: API_URL+"/lex",
+						dataType: 'text',
+						CORS: true
+					}).done(function(text) {
+						$("#output-box").text(text);
+					})
 				});
 				
 				load_file()
