@@ -27,3 +27,5 @@ Spent some time working on the lexer today, several hours or so. So far, progres
 Fixed a problem with cheerpj not working. The fix was simple: compile using older version of Java. Proud of myself for figuring that one out! Otherwise, things are going well enough.
 
 So far, we have been making good progress. Hours wise, right now we are ahead of things. Goal is to have this finished by May 10 (my birthday).
+
+Yes, honestly not certain that I will be able to get Java to work with JavaScript. Starting to get mildly concerned that I will need to switch languages... I really hope not! Either way, this problem is tomorrow's problem. I can always think about things later. For now, there are other pressing concerns.
