@@ -48,7 +48,9 @@
 			(async function () {
 				await cheerpjInit();
 				await cheerpjRunJar(
-					"app/main.jar"
+					"app/main.jar",
+					"--verbose", 
+					"--web"
 				);
 				
 			})();
