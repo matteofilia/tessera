@@ -1,14 +1,23 @@
 package org.tessera_lang;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Lexer {
 
-    public static String lexText(String input) throws LexerException {
+    public static String toText(ArrayList<LexerToken> list) {
         StringBuilder output = new StringBuilder();
+
+        for (LexerToken token : list) {
+            output.append(token.getId());
+            output.append(" ");
+        }
+
+        return output.toString();
+    }
+
+    public static ArrayList<LexerToken> lexText(String input) throws LexerException {
+        ArrayList<LexerToken> list = new ArrayList<>();
 
         // TODO: fix this problem, please! Should be splitting on newlines
         String[] lines = input.split("\n");
@@ -18,15 +27,14 @@ public class Lexer {
             if (Main.BE_VERBOSE) System.out.println("Checking line: "+line);
             for (LexerToken token : LexerTokens.checkMatches(line)) {
                 // Match Found
-                output.append(token.getId());
-                output.append(" ");
+                list.add(token);
             }
         }
 
-        return output.toString();
+        return list;
     }
 
-    public static void lexFile(String inputFile, String outputFile) throws LexerException {
+    public static ArrayList<LexerToken> lexFile(String inputFile, String outputFile) throws LexerException {
         StringBuilder input = new StringBuilder();
         String output = "";
 
@@ -44,7 +52,7 @@ public class Lexer {
                 System.out.println("Error: IO Exception");
             }
 
-            output = lexText(input.toString());
+            return lexText(input.toString());
 
         } catch (FileNotFoundException e) {
             System.out.println("Error: file not found");
@@ -58,5 +66,6 @@ public class Lexer {
             System.out.println("Error: IO Exception");
         }
 
+        return null;
     }
 }

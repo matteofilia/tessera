@@ -17,7 +17,7 @@ public class TestController {
     public String lex(@RequestBody String input) {
         String output = ";";
         try {
-            output = Lexer.lexText(input);
+            output = Lexer.toText(Lexer.lexText(input));
         } catch (LexerException e) {
             return "Error: LexerException";
         }
