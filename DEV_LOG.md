@@ -37,3 +37,5 @@ Done some more thinking. Starting to think my ideal of a static website isn't go
 Spring is more complicated than I remember... just want a simple Java webserver to be able to compile code. Man, things are really harder than they look! Should probably learn a little bit more. I think that I still have a book for Spring, should probably read that.
 
 Got some of the web code working. Progress is slow but steady. Slow and steady wins the race, yes?
+
+Sloppy, very very sloppy. This code is a mess. Oh well, it works. Good thing that there are no code reviews!
