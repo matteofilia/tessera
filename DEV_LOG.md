@@ -45,3 +45,5 @@ Honestly, my brain feels kind of fried. I think that I have done enough for toda
 ## Feb 13, 2025
 
 Have been fiddling with the website. Would really like for there to be lexer and parser output. That being said, after much fiddling,  I have decided that KISS is the right approach: Keep It Simple, Stupid. All this work on the parser and lexer to go completely unseen... unfortunate. That being said, something simple and straightfoward is best. Simplicity is elegence.
+
+You know what? I have made a decision: Tessera will be an interpreted language. I want to see results quickly. I also don't feel like messing around with assembly code. Let's start small. Maybe sometime in the future we can make a full compiler.
