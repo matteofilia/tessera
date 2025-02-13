@@ -1,4 +1,7 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
+
+import org.tessera_lang.LexerToken;
+import org.tessera_lang.LexerTokens;
 
 import java.util.ArrayList;
 
@@ -6,7 +9,12 @@ public class Parser {
 
     public static ASTNode parse(ArrayList<LexerToken> list) {
         StringBuilder output = new StringBuilder();
-        ASTNode root = new ASTNode(null);
+
+        for (LexerToken token : list) {
+            if (token.getId() == LexerTokens.TOKEN_CONSTANT) {
+
+            }
+        }
 
         return output.toString();
     }

@@ -1,5 +1,7 @@
 package org.tessera_lang;
 
+import org.tessera_lang.parser.Parser;
+
 public class Main {
 
     public static boolean BE_VERBOSE = false;
@@ -55,7 +57,7 @@ public class Main {
             }
         }
         if (parse) {
-            System.out.println("Running org.tessera_lang.Parser: "+parserInputFile+" -> "+ assemblerInputFile);
+            System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile+" -> "+ assemblerInputFile);
             Parser.parseFile(parserInputFile, assemblerInputFile);
         }
         if (assemble) {
