@@ -1,1 +1,2 @@
-print(str(2 * 2));
+# This code should work
+2 * 2 + 5
