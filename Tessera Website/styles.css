@@ -30,12 +30,12 @@ body {
     font-family: sans-serif;
 }
 
- #input-box {
+ .input-box {
     resize: none;
     font-family: monospace;
 }
 
-#output-box, #input-box {
+.output-box, .input-box {
      width: 300px;
     height: 200px;
      background-color: dimgray;
@@ -75,4 +75,15 @@ body {
     margin-top: 80px;
     display: flex;
     justify-content: center;
+    gap: 10px;
+}
+
+#debug-popup-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
 }
