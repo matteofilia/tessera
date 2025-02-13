@@ -4,7 +4,9 @@
 Tessera is a minimalist toy programming language, created by me.
 
 ## Try It Now
-Try it now -> http://www.tessera-lang.org
+Try it now -> http://www.tessera-lang.org (Coming Soon!)
+
+![Tessera Screenshot](https://github.com/matteofilia/tessera/blob/main/screenshot.PNG)
 
 ## Run Tessera
 
