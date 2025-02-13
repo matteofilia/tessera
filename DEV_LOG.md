@@ -41,3 +41,7 @@ Got some of the web code working. Progress is slow but steady. Slow and steady w
 Sloppy, very very sloppy. This code is a mess. Oh well, it works. Good thing that there are no code reviews!
 
 Honestly, my brain feels kind of fried. I think that I have done enough for today. That being said, still haven't completed enough hours. Probably won't have a chance to work on anything tomorrow, unfortunately.
+
+## Feb 13, 2025
+
+Have been fiddling with the website. Would really like for there to be lexer and parser output. That being said, after much fiddling,  I have decided that KISS is the right approach: Keep It Simple, Stupid. All this work on the parser and lexer to go completely unseen... unfortunate. That being said, something simple and straightfoward is best. Simplicity is elegence.
