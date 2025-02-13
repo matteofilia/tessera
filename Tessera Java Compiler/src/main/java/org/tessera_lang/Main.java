@@ -9,13 +9,6 @@ public class Main {
     public static final int CODE_OK = 0;
     public static final int CODE_FAIL = 1;
 
-    public static native void sendToHTML(String s);
-
-    public String processInput(String input) {
-        // TODO: hook this up
-        return null;
-    }
-
     public static void main(String[] args){
         boolean lex = true;
         boolean parse = true;
