@@ -1,4 +1,4 @@
 # This code should work
-int main() {
+function int main() {
     return 23;
 }
