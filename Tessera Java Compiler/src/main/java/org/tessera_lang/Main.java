@@ -53,9 +53,17 @@ public class Main {
             System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile+" -> "+ assemblerInputFile);
             try {
                 ParserASTNode head = Parser.parseInput(lexerList);
-                Parser.printDebugOutput(head);
+
+                if  (Main.BE_VERBOSE) {
+                    Parser.printDebugOutput(head);
+                }
+
                 if (head == null && Main.BE_VERBOSE) {
                     System.out.println("Head is null!");
+                }
+
+                if (Main.BE_VERBOSE) {
+                    Parser.printDebugTraversal(head);
                 }
             } catch (ParserException e) {
                 System.out.println("Parser Failure");

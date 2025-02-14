@@ -1,5 +1,6 @@
 package org.tessera_lang;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {
@@ -8,14 +9,24 @@ public class Parser {
         // TODO: create better function
     }
 
-    private static ParserASTNode awfulParseNode(LexerToken token, ParserASTNode currNode) throws ParserException {
+    private static ParserASTNode awfulParseNode(ArrayList<LexerToken> list, ParserASTNode currNode) throws ParserException {
         // TODO: fix terrible WIP function
-        if (Main.BE_VERBOSE) {
-            System.out.println("Parsing token "+token.getId()+" to AST tree");
+
+        LexerToken token = null;
+        if (!list.isEmpty()) {
+            token = list.remove(0);
+
+            if (Main.BE_VERBOSE) {
+                System.out.println("Parsing token "+token.getId()+" to AST tree");
+            }
+        } else {
+            throw new ParserException();
         }
 
         if (token.getId().equals(LexerTokens.TOKEN_CONSTANT)) {
-            currNode = addNode(currNode, new ParserASTNodeConstant());
+            ParserASTNodeConstant nodeConstant = new ParserASTNodeConstant();
+            nodeConstant.setValue(Integer.valueOf(expectRawValue(list)));
+            currNode = addNode(currNode, nodeConstant);
         } else if (token.getId().equals(LexerTokens.TOKEN_ADD)) {
             // TODO: make this better
             currNode = addNode(currNode, new ParserASTNodeAddition());
@@ -47,10 +58,8 @@ public class Parser {
 
         // TODO: parse stuff
         ParserASTNode head = null;
-        LexerToken token = null;
         while (!list.isEmpty()) {
-            token = list.remove(0);
-            head = awfulParseNode(token, head);
+            head = awfulParseNode(list, head);
         }
 
         return head;
@@ -88,6 +97,24 @@ public class Parser {
 
     public static void parseFile(String inputFile, String outputFile) throws ParserException {
         // TODO
+    }
+
+    public static void printDebugTraversal(ParserASTNode parserASTNode) {
+        if (parserASTNode.getLeft() != null) {
+            printDebugTraversal(parserASTNode.getLeft());
+        }
+
+        if (Main.BE_VERBOSE) {
+            if (parserASTNode instanceof ParserASTNodeConstant) {
+                System.out.println(parserASTNode.getIdentifier() + " ("+((ParserASTNodeConstant)parserASTNode).getValue()+")");
+            } else {
+                System.out.println(parserASTNode.getIdentifier());
+            }
+        }
+
+        if (parserASTNode.getRight() != null) {
+            printDebugTraversal(parserASTNode.getRight());
+        }
     }
 
     public static void printNodeDebugOutput(ParserASTNode node, int level, String leftOrRight) {
