@@ -19,8 +19,8 @@ public class Lexer {
     public static ArrayList<LexerToken> lexText(String input) throws LexerException {
         ArrayList<LexerToken> list = new ArrayList<>();
 
-        // TODO: fix this problem, please! Should be splitting on newlines
-        String[] lines = input.split("\n");
+        String[] lines = input.split("\\r?\\n");
+
         for (String line : lines) {
             line = line.trim();
 
@@ -45,7 +45,7 @@ public class Lexer {
             try {
                 String line = bufferedReader.readLine();
                 while (line != null) {
-                    input.append(line);
+                    input.append(line + "\n");
                     line = bufferedReader.readLine();
                 }
             } catch (IOException e){

@@ -1,6 +1,6 @@
 package org.tessera_lang;
 
-import org.tessera_lang.parser.Parser;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -14,24 +14,23 @@ public class Main {
     public static void main(String[] args){
         boolean lex = true;
         boolean parse = true;
-        boolean assemble = true;
 
         String lexerInputFile = "code.ts";
         String parserInputFile = "tokens.t";
         String assemblerInputFile = "tree.ast";
-        String finalOutputFile = "tess";
 
         for (String arg : args) {
             if (arg.equals("--lex")) {
                 parse = false;
-                assemble = false;
             } else if (arg.equals("--parse")) {
-                assemble = false;
+                // Do everything
             } else if (arg.equals("-v") || arg.equals("--verbose")) {
                 Main.BE_VERBOSE = true;
+                System.out.println("Output mode: verbose");
             } else if (arg.equals("-vv") || arg.equals("--very-verbose")) {
                 Main.BE_VERBOSE = true;
                 Main.BE_VERY_VERBOSE = true;
+                System.out.println("Output mode: very verbose");
             } else if (arg.equals("-w") || arg.equals(("--web"))) {
                 Main.WEB = true;
                 if (Main.BE_VERBOSE) System.out.println("Running in web mode");
@@ -40,22 +39,28 @@ public class Main {
             }
         }
 
+        ArrayList<LexerToken> lexerList = new ArrayList<>();
         if (lex) {
             System.out.println("Running org.tessera_lang.Lexer: " + lexerInputFile + " -> " + parserInputFile);
             try {
-                Lexer.lexFile(lexerInputFile, parserInputFile);
+                lexerList = Lexer.lexFile(lexerInputFile, parserInputFile);
             } catch (LexerException e) {
-                System.out.println("org.tessera_lang.Lexer Failure");
+                System.out.println("Lexer Failure");
                 System.exit(CODE_FAIL);
             }
         }
         if (parse) {
             System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile+" -> "+ assemblerInputFile);
-            Parser.parseFile(parserInputFile, assemblerInputFile);
-        }
-        if (assemble) {
-            System.out.println("Running org.tessera_lang.Assembler: "+assemblerInputFile+" -> "+ finalOutputFile);
-            Assembler.assembleFile(assemblerInputFile, finalOutputFile);
+            try {
+                ParserASTNode head = Parser.parseInput(lexerList);
+                Parser.printDebugOutput(head);
+                if (head == null && Main.BE_VERBOSE) {
+                    System.out.println("Head is null!");
+                }
+            } catch (ParserException e) {
+                System.out.println("Parser Failure");
+                System.exit(CODE_FAIL);
+            }
         }
 
         System.exit(CODE_OK);

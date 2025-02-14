@@ -17,6 +17,9 @@ public class LexerTokens {
     public static final String TOKEN_CLOSE_BRACE = "TOKEN_CLOSE_BRACE";
     public static final String TOKEN_SEMICOLON = "TOKEN_SEMICOLON";
     public static final String TOKEN_IDENTIFIER = "TOKEN_IDENTIFIER";
+    public static final String TOKEN_FUNCTION = "TOKEN_FUNCTION";
+    public static final String TOKEN_ADD = "TOKEN_ADD";
+    public static final String TOKEN_MULTIPLY = "TOKEN_MULTIPLY";
 
     private static boolean loaded = false;
     private static final ArrayList<LexerToken> allTokens = new ArrayList<>();
@@ -25,6 +28,7 @@ public class LexerTokens {
         // NOTE: order is important here
         LexerTokens.add(new LexerToken(Pattern.compile("test\b"), "TOKEN_TEST"));
         LexerTokens.add(new LexerToken(Pattern.compile("[0-9]+\\b"), TOKEN_CONSTANT, true));
+        LexerTokens.add(new LexerToken(Pattern.compile("function\\b"), TOKEN_FUNCTION));
         LexerTokens.add(new LexerToken(Pattern.compile("int\\b"), TOKEN_INT));
         LexerTokens.add(new LexerToken(Pattern.compile("void\\b"), TOKEN_VOID));
         LexerTokens.add(new LexerToken(Pattern.compile("return\\b"), TOKEN_RETURN));
@@ -34,6 +38,8 @@ public class LexerTokens {
         LexerTokens.add(new LexerToken(Pattern.compile("\\}"), TOKEN_CLOSE_BRACE));
         LexerTokens.add(new LexerToken(Pattern.compile(";"), TOKEN_SEMICOLON));
         LexerTokens.add(new LexerToken(Pattern.compile("[a-zA-Z_]\\w*\\b"), TOKEN_IDENTIFIER, true));
+        LexerTokens.add(new LexerToken(Pattern.compile("\\+"), TOKEN_ADD));
+        LexerTokens.add(new LexerToken(Pattern.compile("\\*"), TOKEN_MULTIPLY));
     }
 
     public static void add(LexerToken token) {
