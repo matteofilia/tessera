@@ -1,4 +1,8 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
+
+import org.tessera_lang.lexer.LexerToken;
+import org.tessera_lang.lexer.LexerTokenIdentifier;
+import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
@@ -10,14 +14,14 @@ public class ParserASTNodeFunction extends ParserASTNode {
 
     @Override
     public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
-        expect(list, LexerTokens.TOKEN_FUNCTION);
+        expect(list, LexerTokenIdentifier.TOKEN_FUNCTION);
         returnToken = parse(list);
         functionName = parse(list);
-        expect(list, LexerTokens.TOKEN_OPEN_PARENTHESIS);
-        expect(list, LexerTokens.TOKEN_CLOSE_BRACE);
-        expect(list, LexerTokens.TOKEN_OPEN_BRACE);
+        expect(list, LexerTokenIdentifier.TOKEN_OPEN_PARENTHESIS);
+        expect(list, LexerTokenIdentifier.TOKEN_CLOSE_BRACE);
+        expect(list, LexerTokenIdentifier.TOKEN_OPEN_BRACE);
         statement = parse(list);
-        expect(list, LexerTokens.TOKEN_CLOSE_BRACE);
+        expect(list, LexerTokenIdentifier.TOKEN_CLOSE_BRACE);
 
         return this;
     }

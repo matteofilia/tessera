@@ -1,4 +1,6 @@
-package org.tessera_lang;
+package org.tessera_lang.lexer;
+
+import org.tessera_lang.Main;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ public class Lexer {
         StringBuilder output = new StringBuilder();
 
         for (LexerToken token : list) {
-            output.append(token.getId());
+            output.append(token.getIdentifier().getName());
             output.append(" ");
         }
 

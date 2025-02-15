@@ -1,6 +1,10 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
 
-import java.lang.reflect.Array;
+import org.tessera_lang.Main;
+import org.tessera_lang.lexer.LexerToken;
+import org.tessera_lang.lexer.LexerTokenIdentifier;
+import org.tessera_lang.lexer.LexerTokens;
+
 import java.util.ArrayList;
 
 public class Parser {
@@ -17,19 +21,23 @@ public class Parser {
             token = list.remove(0);
 
             if (Main.BE_VERBOSE) {
-                System.out.println("Parsing token "+token.getId()+" to AST tree");
+                System.out.println("Parsing token "+token.getIdentifier().getName()+" to AST tree");
             }
         } else {
             throw new ParserException();
         }
 
-        if (token.getId().equals(LexerTokens.TOKEN_CONSTANT)) {
+        if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
             ParserASTNodeConstant nodeConstant = new ParserASTNodeConstant();
             nodeConstant.setValue(Integer.valueOf(expectRawValue(list)));
             currNode = addNode(currNode, nodeConstant);
-        } else if (token.getId().equals(LexerTokens.TOKEN_ADD)) {
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
             // TODO: make this better
             currNode = addNode(currNode, new ParserASTNodeAddition());
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_RETURN) {
+            currNode = addNode(currNode, new ParserASTNodeReturn());
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) {
+            currNode = addNode(currNode, new ParserASTNodeMultiplication());
         }
 
         return currNode;
@@ -65,14 +73,14 @@ public class Parser {
         return head;
     }
 
-    public static void expect(ArrayList<LexerToken> list, String expectedValue) throws ParserException {
+    public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier) throws ParserException {
         if (list.isEmpty()) {
             throw new ParserException();
         }
 
-        LexerToken token = list.remove(0);
+        LexerTokenIdentifier token = list.remove(0).getIdentifier();
 
-        if (!token.getId().equals(expectedValue)) {
+        if (!(token == expectedIdentifier)) {
             throw new ParserException();
         }
     }
@@ -82,12 +90,8 @@ public class Parser {
             throw new ParserException();
         }
 
-        Object obj = list.remove(0);
-        if (obj instanceof LexerValue) {
-            return ((LexerValue)obj).getValue();
-        } else {
-            throw new ParserException();
-        }
+        // TODO
+        return "TODO";
     }
 
     public static ParserASTNode parseInput(ArrayList<LexerToken> list) throws ParserException {

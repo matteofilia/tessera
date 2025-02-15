@@ -1,4 +1,7 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
+
+import org.tessera_lang.lexer.LexerToken;
+import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
 
@@ -8,7 +11,7 @@ public class ParserASTNode {
     private ParserASTNode right;
     private ParserASTNode parent;
 
-    private String identifier = null;
+    private LexerTokenIdentifier identifier = null;
 
     public ParserASTNode() {
         // Empty
@@ -19,14 +22,14 @@ public class ParserASTNode {
         return null;
     }
 
-    public static void expect(ArrayList<LexerToken> list, String expectedType) throws ParserException {
+    public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier) throws ParserException {
         if (list.isEmpty()) {
             throw new ParserException();
         }
 
         LexerToken token = list.remove(0);
 
-        if (!token.getId().equals(expectedType)) {
+        if (!token.getIdentifier().equals(expectedIdentifier)) {
             throw new ParserException();
         }
     }
@@ -55,11 +58,11 @@ public class ParserASTNode {
         this.right = right;
     }
 
-    public String getIdentifier() {
+    public LexerTokenIdentifier getIdentifier() {
         return identifier;
     }
 
-    public void setIdentifier(String identifier) {
+    public void setIdentifier(LexerTokenIdentifier identifier) {
         this.identifier = identifier;
     }
 

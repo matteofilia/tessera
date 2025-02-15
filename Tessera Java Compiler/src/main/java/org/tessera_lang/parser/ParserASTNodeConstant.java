@@ -1,4 +1,8 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
+
+import org.tessera_lang.lexer.LexerToken;
+import org.tessera_lang.lexer.LexerTokenIdentifier;
+import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
@@ -20,14 +24,14 @@ public class ParserASTNodeConstant extends ParserASTNode {
 
     @Override
     public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
-        Parser.expect(list, LexerTokens.TOKEN_CONSTANT);
+        Parser.expect(list, LexerTokenIdentifier.TOKEN_INTEGER);
         this.setValueString(Parser.expectRawValue(list));
 
         return this;
     }
 
     @Override
-    public String getIdentifier() {
-        return LexerTokens.TOKEN_CONSTANT;
+    public LexerTokenIdentifier getIdentifier() {
+        return LexerTokenIdentifier.TOKEN_INTEGER;
     }
 }

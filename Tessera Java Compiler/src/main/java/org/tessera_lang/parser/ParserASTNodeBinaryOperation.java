@@ -1,4 +1,6 @@
-package org.tessera_lang;
+package org.tessera_lang.parser;
+
+import org.tessera_lang.lexer.LexerToken;
 
 import java.util.ArrayList;
 
