@@ -2,10 +2,12 @@ package org.tessera_lang;
 
 import org.tessera_lang.interpreter.Interpreter;
 import org.tessera_lang.lexer.Lexer;
+import org.tessera_lang.lexer.LexerDebugger;
 import org.tessera_lang.lexer.LexerException;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.parser.Parser;
 import org.tessera_lang.parser.ParserASTNode;
+import org.tessera_lang.parser.ParserDebugger;
 import org.tessera_lang.parser.ParserException;
 
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ public class Main {
 
                 if (Main.BE_VERBOSE) {
                     System.out.print("Lexer Output: ");
-                    Lexer.debugOutput(lexerList);
+                    LexerDebugger.debugLexerTokenList(lexerList);
                 }
             } catch (LexerException e) {
                 System.out.println("Lexer Failure");
@@ -70,7 +72,7 @@ public class Main {
                  head = Parser.parseInput(lexerList);
 
                 if  (Main.BE_VERBOSE) {
-                    Parser.printDebugOutput(head);
+                    ParserDebugger.printDebugOutput(head);
                 }
 
                 if (head == null && Main.BE_VERBOSE) {
@@ -78,7 +80,7 @@ public class Main {
                 }
 
                 if (Main.BE_VERBOSE) {
-                    Parser.printDebugTraversal(head);
+                    ParserDebugger.printDebugTraversal(head);
                 }
             } catch (ParserException e) {
                 System.out.println("Parser Failure");
