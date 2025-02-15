@@ -16,6 +16,7 @@ public class Lexer {
                 System.out.print(token.getIdentifier().getName() + " ");
             }
         }
+        System.out.print("\n");
     }
 
     public static String toText(ArrayList<LexerToken> list) {

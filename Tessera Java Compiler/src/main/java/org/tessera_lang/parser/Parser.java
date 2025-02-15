@@ -29,7 +29,7 @@ public class Parser {
 
         if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
             ParserASTNodeConstant nodeConstant = new ParserASTNodeConstant();
-            nodeConstant.setValue(Integer.valueOf(expectRawValue(list)));
+            nodeConstant.setValue(Integer.valueOf(token.getValue()));
             currNode = addNode(currNode, nodeConstant);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
             // TODO: make this better
@@ -75,6 +75,7 @@ public class Parser {
 
     public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier) throws ParserException {
         if (list.isEmpty()) {
+            if (Main.BE_VERBOSE) System.out.println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
@@ -85,13 +86,19 @@ public class Parser {
         }
     }
 
-    public static String expectRawValue(ArrayList<LexerToken> list) throws ParserException{
+    public static String expectRawValue(ArrayList<LexerToken> list) throws ParserException {
         if (list.isEmpty()) {
+            if (Main.BE_VERBOSE) System.out.println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
-        // TODO
-        return "TODO";
+        LexerToken token = list.remove(0);
+        if (token.hasValue()) {
+            return token.getValue();
+        } else {
+            if (Main.BE_VERBOSE) System.out.println("LexerToken has no value when one is expected");
+            throw new ParserException();
+        }
     }
 
     public static ParserASTNode parseInput(ArrayList<LexerToken> list) throws ParserException {
@@ -148,7 +155,7 @@ public class Parser {
         if (Main.BE_VERBOSE) {
             System.out.println("AST Tree Debug:");
         }
-
+        
         printNodeDebugOutput(head, 0, "Head");
     }
 }

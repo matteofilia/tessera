@@ -128,11 +128,11 @@ public class LexerTokens {
 
             if (longestMatchingTemplate != null) {
                 if (Main.BE_VERBOSE) System.out.println("Template match found!"+" ("+ longestMatchingTemplate.getIdentifier().getName()+")");
-                if (Main.BE_VERBOSE) System.out.println("Value: ("+value+")");
 
                 LexerToken token = new LexerToken(longestMatchingTemplate.getIdentifier());
                 if (longestMatchingTemplate.shouldHaveValue()) {
                     token.setValue(value);
+                    if (Main.BE_VERBOSE) System.out.println("Value: ("+value+")");
                 }
 
                 list.add(token);
