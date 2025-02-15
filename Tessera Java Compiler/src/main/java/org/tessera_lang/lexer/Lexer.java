@@ -7,6 +7,17 @@ import java.util.ArrayList;
 
 public class Lexer {
 
+    public static void debugOutput(ArrayList<LexerToken> list) {
+        System.out.print("\n");
+        for (LexerToken token : list) {
+            if (token.hasValue()) {
+                System.out.print(token.getIdentifier().getName() + " ("+token.getValue()+") ");
+            } else {
+                System.out.print(token.getIdentifier().getName() + " ");
+            }
+        }
+    }
+
     public static String toText(ArrayList<LexerToken> list) {
         StringBuilder output = new StringBuilder();
 

@@ -8,7 +8,7 @@ public class LexerToken {
         this.identifier = identifier;
     }
 
-    public LexerToken(LexerTokenIdentifier identifier, boolean shouldHaveValue) {
+    public LexerToken(LexerTokenIdentifier identifier, String value) {
         this.identifier = identifier;
         this.value = value;
     }
@@ -24,5 +24,9 @@ public class LexerToken {
 
     public LexerTokenIdentifier getIdentifier() {
         return identifier;
+    }
+
+    public boolean hasValue() {
+        return value != null;
     }
 }

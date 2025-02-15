@@ -20,7 +20,7 @@ public class LexerTokens {
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("test\\b"), TOKEN_TEST));
 
         // Data Type Tokens
-        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("[0-9]+\\b"),  TOKEN_INTEGER));
+        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("[0-9]+\\b"),  TOKEN_INTEGER, true));
 
         // Special Keyword Tokens
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("function\\b"),  TOKEN_FUNCTION));

@@ -54,6 +54,11 @@ public class Main {
             System.out.println("Running org.tessera_lang.lexer.Lexer: " + lexerInputFile + " -> " + parserInputFile);
             try {
                 lexerList = Lexer.lexFile(lexerInputFile, parserInputFile);
+
+                if (Main.BE_VERBOSE) {
+                    System.out.print("Lexer Output: ");
+                    Lexer.debugOutput(lexerList);
+                }
             } catch (LexerException e) {
                 System.out.println("Lexer Failure");
                 System.exit(CODE_FAIL);
