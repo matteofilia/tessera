@@ -23,12 +23,16 @@ public class Lexer {
 
         String[] lines = input.split("\\r?\\n");
 
-        for (String line : lines) {
+        for (int indexRow = 0; indexRow < lines.length; indexRow++) {
+            String line = lines[indexRow];
             line = line.trim();
 
             if (Main.BE_VERBOSE) System.out.println("Checking line: "+line);
             for (LexerToken token : LexerTokens.checkMatches(line)) {
-                // Match Found
+                // Set origin row
+                token.setOriginRow(indexRow);
+
+                // Match found, add to list
                 list.add(token);
             }
         }

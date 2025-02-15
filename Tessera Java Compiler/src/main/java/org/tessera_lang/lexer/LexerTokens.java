@@ -90,26 +90,26 @@ public class LexerTokens {
         if (Main.BE_VERBOSE) System.out.println("Checking match: "+line);
 
         // Check all tokens for match
-        int index = 0;
+        int columnIndex = 0;
         LexerTokenTemplate longestMatchingTemplate = null;
         int maxLength = 0;
         String value = null;
 
-        while (index < line.length()) {
-            if (Character.isWhitespace(line.charAt(index))) {
-                index++;
+        while (columnIndex < line.length()) {
+            if (Character.isWhitespace(line.charAt(columnIndex))) {
+                columnIndex++;
                 continue;
-            } else if (line.charAt(index) == '#') {
+            } else if (line.charAt(columnIndex) == '#') {
                 // Comment, ignore remaining input
-                index = line.length();
+                columnIndex = line.length();
                 continue;
             }
 
             for (LexerTokenTemplate template : getAllTemplates()) {
                 Matcher matcher = template.getPattern().matcher(line);
 
-                if (matcher.find(index) && matcher.start() == index) {
-                    if (Main.BE_VERY_VERBOSE)System.out.println("Index = " + index);
+                if (matcher.find(columnIndex) && matcher.start() == columnIndex) {
+                    if (Main.BE_VERY_VERBOSE)System.out.println("Index = " + columnIndex);
 
                     int length = matcher.end() - matcher.start();
                     if (Main.BE_VERY_VERBOSE) {
@@ -130,13 +130,17 @@ public class LexerTokens {
                 if (Main.BE_VERBOSE) System.out.println("Template match found!"+" ("+ longestMatchingTemplate.getIdentifier().getName()+")");
 
                 LexerToken token = new LexerToken(longestMatchingTemplate.getIdentifier());
+                token.setOriginColumn(columnIndex);
+                token.setOriginLine(line);
+
                 if (longestMatchingTemplate.shouldHaveValue()) {
                     token.setValue(value);
-                    if (Main.BE_VERBOSE) System.out.println("Value: ("+value+")");
+
+                    if (Main.BE_VERBOSE) LexerDebugger.tokenDebugString(token);
                 }
 
                 list.add(token);
-                index = index + maxLength;
+                columnIndex = columnIndex + maxLength;
 
                 longestMatchingTemplate = null;
                 value = null;
