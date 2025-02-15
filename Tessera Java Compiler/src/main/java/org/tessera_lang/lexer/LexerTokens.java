@@ -108,17 +108,16 @@ public class LexerTokens {
             for (LexerTokenTemplate template : getAllTemplates()) {
                 Matcher matcher = template.getPattern().matcher(line);
 
-                if (Main.BE_VERY_VERBOSE) System.out.println("Finding From Index: "+index);
                 if (matcher.find(index) && matcher.start() == index) {
-                    if (Main.BE_VERY_VERBOSE) System.out.println("Start = " + matcher.start());
                     if (Main.BE_VERY_VERBOSE)System.out.println("Index = " + index);
-                    if (Main.BE_VERY_VERBOSE) System.out.println("MaxLength = " + maxLength);
 
                     int length = matcher.end() - matcher.start();
-                    if (Main.BE_VERY_VERBOSE) System.out.println("Length: "+length);
+                    if (Main.BE_VERY_VERBOSE) {
+                        System.out.println("Potential match found! ("+template.getIdentifier() + ")");
+                    }
+
 
                     if (length > maxLength) {
-
                         longestMatchingTemplate = template;
                         value = line.substring(matcher.start(), matcher.end());
 
