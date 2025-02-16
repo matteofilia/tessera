@@ -63,19 +63,29 @@ public class Parser {
         if (currNode == null) {
             // Node is null
             return newNode;
-        } else if (currNode.getRight() == null) {
-            currNode.setRight(newNode);
+        } else if (currNode.getLeft() == null) {
+            currNode.setLeft(newNode);
             newNode.setParent(currNode);
 
             return currNode;
-        }  else if (currNode.getParent() == null) {
-            currNode.setParent(newNode);
-            newNode.setLeft(currNode);
+        }  else if (currNode.getRight() == null) {
+            currNode.setRight(newNode);
+            newNode.setParent(currNode);
 
-            return newNode;
+            return currNode.getLeft();
         }
 
         return newNode;
+    }
+
+    public static ParserASTNode getHeadRecursive(ParserASTNode node) {
+        if (node ==  null) {
+            return null;
+        } else if (node.getParent() == null) {
+            return node;
+        } else {
+            return getHeadRecursive(node.getParent());
+        }
     }
 
     public static ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {

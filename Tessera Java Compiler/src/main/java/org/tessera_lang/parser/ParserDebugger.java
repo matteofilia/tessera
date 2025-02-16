@@ -5,17 +5,17 @@ import org.tessera_lang.lexer.LexerDebugger;
 
 public class ParserDebugger {
 
-    public static void printDebugTraversal(ParserASTNode parserASTNode) {
-        if (parserASTNode.getLeft() != null) {
-            printDebugTraversal(parserASTNode.getLeft());
-        }
-
+    public static void printDebugTraversal(ParserASTNode node) {
         if (Main.BE_VERY_VERBOSE) {
-            System.out.println(LexerDebugger.tokenDebugString(parserASTNode.getOriginToken()));
+            System.out.println(LexerDebugger.tokenDebugString(node.getOriginToken()));
         }
 
-        if (parserASTNode.getRight() != null) {
-            printDebugTraversal(parserASTNode.getRight());
+        if (node.getLeft() != null) {
+            printDebugTraversal(node.getLeft());
+        }
+
+        if (node.getRight() != null) {
+            printDebugTraversal(node.getRight());
         }
     }
 
@@ -30,7 +30,7 @@ public class ParserDebugger {
             }
 
             if (Main.BE_VERBOSE) {
-                System.out.println(output.toString() + node.getIdentifier() + " ("+leftOrRight+")");
+                System.out.println(output.toString() + node.getIdentifier().getName() + " ("+leftOrRight+")");
             }
 
             if (node.getLeft() != null) {
@@ -42,11 +42,11 @@ public class ParserDebugger {
         }
     }
 
-    public static void printDebugOutput(ParserASTNode head) {
+    public static void printDebugOutput(ParserASTNode anyNode) {
         if (Main.BE_VERBOSE) {
             System.out.println("AST Tree Debug:");
         }
 
-        printNodeDebugOutput(head, 0, "Head");
+        printNodeDebugOutput(Parser.getHeadRecursive(anyNode), 0, "Head");
     }
 }
