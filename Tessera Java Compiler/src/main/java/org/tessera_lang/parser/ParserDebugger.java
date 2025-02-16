@@ -10,8 +10,8 @@ public class ParserDebugger {
             printDebugTraversal(parserASTNode.getLeft());
         }
 
-        if (Main.BE_VERBOSE) {
-            LexerDebugger.tokenDebugString(parserASTNode.getOriginToken());
+        if (Main.BE_VERY_VERBOSE) {
+            System.out.println(LexerDebugger.tokenDebugString(parserASTNode.getOriginToken()));
         }
 
         if (parserASTNode.getRight() != null) {

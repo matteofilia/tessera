@@ -68,12 +68,7 @@ public class Parser {
             newNode.setParent(currNode);
 
             return currNode;
-        }  else if (currNode.getLeft() == null) {
-            currNode.setLeft(newNode);
-            newNode.setParent(currNode);
-
-            return currNode;
-        } else if (currNode.getParent() == null) {
+        }  else if (currNode.getParent() == null) {
             currNode.setParent(newNode);
             newNode.setLeft(currNode);
 
