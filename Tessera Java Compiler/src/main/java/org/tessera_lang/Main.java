@@ -82,7 +82,7 @@ public class Main {
                 }
 
                 if (Main.BE_VERBOSE) {
-                    ParserDebugger.printDebugTraversal(head);
+                    ParserDebugger.printDebugTraversal(Parser.getHeadRecursive(head));
                 }
             } catch (ParserException e) {
                 System.out.println("Parser Failure");

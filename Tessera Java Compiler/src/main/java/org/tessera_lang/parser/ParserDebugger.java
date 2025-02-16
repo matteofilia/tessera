@@ -7,15 +7,20 @@ public class ParserDebugger {
 
     public static void printDebugTraversal(ParserASTNode node) {
         if (Main.BE_VERY_VERBOSE) {
-            System.out.println(LexerDebugger.tokenDebugString(node.getOriginToken()));
+            if (node.getParent() == null) {
+                // Head Node
+                System.out.println(LexerDebugger.tokenDebugString(node.getOriginToken()));
+            }
+            if (node.getLeft() != null) {
+                System.out.println(LexerDebugger.tokenDebugString(node.getLeft().getOriginToken()));
+            }
+            if (node.getRight() != null) {
+                System.out.println(LexerDebugger.tokenDebugString(node.getRight().getOriginToken()));
+            }
         }
 
         if (node.getLeft() != null) {
             printDebugTraversal(node.getLeft());
-        }
-
-        if (node.getRight() != null) {
-            printDebugTraversal(node.getRight());
         }
     }
 
