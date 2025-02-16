@@ -57,3 +57,5 @@ Spent a solid two hours or so just refactoring code in an attempt to make the co
 It turns out that balancing an AST tree is harder than it seems. Also, the code is completely broken. It turns out that building a programming language is harder than it looks! Anyway, not sure what the path moving forwards looks like.
 
 I should get a new book in a couple days or so. Hopefully I will be able to learn more about building an interpreter.
+
+Yes, progress is slow. That being said, we are in fact making progress.
