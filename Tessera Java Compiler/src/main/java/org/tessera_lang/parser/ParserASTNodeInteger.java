@@ -29,11 +29,6 @@ public class ParserASTNodeInteger extends ParserASTNode {
     }
 
     @Override
-    public LexerTokenIdentifier getIdentifier() {
-        return LexerTokenIdentifier.TOKEN_INTEGER;
-    }
-
-    @Override
     public boolean hasValue() {
         return true;
     }

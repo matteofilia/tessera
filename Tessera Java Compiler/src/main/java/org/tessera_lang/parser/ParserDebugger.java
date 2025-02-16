@@ -30,7 +30,7 @@ public class ParserDebugger {
             }
 
             if (Main.BE_VERBOSE) {
-                System.out.println(output.toString() + node.getIdentifier().getName() + " ("+leftOrRight+")");
+                System.out.println(output.toString() + node.getOriginToken().getIdentifier().getName() + " ("+leftOrRight+")");
             }
 
             if (node.getLeft() != null) {

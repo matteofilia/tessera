@@ -36,24 +36,6 @@ public class ParserASTNodeBinaryOperation extends ParserASTNode {
     }
 
     @Override
-    public LexerTokenIdentifier getIdentifier() {
-        // TODO: wtf is this garbage code?
-
-
-        if (operatorType == ADD) {
-            return LexerTokenIdentifier.TOKEN_ADD;
-        } else if (operatorType == SUBTRACT) {
-            return LexerTokenIdentifier.TOKEN_SUBTRACT;
-        } else if (operatorType ==  MULTIPLY) {
-            return LexerTokenIdentifier.TOKEN_MULTIPLY;
-        } else if (operatorType == DIVIDE) {
-            return LexerTokenIdentifier.TOKEN_DIVIDE;
-        }
-
-        return LexerTokenIdentifier.TOKEN_ADD;
-    }
-
-    @Override
     public boolean isValid() throws InterpreterException {
         boolean valid = left != null && left.isValid() && right != null && right.isValid();
 

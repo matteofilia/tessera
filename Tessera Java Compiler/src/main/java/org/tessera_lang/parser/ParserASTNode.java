@@ -63,14 +63,6 @@ public class ParserASTNode {
         this.right = right;
     }
 
-    public LexerTokenIdentifier getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(LexerTokenIdentifier identifier) {
-        this.identifier = identifier;
-    }
-
     public ParserASTNode getParent() {
         return parent;
     }

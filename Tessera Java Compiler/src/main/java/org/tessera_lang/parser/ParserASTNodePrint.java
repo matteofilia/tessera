@@ -13,9 +13,4 @@ public class ParserASTNodePrint extends ParserASTNode {
         // TODO
         throw new ParserException();
     }
-
-    @Override
-    public LexerTokenIdentifier getIdentifier() {
-        return LexerTokenIdentifier.TOKEN_PRINT;
-    }
 }

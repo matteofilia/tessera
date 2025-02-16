@@ -18,9 +18,4 @@ public class ParserASTNodeReturn extends ParserASTNode {
 
         return this;
     }
-
-    @Override
-    public LexerTokenIdentifier getIdentifier() {
-        return LexerTokenIdentifier.TOKEN_RETURN;
-    }
 }
