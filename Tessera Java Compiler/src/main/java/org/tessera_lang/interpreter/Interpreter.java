@@ -25,6 +25,10 @@ public class Interpreter {
                 visit(tree);
             }
 
+            if (!tree.isValid()) {
+                throw new InterpreterException("Tree is not valid!");
+            }
+
             if (tree.hasValue()) {
                 System.out.println(tree.getValue());
             }

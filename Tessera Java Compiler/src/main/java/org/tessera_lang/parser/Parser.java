@@ -30,23 +30,28 @@ public class Parser {
             ParserASTNodeInteger nodeConstant = new ParserASTNodeInteger();
             nodeConstant.setValue(Integer.valueOf(token.getValue()));
             currNode = addNode(currNode, nodeConstant);
+            nodeConstant.setOriginToken(token);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
             // TODO: make this better
-            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
-            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.ADD);
-            currNode = addNode(currNode, binaryOperation);
+            ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
+            nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.ADD);
+            currNode = addNode(currNode, nodeBinaryOperation);
+            nodeBinaryOperation.setOriginToken(token);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) {
-            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
-            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MULTIPLY);
-            currNode = addNode(currNode, binaryOperation);
+            ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
+            nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MULTIPLY);
+            currNode = addNode(currNode, nodeBinaryOperation);
+            nodeBinaryOperation.setOriginToken(token);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_SUBTRACT) {
-            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
-            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.SUBTRACT);
-            currNode = addNode(currNode, binaryOperation);
+            ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
+            nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.SUBTRACT);
+            currNode = addNode(currNode, nodeBinaryOperation);
+            nodeBinaryOperation.setOriginToken(token);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DIVIDE) {
-            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
-            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.DIVIDE);
-            currNode = addNode(currNode, binaryOperation);
+            ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
+            nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.DIVIDE);
+            currNode = addNode(currNode, nodeBinaryOperation);
+            nodeBinaryOperation.setOriginToken(token);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_RETURN) {
             currNode = addNode(currNode, new ParserASTNodeReturn());
         }
@@ -63,7 +68,12 @@ public class Parser {
             newNode.setParent(currNode);
 
             return currNode;
-        }  else if (currNode.getParent() == null) {
+        }  else if (currNode.getLeft() == null) {
+            currNode.setLeft(newNode);
+            newNode.setParent(currNode);
+
+            return currNode;
+        } else if (currNode.getParent() == null) {
             currNode.setParent(newNode);
             newNode.setLeft(currNode);
 

@@ -1,6 +1,7 @@
 package org.tessera_lang.parser;
 
 import org.tessera_lang.Main;
+import org.tessera_lang.lexer.LexerDebugger;
 
 public class ParserDebugger {
 
@@ -10,11 +11,7 @@ public class ParserDebugger {
         }
 
         if (Main.BE_VERBOSE) {
-            if (parserASTNode instanceof ParserASTNodeInteger) {
-                System.out.println(parserASTNode.getIdentifier() + " ("+((ParserASTNodeInteger)parserASTNode).getValue()+")");
-            } else {
-                System.out.println(parserASTNode.getIdentifier());
-            }
+            LexerDebugger.tokenDebugString(parserASTNode.getOriginToken());
         }
 
         if (parserASTNode.getRight() != null) {

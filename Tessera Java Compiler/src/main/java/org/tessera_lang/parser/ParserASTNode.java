@@ -16,6 +16,8 @@ public class ParserASTNode {
 
     private LexerTokenIdentifier identifier = null;
 
+    private LexerToken originToken;
+
     public ParserASTNode() {
         // Empty
     }
@@ -95,5 +97,13 @@ public class ParserASTNode {
 
     public boolean isValid() throws InterpreterException {
         return true;
+    }
+
+    public LexerToken getOriginToken() {
+        return originToken;
+    }
+
+    public void setOriginToken(LexerToken originToken) {
+        this.originToken = originToken;
     }
 }
