@@ -59,3 +59,9 @@ It turns out that balancing an AST tree is harder than it seems. Also, the code 
 I should get a new book in a couple days or so. Hopefully I will be able to learn more about building an interpreter.
 
 Yes, progress is slow. That being said, we are in fact making progress.
+
+## Feb 16, 2025
+
+It's MY programming language. I can define how an AST is constructed, yes? I just worry that I may be doing something the "wrong" way, something that will cause problems later on.
+
+My brain feels somewhat fried today. Feeling very tired. Might leave certain things until tomorrow. Time to work on something simpler, maybe. Just a little bit of busywork.
