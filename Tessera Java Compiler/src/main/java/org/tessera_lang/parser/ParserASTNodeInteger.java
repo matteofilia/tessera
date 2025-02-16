@@ -1,18 +1,16 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.interpreter.InterpreterType;
+import org.tessera_lang.interpreter.InterpreterValue;
+import org.tessera_lang.interpreter.InterpreterValueInt;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
-import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
-public class ParserASTNodeConstant extends ParserASTNode {
+public class ParserASTNodeInteger extends ParserASTNode {
 
     private int value;
-
-    public int getValue() {
-        return value;
-    }
 
     public void setValue(int value) {
         this.value = value;
@@ -33,5 +31,30 @@ public class ParserASTNodeConstant extends ParserASTNode {
     @Override
     public LexerTokenIdentifier getIdentifier() {
         return LexerTokenIdentifier.TOKEN_INTEGER;
+    }
+
+    @Override
+    public boolean hasValue() {
+        return true;
+    }
+
+    @Override
+    public boolean hasType() {
+        return true;
+    }
+
+    @Override
+    public InterpreterType getType() {
+        return InterpreterType.INTEGER;
+    }
+
+    @Override
+    public InterpreterValue getValue() {
+        return new InterpreterValueInt(value);
+    }
+
+    @Override
+    public boolean isValid() {
+        return true;
     }
 }

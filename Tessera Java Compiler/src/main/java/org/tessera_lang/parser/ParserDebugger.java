@@ -10,8 +10,8 @@ public class ParserDebugger {
         }
 
         if (Main.BE_VERBOSE) {
-            if (parserASTNode instanceof ParserASTNodeConstant) {
-                System.out.println(parserASTNode.getIdentifier() + " ("+((ParserASTNodeConstant)parserASTNode).getValue()+")");
+            if (parserASTNode instanceof ParserASTNodeInteger) {
+                System.out.println(parserASTNode.getIdentifier() + " ("+((ParserASTNodeInteger)parserASTNode).getValue()+")");
             } else {
                 System.out.println(parserASTNode.getIdentifier());
             }

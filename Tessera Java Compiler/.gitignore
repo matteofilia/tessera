@@ -4,3 +4,4 @@ target/classes
 .idea/compiler.xml
 code.ts
 tokens.t
+*.ts

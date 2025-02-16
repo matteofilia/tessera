@@ -1,6 +1,5 @@
 package org.tessera_lang.interpreter;
 
-import org.tessera_lang.lexer.LexerTokens;
 import org.tessera_lang.parser.ParserASTNode;
 
 public class Interpreter {
@@ -17,15 +16,20 @@ public class Interpreter {
             rightValue = visit(node.getRight());
         }
 
-        // TODO
-
-        // TODO
         return 0;
     }
 
     public static void run(ParserASTNode tree) {
-        if (tree != null) {
-            visit(tree);
+        try {
+            if (tree != null) {
+                visit(tree);
+            }
+
+            if (tree.hasValue()) {
+                System.out.println(tree.getValue());
+            }
+        } catch (InterpreterException e) {
+            // TODO: add in token debug
         }
     }
 }

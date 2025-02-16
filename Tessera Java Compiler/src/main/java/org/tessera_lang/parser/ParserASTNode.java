@@ -1,5 +1,8 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.interpreter.InterpreterException;
+import org.tessera_lang.interpreter.InterpreterType;
+import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
 
@@ -7,9 +10,9 @@ import java.util.ArrayList;
 
 public class ParserASTNode {
 
-    private ParserASTNode left;
-    private ParserASTNode right;
-    private ParserASTNode parent;
+    protected ParserASTNode left;
+    protected ParserASTNode right;
+    protected ParserASTNode parent;
 
     private LexerTokenIdentifier identifier = null;
 
@@ -72,5 +75,25 @@ public class ParserASTNode {
 
     public void setParent(ParserASTNode parent) {
         this.parent = parent;
+    }
+
+    public boolean hasValue() throws InterpreterException {
+        return false;
+    }
+
+    public boolean hasType() throws InterpreterException {
+        return false;
+    }
+
+    public InterpreterValue getValue() throws InterpreterException {
+        return null;
+    }
+
+    public InterpreterType getType() throws InterpreterException {
+        return null;
+    }
+
+    public boolean isValid() throws InterpreterException {
+        return true;
     }
 }

@@ -3,7 +3,6 @@ package org.tessera_lang.parser;
 import org.tessera_lang.Main;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
-import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
@@ -28,16 +27,28 @@ public class Parser {
         }
 
         if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
-            ParserASTNodeConstant nodeConstant = new ParserASTNodeConstant();
+            ParserASTNodeInteger nodeConstant = new ParserASTNodeInteger();
             nodeConstant.setValue(Integer.valueOf(token.getValue()));
             currNode = addNode(currNode, nodeConstant);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
             // TODO: make this better
-            currNode = addNode(currNode, new ParserASTNodeAddition());
+            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
+            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.ADD);
+            currNode = addNode(currNode, binaryOperation);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) {
+            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
+            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MULTIPLY);
+            currNode = addNode(currNode, binaryOperation);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_SUBTRACT) {
+            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
+            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.SUBTRACT);
+            currNode = addNode(currNode, binaryOperation);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DIVIDE) {
+            ParserASTNodeBinaryOperation binaryOperation = new ParserASTNodeBinaryOperation();
+            binaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.DIVIDE);
+            currNode = addNode(currNode, binaryOperation);
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_RETURN) {
             currNode = addNode(currNode, new ParserASTNodeReturn());
-        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) {
-            currNode = addNode(currNode, new ParserASTNodeMultiplication());
         }
 
         return currNode;

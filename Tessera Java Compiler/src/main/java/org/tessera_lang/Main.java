@@ -45,7 +45,9 @@ public class Main {
                 Main.WEB = true;
                 if (Main.BE_VERBOSE) System.out.println("Running in web mode");
             } else {
-                lexerInputFile = arg;
+                String file = arg;
+                System.out.println("Using file: "+file);
+                lexerInputFile = file;
             }
         }
 
