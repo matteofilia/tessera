@@ -65,3 +65,5 @@ Yes, progress is slow. That being said, we are in fact making progress.
 It's MY programming language. I can define how an AST is constructed, yes? I just worry that I may be doing something the "wrong" way, something that will cause problems later on.
 
 My brain feels somewhat fried today. Feeling very tired. Might leave certain things until tomorrow. Time to work on something simpler, maybe. Just a little bit of busywork.
+
+Right now, we are at a standstill. I feel like giving up on this project. Have to stay strong and keep moving forwards. Maybe it is time to find something easier to work on for the time being. That being said, I am not sure what that would be. The parser needs to be cmopleted to continue making forward progress, as far as I can see.
