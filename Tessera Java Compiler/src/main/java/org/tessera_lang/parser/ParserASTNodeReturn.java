@@ -6,7 +6,7 @@ import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
-public class ParserASTNodeReturn extends ParserASTNode {
+public class ParserASTNodeReturn extends ParserASTNodePlaceholder {
 
     private ParserASTNode returnValue;
 

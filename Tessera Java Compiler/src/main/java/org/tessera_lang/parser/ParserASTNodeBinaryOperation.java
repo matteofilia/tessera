@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static org.tessera_lang.parser.ParserASTNodeBinaryOperation.OperatorType.*;
 
-public class ParserASTNodeBinaryOperation extends ParserASTNode {
+public class ParserASTNodeBinaryOperation extends ParserASTNodePlaceholder {
     public void setOperatorType(OperatorType operatorType) {
         this.operatorType = operatorType;
     }
@@ -33,43 +33,6 @@ public class ParserASTNodeBinaryOperation extends ParserASTNode {
     @Override
     public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
         return this;
-    }
-
-    @Override
-    public boolean isValid() throws InterpreterException {
-        boolean valid = left != null && left.isValid() && right != null && right.isValid();
-
-        if (!valid) {
-            throw new InterpreterException("Invalid");
-        } else {
-            return true;
-        }
-    }
-
-    @Override
-    public boolean hasValue() throws InterpreterException {
-        return left.hasValue() && right.hasValue();
-    }
-
-    @Override
-    public boolean hasType() throws InterpreterException {
-        return left.hasType() && right.hasType();
-    }
-
-    @Override
-    public InterpreterType getType() throws InterpreterException {
-        if (!left.hasType() || !right.hasType()) {
-            return InterpreterType.NONE;
-        }
-
-        InterpreterType typeLeft = left.getType();
-        InterpreterType typeRight = right.getType();
-
-        if (typeLeft != typeRight) {
-            throw new InterpreterException("Type Mismatch!");
-        } else {
-            return typeLeft;
-        }
     }
 
     @Override

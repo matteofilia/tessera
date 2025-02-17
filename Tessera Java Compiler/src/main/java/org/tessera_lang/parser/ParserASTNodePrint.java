@@ -6,7 +6,7 @@ import org.tessera_lang.lexer.LexerTokens;
 
 import java.util.ArrayList;
 
-public class ParserASTNodePrint extends ParserASTNode {
+public class ParserASTNodePrint extends ParserASTNodePlaceholder {
 
     @Override
     public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {

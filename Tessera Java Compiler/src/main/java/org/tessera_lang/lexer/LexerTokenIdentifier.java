@@ -55,7 +55,10 @@ public enum LexerTokenIdentifier {
     // Boolean Logic Tokens
     TOKEN_AND("AND"),
     TOKEN_OR("OR"),
-    TOKEN_NOT("NOT");
+    TOKEN_NOT("NOT"),
+
+    // Technical Tokens
+    TOKEN_HEAD("HEAD");
 
     private static final String PREFIX = "t_";
 

@@ -14,11 +14,15 @@ public class Interpreter {
             }
 
             if (tree.hasValue()) {
+                System.out.println("Value: ");
                 System.out.println(tree.getValue().toString());
+            } else {
+                System.out.println("Tree has no value");
             }
 
         } catch (InterpreterException e) {
             // TODO: add in token debug
+            System.out.println("Error: tree is not valid!");
         }
     }
 }

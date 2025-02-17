@@ -8,7 +8,7 @@ import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
 
-public class ParserASTNodeInteger extends ParserASTNode {
+public class ParserASTNodeInteger extends ParserASTNodePlaceholder {
 
     private int value;
 

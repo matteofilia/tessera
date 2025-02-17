@@ -12,10 +12,26 @@ public class Parser {
         // TODO: create better function
     }
 
+    private static ParserASTNode reallyAwfulParseToken(LexerToken token, ParserASTNode parent) throws ParserException {
+        if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
+            ParserASTNodeInteger nodeConstant = new ParserASTNodeInteger();
+            nodeConstant.setValue(Integer.valueOf(token.getValue()));
+
+            nodeConstant.setOriginToken(token);
+            nodeConstant.setParent(parent);
+
+            return nodeConstant;
+        }
+
+        return null;
+    }
+
     private static ParserASTNode reallyAwfulParseNode(ArrayList<LexerToken> list, ParserASTNode currNode) throws ParserException {
         // TODO: fix terrible WIP function
 
         LexerToken currToken = null;
+        LexerToken nextToken = null;
+        LexerToken nextNextToken = null;
 
         if (!list.isEmpty()) {
             currToken = list.remove(0);
@@ -27,17 +43,33 @@ public class Parser {
             throw new ParserException();
         }
 
-        if (currToken.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
-            ParserASTNodeInteger nodeConstant = new ParserASTNodeInteger();
-            nodeConstant.setValue(Integer.valueOf(currToken.getValue()));
-            currNode = addNode(currNode, nodeConstant);
-            nodeConstant.setOriginToken(currToken);
-        } else if (currToken.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
+        if (list.size() == 2) {
+            nextToken = list.get(0);
+        }
+        if (list.size() > 2) {
+            nextToken = list.get(0);
+            nextNextToken = list.get(1);
+        }
+
+        if (nextToken != null && nextToken.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) {
             // TODO: make this better
             ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
             nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.ADD);
             currNode = addNode(currNode, nodeBinaryOperation);
-            nodeBinaryOperation.setOriginToken(currToken);
+            nodeBinaryOperation.setOriginToken(nextToken);
+
+            if (nextNextToken != null) {
+                currNode.setLeft(reallyAwfulParseToken(nextNextToken, currNode));
+            }
+            currNode.setRight(reallyAwfulParseToken(currToken, currNode));
+        } else if (currToken.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) {
+            ParserASTNodeInteger nodeConstant = new ParserASTNodeInteger();
+            nodeConstant.setValue(Integer.valueOf(currToken.getValue()));
+            currNode = addNode(currNode, nodeConstant);
+            nodeConstant.setOriginToken(currToken);
+        }
+
+        /*
         } else if (currToken.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) {
             ParserASTNodeBinaryOperation nodeBinaryOperation = new ParserASTNodeBinaryOperation();
             nodeBinaryOperation.setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MULTIPLY);
@@ -56,6 +88,8 @@ public class Parser {
         } else if (currToken.getIdentifier() == LexerTokenIdentifier.TOKEN_RETURN) {
             currNode = addNode(currNode, new ParserASTNodeReturn());
         }
+        */
+
 
         return currNode;
     }
@@ -79,6 +113,101 @@ public class Parser {
         return newNode;
     }
 
+    public static ParserASTNode convertTokenToNode(LexerToken token) {
+        ParserASTNode node = null;
+
+        if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.ADD);
+        } if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_SUBTRACT){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.SUBTRACT);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MULTIPLY);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DIVIDE){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.DIVIDE);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DOUBLE_MULTIPLY){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.POWER);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MODULUS){
+            node = new ParserASTNodeBinaryOperation();
+            ((ParserASTNodeBinaryOperation)node).setOperatorType(ParserASTNodeBinaryOperation.OperatorType.MODULUS);
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER){
+            node = new ParserASTNodeInteger();
+            ((ParserASTNodeInteger) node).setValue(Integer.parseInt(token.getValue()));
+        }
+
+        // Don't forget to add the origin token
+        if (node != null) {
+            node.setOriginToken(token);
+        }
+
+        return node;
+    }
+
+    public static void addNodeLeftOnly(ParserASTNode head, ParserASTNode newNode) {
+        if (head.getLeft() == null) {
+            head.setLeft(newNode);
+            newNode.setParent(head);
+        } else {
+            addNodeLeftOnly(head.getLeft(), newNode);
+        }
+    }
+
+    public static void addNodeRightOnly(ParserASTNode head, ParserASTNode newNode) {
+        if (head.getLeft() == null) {
+            head.setLeft(newNode);
+            newNode.setParent(head);
+        } else if (head.getRight() == null) {
+            head.setRight(newNode);
+            newNode.setParent(head);
+        } else {
+            addNodeRightOnly(head.getLeft(), newNode);
+        }
+    }
+
+    public static ParserASTNode twinPassAddNodes(ArrayList<LexerToken> list, ParserASTNode head) throws ParserException {
+        ArrayList<LexerToken> firstPassList = new ArrayList<>();
+        ArrayList<LexerToken> secondPassList = new ArrayList<>();
+
+        for (LexerToken token : list) {
+            // First Pass Items
+            if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_ADD) firstPassList.add(token);
+            else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_SUBTRACT) firstPassList.add(token);
+            else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MULTIPLY) firstPassList.add(token);
+            else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DIVIDE) firstPassList.add(token);
+            else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_DOUBLE_MULTIPLY) firstPassList.add(token);
+            else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_MODULUS) firstPassList.add(token);
+
+            // Second Pass Items
+            if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) secondPassList.add(token);
+        }
+
+        // Set head to null
+        head = null;
+
+        // Construct First Pass, Left Assignment Only
+        for (LexerToken tokenFirst : firstPassList) {
+            ParserASTNode node = convertTokenToNode(tokenFirst);
+
+            if (head == null){
+                head = node;
+            } else {
+                addNodeLeftOnly(head, node);
+            }
+        }
+
+        // Construct Second Pass, Right Assignment Only
+        for (LexerToken tokenSecond : secondPassList) {
+            ParserASTNode node = convertTokenToNode(tokenSecond);
+            addNodeRightOnly(head, node);
+        }
+
+        return head;
+    }
+
     public static ParserASTNode getHeadRecursive(ParserASTNode node) {
         if (node ==  null) {
             return null;
@@ -91,11 +220,9 @@ public class Parser {
 
     public static ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
 
-        // TODO: parse stuff
-        ParserASTNode head = null;
-        while (!list.isEmpty()) {
-            head = reallyAwfulParseNode(list, head);
-        }
+        ParserASTNode head = new ParserASTNodePlaceholder();
+        head.setOriginToken(new LexerToken(LexerTokenIdentifier.TOKEN_HEAD));
+        head = twinPassAddNodes(list, head);
 
         return head;
     }

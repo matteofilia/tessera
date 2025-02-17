@@ -8,7 +8,7 @@ import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
 
-public class ParserASTNode {
+public abstract class ParserASTNode {
 
     protected ParserASTNode left;
     protected ParserASTNode right;
@@ -71,25 +71,11 @@ public class ParserASTNode {
         this.parent = parent;
     }
 
-    public boolean hasValue() throws InterpreterException {
-        return false;
-    }
-
-    public boolean hasType() throws InterpreterException {
-        return false;
-    }
-
-    public InterpreterValue getValue() throws InterpreterException {
-        return null;
-    }
-
-    public InterpreterType getType() throws InterpreterException {
-        return null;
-    }
-
-    public boolean isValid() throws InterpreterException {
-        return true;
-    }
+    public abstract boolean hasValue() throws InterpreterException;
+    public abstract boolean hasType() throws InterpreterException;
+    public abstract InterpreterValue getValue() throws InterpreterException;
+    public abstract InterpreterType getType() throws InterpreterException;
+    public abstract boolean isValid() throws InterpreterException ;
 
     public LexerToken getOriginToken() {
         return originToken;
