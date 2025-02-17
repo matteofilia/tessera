@@ -5,7 +5,6 @@ import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.interpreter.InterpreterValueInt;
 import org.tessera_lang.lexer.LexerToken;
-import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
 

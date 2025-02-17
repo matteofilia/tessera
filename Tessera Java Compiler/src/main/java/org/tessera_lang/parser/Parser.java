@@ -185,6 +185,13 @@ public class Parser {
             if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) secondPassList.add(token);
         }
 
+        // Error Checking
+        if (secondPassList.size() > firstPassList.size()+1) {
+            throw new ParserException("Parser Exception: too many items", secondPassList.get(secondPassList.size()-1));
+        } else if (secondPassList.size() <= firstPassList.size()) {
+            throw new ParserException("Parser Exception: too few items", secondPassList.get(secondPassList.size()-1));
+        }
+
         // Set head to null
         head = null;
 
@@ -222,7 +229,12 @@ public class Parser {
 
         ParserASTNode head = new ParserASTNodePlaceholder();
         head.setOriginToken(new LexerToken(LexerTokenIdentifier.TOKEN_HEAD));
-        head = twinPassAddNodes(list, head);
+
+        try {
+            head = twinPassAddNodes(list, head);
+        } catch (ParserException e) {
+            e.print();
+        }
 
         return head;
     }

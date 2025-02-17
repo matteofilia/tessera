@@ -35,7 +35,14 @@ public class ParserDebugger {
             }
 
             if (Main.BE_VERBOSE) {
-                System.out.println(output.toString() + node.getOriginToken().getIdentifier().getName() + " ("+leftOrRight+")");
+                String name = node.getOriginToken().getIdentifier().getName();
+
+                if (node.getOriginToken().hasValue()) {
+                    String value = node.getOriginToken().getValue();
+                    System.out.println(output.toString() + name + " ("+value+")"+" [" + leftOrRight + "]");
+                } else {
+                    System.out.println(output.toString() + name + " [" + leftOrRight + "]");
+                }
             }
 
             if (node.getLeft() != null) {
@@ -49,9 +56,11 @@ public class ParserDebugger {
 
     public static void printDebugOutput(ParserASTNode anyNode) {
         if (Main.BE_VERBOSE) {
+            System.out.print("\n");
             System.out.println("AST Tree Debug:");
-        }
 
-        printNodeDebugOutput(Parser.getHeadRecursive(anyNode), 0, "Head");
+            printNodeDebugOutput(Parser.getHeadRecursive(anyNode), 0, "Head");
+            System.out.print("\n");
+        }
     }
 }
