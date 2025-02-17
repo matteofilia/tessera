@@ -66,4 +66,6 @@ It's MY programming language. I can define how an AST is constructed, yes? I jus
 
 My brain feels somewhat fried today. Feeling very tired. Might leave certain things until tomorrow. Time to work on something simpler, maybe. Just a little bit of busywork.
 
-Right now, we are at a standstill. I feel like giving up on this project. Have to stay strong and keep moving forwards. Maybe it is time to find something easier to work on for the time being. That being said, I am not sure what that would be. The parser needs to be cmopleted to continue making forward progress, as far as I can see.
+Right now, we are at a standstill. I feel like giving up on this project. Have to stay strong and keep moving forwards. Maybe it is time to find something easier to work on for the time being. That being said, I am not sure what that would be. The parser needs to be completed to continue making forward progress, as far as I can see.
+
+Ok, did some more work. And guess what? I actually got it working! Tessera now can process simple math operations, including addition, subtraction, multiplication, and division. This is a BIG win and a great step forwards.
