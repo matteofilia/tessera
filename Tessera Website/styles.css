@@ -10,6 +10,8 @@ body {
     text-align: center;
     background-color: pink;
     font-size: 48px;
+    font-family: serif;
+    font-weight: 500;
 }
 
 .header {
@@ -27,7 +29,7 @@ body {
     
     background-color: red;
     color: white;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
  #input-box {
@@ -61,7 +63,7 @@ body {
     background-color: red;
     color: white;
     border: solid 2px black;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .button:active {
@@ -99,32 +101,33 @@ body {
     padding: 8px;
     display: flex;
     
-    background-color: #000000;
+    background-color: pink;
     width: 100%;
     max-width: 500px;
-    height: 30px;
+    height: 24px;
     
     justify-content: space-between;
     align-items: center;
 }
 
 #popup-header-title {
-    color: #ffffff;
-    font-family: sans-serif;
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
     font-size: 24px;
+    font-weight: 600;
 }
 
 
 #popup-close-button {
-    color: #ffffff;
-    font-family: sans-serif;
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
     font-size: 24px;
     cursor: pointer;
 }
 
 #popup-container {
     padding: 8px;
-    background-color: #fff;
+    background-color: #ffffff;
 
     max-width: 500px;
     width: 100%;
@@ -134,7 +137,10 @@ body {
 }
 
 #popup-text {
+    margin: 0;
     font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    
 }
 
 
