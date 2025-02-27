@@ -73,3 +73,7 @@ Ok, did some more work. And guess what? I actually got it working! Tessera now c
 ## Feb 17, 2025
 
 Again feeling very tired today. Next step is to get global variables to work. This should be fun! Yeah, this is probably going to take at least another day or two of work, most likely.
+
+## Feb 26, 2025
+
+Have been feeling very tired this past week. Got some work done on the website, so that is good. Not sure why I am so tired as of recently. Burnout? Maybe. Either that or something else. Hopefully things get better in a couple days or so and we go back to making progress. All we can do right now is wait and hope that things get better. I am still committed to this project, not giving up yet!
