@@ -77,3 +77,7 @@ Again feeling very tired today. Next step is to get global variables to work. Th
 ## Feb 26, 2025
 
 Have been feeling very tired this past week. Got some work done on the website, so that is good. Not sure why I am so tired as of recently. Burnout? Maybe. Either that or something else. Hopefully things get better in a couple days or so and we go back to making progress. All we can do right now is wait and hope that things get better. I am still committed to this project, not giving up yet!
+
+## Apr 25, 2025
+
+Alright, jumping back into things. Added some CSS styling to make the web page mobile-aware. Would like to continue doing more work but have been so mentally tired as of lately. Going to try a new approach (CBT for mental fatigue) and we will see if things go better. I am tentatively hopeful. I CAN finish this project, if I put my mind to it (hopefully).
