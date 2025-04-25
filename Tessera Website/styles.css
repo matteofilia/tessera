@@ -24,7 +24,7 @@ body {
     margin-right: auto;
     text-align: center;
     
-    border: solid 2px black;
+    border: solid 4px black;
     border-bottom: 0;
     
     background-color: red;
@@ -41,7 +41,7 @@ body {
     width: 300px;
     height: 200px;
     background-color: dimgray;
-    border: solid 2px black; 
+    border: solid 4px black; 
     padding: 8px;
     color: white;
     
@@ -142,11 +142,8 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
-#version {
-    margin: 0;
-}
-
 .bottom-content-item {
+     margin: 0;
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
 }
