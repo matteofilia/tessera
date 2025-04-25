@@ -20,8 +20,8 @@ body {
     margin-top: 0;
     margin-bottom: 0;
     
-    margin-left: auto;
     margin-right: auto;
+    width: 316px;
     text-align: center;
     
     border: solid 4px black;
@@ -71,6 +71,7 @@ body {
 }
 
 #action-bar {
+    width: 324px;
     display: flex;
     justify-content: space-between;
 }
@@ -142,10 +143,21 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
+#bottom-content-holder {
+    padding: 16px;
+}
+
 .bottom-content-item {
-     margin: 0;
+    margin: 0;
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
+}
+
+@media only screen and (max-width: 720px) {
+    #content-holder {
+        flex-direction: column;
+        flex-flow: wrap;
+    }
 }
 
 
