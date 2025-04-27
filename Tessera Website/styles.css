@@ -134,7 +134,6 @@ body {
     width: 100%;
     max-height: 200px;
     height: 100%;
-    
 }
 
 #popup-text {
@@ -162,6 +161,10 @@ body {
 
 .span-bold {
     font-weight: 700;
+}
+
+.span-newline {
+    display: block;
 }
 
 
