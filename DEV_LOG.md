@@ -81,3 +81,7 @@ Have been feeling very tired this past week. Got some work done on the website, 
 ## Apr 25, 2025
 
 Alright, jumping back into things. Added some CSS styling to make the web page mobile-aware. Would like to continue doing more work but have been so mentally tired as of lately. Going to try a new approach (CBT for mental fatigue) and we will see if things go better. I am tentatively hopeful. I CAN finish this project, if I put my mind to it (hopefully).
+
+## May 05, 2025
+
+Still not making much progress. Lacking motivation, lacking energy. But motivation seems to be the bigger issue. Moving forwards, I need a new strategy.
