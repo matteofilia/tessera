@@ -77,10 +77,11 @@ body {
 }
 
 #bottom-content-holder {
-    margin-top: 80px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 10px;
+    padding: 16px;
 }
 
 #popup {
@@ -142,10 +143,6 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
-#bottom-content-holder {
-    padding: 16px;
-}
-
 .bottom-content-item {
     margin: 0;
     font-size: 14px;
@@ -156,6 +153,13 @@ body {
     #content-holder {
         flex-direction: column;
         flex-flow: wrap;
+    }
+    
+    #bottom-content-holder {  
+        margin-left: auto;
+        margin-right: auto;
+        
+        width: 300px;
     }
 }
 
