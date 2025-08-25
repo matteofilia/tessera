@@ -22,7 +22,7 @@ public class MainController {
     }
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}"})
-    @PostMapping("/lex")
+    @PostMapping("/run_interpreter")
     public String lex(@RequestBody String input) {
         logger.info("TESSERA_WEB_HOST="+TESSERA_WEB_HOST);
 

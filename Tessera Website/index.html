@@ -40,7 +40,7 @@
 				});
 				
 				$("#button-run-code").click(function(){
-					var req_url = API_URL+"/lex";
+					var req_url = API_URL+"/run_interpreter";
 					var data = $("#input-box").val();
 					console.log("Sending POST request to "+req_url +" with data "+data);
 
