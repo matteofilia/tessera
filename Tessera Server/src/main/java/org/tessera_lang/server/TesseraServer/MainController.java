@@ -5,10 +5,8 @@ import org.tessera_lang.lexer.Lexer;
 import org.tessera_lang.lexer.LexerException;
 import org.tessera_lang.parser.ParserException;
 
-import java.text.ParseException;
-
 @RestController
-public class TestController {
+public class MainController {
 
     @GetMapping("/hello_world")
     public String helloWorld() {
