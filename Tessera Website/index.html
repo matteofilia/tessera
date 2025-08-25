@@ -40,6 +40,9 @@
 				});
 				
 				$("#button-run-code").click(function(){
+					// Clear Box
+					$("#output-box").text("working...");
+					
 					var req_url = API_URL+"/run_interpreter";
 					var data = $("#input-box").val();
 					console.log("Sending POST request to "+req_url +" with data "+data);
