@@ -105,7 +105,7 @@ body {
     
     background-color: pink;
     width: 100%;
-    max-width: 500px;
+    max-width: 350px;
     height: 24px;
     
     justify-content: space-between;
@@ -131,7 +131,7 @@ body {
     padding: 8px;
     background-color: #ffffff;
 
-    max-width: 500px;
+    max-width: 350px;
     width: 100%;
     max-height: 200px;
     height: 100%;
