@@ -1,9 +1,9 @@
 package org.tessera_lang.server.TesseraServer;
 
 import org.springframework.web.bind.annotation.*;
-import org.tessera_lang.Lexer;
-import org.tessera_lang.LexerException;
-import org.tessera_lang.ParserException;
+import org.tessera_lang.lexer.Lexer;
+import org.tessera_lang.lexer.LexerException;
+import org.tessera_lang.parser.ParserException;
 
 import java.text.ParseException;
 
