@@ -5,6 +5,7 @@ import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Parser {
 
@@ -185,9 +186,17 @@ public class Parser {
             if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) secondPassList.add(token);
         }
 
+        // Reverse The List (Proper Left to Right Ordering)
+        Collections.reverse(firstPassList);
+        Collections.reverse(secondPassList);
+
+        if (secondPassList.size() == 0) {
+            return null;
+        }
+
         // Error Checking
         if (secondPassList.size() > firstPassList.size()+1) {
-            throw new ParserException("Parser Exception: too many items", secondPassList.get(secondPassList.size()-1));
+            throw new ParserException("Parser Exception: too many items", secondPassList.get(secondPassList.size() - 1));
         } else if (secondPassList.size() <= firstPassList.size()) {
             throw new ParserException("Parser Exception: too few items", secondPassList.get(secondPassList.size()-1));
         }

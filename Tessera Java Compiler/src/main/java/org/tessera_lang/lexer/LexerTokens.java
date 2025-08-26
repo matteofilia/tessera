@@ -70,6 +70,10 @@ public class LexerTokens {
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("and\\b"), TOKEN_AND));
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("or\\b"), TOKEN_OR));
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("not\\b"), TOKEN_NOT));
+
+        // Variables
+        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("global var\\b"), TOKEN_GLOBAL_VAR));
+        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("local var\\b"), TOKEN_LOCAL_VAR));
     }
 
     public static void add(LexerTokenTemplate template) {

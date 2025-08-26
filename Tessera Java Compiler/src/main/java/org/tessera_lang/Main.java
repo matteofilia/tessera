@@ -1,6 +1,7 @@
 package org.tessera_lang;
 
 import org.tessera_lang.interpreter.Interpreter;
+import org.tessera_lang.interpreter.InterpreterException;
 import org.tessera_lang.lexer.Lexer;
 import org.tessera_lang.lexer.LexerDebugger;
 import org.tessera_lang.lexer.LexerException;
@@ -25,7 +26,7 @@ public class Main {
         boolean lex = true;
         boolean parse = true;
 
-        String lexerInputFile = "code.ts";
+        String lexerInputFile = "code.tess";
         String parserInputFile = "tokens.t";
         String assemblerInputFile = "tree.ast";
 
@@ -91,7 +92,11 @@ public class Main {
         }
 
         // Run Interpreter
-        Interpreter.run(head);
+        try {
+            Interpreter.run(head);
+        } catch (InterpreterException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.exit(CODE_OK);
     }

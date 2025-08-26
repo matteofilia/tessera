@@ -58,7 +58,11 @@ public enum LexerTokenIdentifier {
     TOKEN_NOT("NOT"),
 
     // Technical Tokens
-    TOKEN_HEAD("HEAD");
+    TOKEN_HEAD("HEAD"),
+
+    // Technical Tokens
+    TOKEN_GLOBAL_VAR("GLOBAL_VAR"),
+    TOKEN_LOCAL_VAR("LOCAL_VAR");
 
     private static final String PREFIX = "t_";
 
