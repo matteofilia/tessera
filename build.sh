@@ -4,7 +4,7 @@
 
 echo "Compiling Java using Ant..."
 
-cd "Tessera Java Compiler" 
+cd "Tessera Java Interpreter" 
 ant clean
 ant compile
 ant jar
