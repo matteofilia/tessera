@@ -43,6 +43,7 @@ public class Lexer {
     public static ArrayList<LexerToken> lexFile(String inputFile, String outputFile) throws LexerException {
         StringBuilder input = new StringBuilder();
         String output = "";
+        ArrayList<LexerToken> tokens = new ArrayList<>();
 
         try {
             FileReader fileReader = new FileReader(inputFile);
@@ -58,18 +59,21 @@ public class Lexer {
                 System.out.println("Error: IO Exception");
             }
 
-            return lexText(input.toString());
+            tokens = Lexer.lexText(input.toString());
+            output = Lexer.toText(tokens);
+
+            try {
+                Writer writer = new FileWriter(outputFile);
+                writer.write(output);
+                writer.close();;
+            } catch (IOException e) {
+                System.out.println("Error: IO Exception");
+            }
+
+            return tokens;
 
         } catch (FileNotFoundException e) {
             System.out.println("Error: file not found");
-        }
-
-        try {
-            Writer writer = new FileWriter(outputFile);
-            writer.write(output);
-            writer.close();;
-        } catch (IOException e) {
-            System.out.println("Error: IO Exception");
         }
 
         return null;

@@ -34,20 +34,58 @@ public class Main {
         );
     }
 
+    private static void printHelp() {
+        System.out.println("*** Tessera Interpreter Help ***");
+        System.out.println("");
+        System.out.println("Arguments: ");
+        System.out.println("--lex --- Run Lexer ONLY");
+        System.out.println("--parse --- Run Lexer AND Parser");
+        System.out.println("--interpreter --- Run Lexer AND Parser AND Interpreter");
+        System.out.println("--web --- Run In Web Mode");
+        System.out.println("");
+        System.out.println("-h --help --- Display Help");
+        System.out.println("-v --verbose --- Display Output Verbosely");
+        System.out.println("-vv --very-verbose --- Display Output Very Verbosely");
+
+        System.out.println("");
+        System.out.println("About: ");
+        System.out.println("Tessera is an interpreted language, with the interpreter being written in Java.");
+
+        System.out.println("");
+        System.out.println("Stages: ");
+        System.out.println("1 - Run Lexer");
+        System.out.println("2 - Run Parser");
+        System.out.println("3 - Run Interpreter");
+
+        System.out.println("Files: ");
+        System.out.println("Default Lexer File: code.tess");
+        System.out.println("Default Parser File: tokens.t");
+        System.out.println("Default Interpreter File: N/A");
+
+        System.out.println("");
+        System.out.println("Examples: ");
+        System.out.println("./tessera file.tess");
+        System.out.println("./tessera --lex --verbose file2.tess");
+    }
+
+    // TODO: this entire thing is terrible... fix please
+
     public static void main(String[] args){
 
         printCoolAsciiThing();
+        System.out.println("For help, please use -h or --help");
 
-        boolean lex = true;
-        boolean parse = true;
+        boolean runLexer = true;
+        boolean runParser = true;
+        boolean runInterpreter = true;
 
         String lexerInputFile = "code.tess";
         String parserInputFile = "tokens.t";
-        String assemblerInputFile = "tree.ast";
 
         for (String arg : args) {
             if (arg.equals("--lex")) {
-                parse = false;
+                runParser = false;
+                runInterpreter = false;
             } else if (arg.equals("--parse")) {
                 // Do everything
             } else if (arg.equals("-v") || arg.equals("--verbose")) {
@@ -60,6 +98,8 @@ public class Main {
             } else if (arg.equals("-w") || arg.equals(("--web"))) {
                 Main.WEB = true;
                 if (Main.BE_VERBOSE) System.out.println("Running in web mode");
+            } else if (arg.equals("-h") || arg.equals("--help")) {
+                printHelp();
             } else {
                 String file = arg;
                 System.out.println("Using file: "+file);
@@ -70,7 +110,7 @@ public class Main {
         ArrayList<LexerToken> lexerList = new ArrayList<>();
         ParserASTNode head = null;
 
-        if (lex) {
+        if (runLexer) {
             System.out.println("Running org.tessera_lang.lexer.Lexer: " + lexerInputFile + " -> " + parserInputFile);
             try {
                 lexerList = Lexer.lexFile(lexerInputFile, parserInputFile);
@@ -84,8 +124,8 @@ public class Main {
                 System.exit(CODE_FAIL);
             }
         }
-        if (parse) {
-            System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile+" -> "+ assemblerInputFile);
+        if (runParser) {
+            System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile);
             try {
                  head = Parser.parseInput(lexerList);
 
@@ -107,10 +147,12 @@ public class Main {
         }
 
         // Run Interpreter
-        try {
-            Interpreter.run(head);
-        } catch (InterpreterException e) {
-            System.out.println(e.getMessage());
+        if (runInterpreter) {
+            try {
+                Interpreter.run(head);
+            } catch (InterpreterException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         System.exit(CODE_OK);
