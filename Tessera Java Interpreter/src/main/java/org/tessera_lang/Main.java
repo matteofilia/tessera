@@ -29,13 +29,13 @@ public class Main {
                 "|_   _|__  ___ ___  ___ _ __ __ _ \n" +
                 "  | |/ _ \\/ __/ __|/ _ \\ '__/ _` |\n" +
                 "  | |  __/\\__ \\__ \\  __/ | | (_| |\n" +
-                "  |_|\\___||___/___/\\___|_|  \\__,_|\n" +
-                "\n"
+                "  |_|\\___||___/___/\\___|_|  \\__,_|\n\n" +
+                "  * Thank you for using Tessera! * \n"
         );
     }
 
     public static void main(String[] args){
-        System.out.println("Thank you for using Tessera!");
+
         printCoolAsciiThing();
 
         boolean lex = true;
