@@ -85,3 +85,7 @@ Alright, jumping back into things. Added some CSS styling to make the web page m
 ## May 05, 2025
 
 Still not making much progress. Lacking motivation, lacking energy. But motivation seems to be the bigger issue. Moving forwards, I need a new strategy.
+
+## August 26, 2025
+
+Everything is broken... Nothing works. Still, at least I am feeling a little better in terms of energy. A fluke, maybe? Only time will tell. Still hoping to actually complete this project. Have started getting things setup on AWS.
