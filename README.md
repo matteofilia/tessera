@@ -25,11 +25,11 @@ Note that the code file is relative to the path of the Tessera Java Interpreter
 
 ## Run Tessera Server
 
-Always make sure to set TESSERA_WEB_HOST to the address of the webserver (do not add the port or it will break CORS!)
-
+Always make sure to set TESSERA_WEB_HOST to the address of the webserver (do not add the port or it will break CORS!) Mental reminder: The origin MUST match exactly. http://www.example.com and http://example.com are NOT the same.
 Example:
 ```
 export TESSERA_WEB_HOST="http://1.2.3.4"
+export TESSERA_WEB_HOST_B="http://www.example.com"
 ./run-server.sh
 ```
 
@@ -44,11 +44,5 @@ export TESSERA_WEB_HOST="http://1.2.3.4"
 Tessera Code -> Lexer -> Tokens
 
 Tokens -> Parser -> Abstract Syntax Tree (AST)
-
-AST -> Assembler -> Assembly Code
-
-Assembly Code -> ??? -> Tessera Program
-
-**OR**
 
 AST -> Intepreter -> Tessera Program (Interpreted)
