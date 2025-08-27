@@ -3,6 +3,8 @@
 ## About
 Tessera is a minimalist interpreted toy programming language, created by me.
 
+![Tessera Logo](https://github.com/matteofilia/tessera/blob/main/Tessera%20Website/public/tessera_logo_c.png)
+
 ## Try It Now
 Try it now -> http://www.tessera-lang.org (Coming Soon!)
 
