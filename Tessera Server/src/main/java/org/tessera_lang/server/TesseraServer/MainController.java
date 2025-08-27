@@ -3,7 +3,9 @@ package org.tessera_lang.server.TesseraServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.tessera_lang.Main;
 import org.tessera_lang.interpreter.Interpreter;
 import org.tessera_lang.interpreter.InterpreterException;
 import org.tessera_lang.lexer.Lexer;
@@ -22,9 +24,9 @@ public class MainController {
     Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
-    @GetMapping("/hello_world")
+    @GetMapping(value="/hello_world", produces= MediaType.TEXT_PLAIN_VALUE)
     public String helloWorld() {
-        return "Hello World!";
+        return "Hello Tessera! \n" + Main.asciiArt;
     }
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
