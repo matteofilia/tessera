@@ -21,19 +21,15 @@ public class MainController {
 
     Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    @Value("${TESSERA_WEB_HOST}")
-    private String TESSERA_WEB_HOST = "Please Set Me";
-
-    @CrossOrigin(origins = {"${TESSERA_WEB_HOST}"})
+    @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
     @GetMapping("/hello_world")
     public String helloWorld() {
         return "Hello World!";
     }
 
-    @CrossOrigin(origins = {"${TESSERA_WEB_HOST}"})
+    @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
     @PostMapping("/run_interpreter")
     public String runInterpreter(@RequestBody String rawInput) {
-        logger.info("TESSERA_WEB_HOST="+TESSERA_WEB_HOST);
 
         ArrayList<LexerToken> lexerList = new ArrayList<>();
         ParserASTNode head = null;
