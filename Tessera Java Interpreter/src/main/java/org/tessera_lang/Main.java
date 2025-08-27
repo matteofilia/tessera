@@ -22,7 +22,22 @@ public class Main {
     public static final int CODE_OK = 0;
     public static final int CODE_FAIL = 1;
 
+    private static void printCoolAsciiThing() {
+        System.out.println("\n" +
+                "\n" +
+                " _____                            \n" +
+                "|_   _|__  ___ ___  ___ _ __ __ _ \n" +
+                "  | |/ _ \\/ __/ __|/ _ \\ '__/ _` |\n" +
+                "  | |  __/\\__ \\__ \\  __/ | | (_| |\n" +
+                "  |_|\\___||___/___/\\___|_|  \\__,_|\n" +
+                "\n"
+        );
+    }
+
     public static void main(String[] args){
+        System.out.println("Thank you for using Tessera!");
+        printCoolAsciiThing();
+
         boolean lex = true;
         boolean parse = true;
 
