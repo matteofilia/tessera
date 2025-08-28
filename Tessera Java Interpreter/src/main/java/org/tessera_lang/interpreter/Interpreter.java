@@ -29,7 +29,7 @@ public class Interpreter {
             }
 
             if (tree.hasValue()) {
-                output.println("Value: " + tree.getValue().toString());
+                output.println(tree.getValue().toString());
             } else {
                 output.println("NO VALUE");
             }

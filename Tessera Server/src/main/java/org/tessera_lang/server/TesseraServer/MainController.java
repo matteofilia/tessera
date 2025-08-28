@@ -16,6 +16,10 @@ import org.tessera_lang.parser.ParserASTNode;
 import org.tessera_lang.parser.ParserException;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 @RestController
@@ -33,8 +37,11 @@ public class MainController {
     @PostMapping("/run_interpreter")
     public String runInterpreter(@RequestBody String rawInput) {
 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(baos);
+
         ArrayList<LexerToken> lexerList = new ArrayList<>();
-        ParserASTNode head = null;
+        ArrayList<ParserASTNode> trees = new ArrayList<>();
         try {
             try {
                 lexerList = Lexer.lexText(rawInput);
@@ -43,7 +50,7 @@ public class MainController {
             }
 
             try {
-                head = Parser.parse(lexerList);
+                trees = Parser.parse(lexerList);
             } catch (ParserException p) {
                 // If parsing fails, print lexer output
                 String fullOutput = "";
@@ -56,20 +63,12 @@ public class MainController {
 
             // Run Interpreter
             try {
-                Interpreter.run(head);
-
-                if (head == null) {
-                    return "NO VALUE";
-                }
-
-                if (head.hasValue()) {
-                    return head.getValue().toString();
-                } else {
-                    return "NO VALUE";
-                }
+                Interpreter.run(trees, out);
             } catch (InterpreterException e) {
                 return e.getMessage();
             }
+
+            return baos.toString();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
