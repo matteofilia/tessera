@@ -1,13 +1,3 @@
-1 + 2 + 3 + 4 + 5 + 6 + 7
-
-# Interesting Comment
-int main(void){
-	# Another Comment
-	# Include a double equals, for good measure
-	var_a == var_b
-	var_c == var_d ** 2
-
-	return 2;
-	return 3;
-	return 11;
-}
+1 + 2 + 3 + 4 + 5 + 6 + 7;
+2 + 2;
+3 + 5 + 4;

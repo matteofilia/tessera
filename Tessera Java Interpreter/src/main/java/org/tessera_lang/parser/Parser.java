@@ -169,6 +169,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Creates an AST for simple math operations
+     * @param list The list of LexerTokens
+     * @param head The root of the tree
+     * @return an AST
+     * @throws ParserException
+     */
     public static ParserASTNode twinPassAddNodes(ArrayList<LexerToken> list, ParserASTNode head) throws ParserException {
         ArrayList<LexerToken> firstPassList = new ArrayList<>();
         ArrayList<LexerToken> secondPassList = new ArrayList<>();
@@ -224,6 +231,11 @@ public class Parser {
         return head;
     }
 
+    /**
+     * Recursively gets the head of an AST
+     * @param node Any node in the AST
+     * @return the head of the AST
+     */
     public static ParserASTNode getHeadRecursive(ParserASTNode node) {
         if (node ==  null) {
             return null;
@@ -234,18 +246,61 @@ public class Parser {
         }
     }
 
-    public static ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
+    /**
+     * This method breaks down a list of LexerTokens into multiple lists of LexerTokens, splitting on TOKEN_SEMICOLON
+     * @param tokens A list of LexerTokens
+     * @return A list of lists of LexerTokens
+     */
+    public static ArrayList<ArrayList<LexerToken>> breakDownLexerList(ArrayList<LexerToken> tokens) {
+        ArrayList<ArrayList<LexerToken>> listOfTokenLists = new ArrayList<>();
+        ArrayList<LexerToken> currentTokenList = new ArrayList<>();
 
-        ParserASTNode head = new ParserASTNodePlaceholder();
-        head.setOriginToken(new LexerToken(LexerTokenIdentifier.TOKEN_HEAD));
-
-        try {
-            head = twinPassAddNodes(list, head);
-        } catch (ParserException e) {
-            e.print();
+        for (LexerToken token : tokens) {
+           if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_SEMICOLON) {
+               listOfTokenLists.add(currentTokenList);
+               currentTokenList = new ArrayList<>();
+           } else {
+               currentTokenList.add(token);
+           }
         }
 
-        return head;
+        // If the list of LexerTokens doesn't end with TOKEN_SEMICOLON, add the list anyway
+        // Essentially, effectively add an implied ; to the end of the token list
+        if (tokens.get(tokens.size()-1).getIdentifier() != LexerTokenIdentifier.TOKEN_SEMICOLON) {
+            listOfTokenLists.add(currentTokenList);
+        }
+
+        return listOfTokenLists;
+    }
+
+    /**
+     *
+     * @param tokens The full / raw list of tokens
+     * @return A list of AbstractSyntaxTrees, with each tree representing one statement / line
+     * @throws ParserException
+     */
+    public static ArrayList<ParserASTNode> parse(ArrayList<LexerToken> tokens) throws ParserException {
+        // First, start by breaking the token list down into its separate parts / lines
+        ArrayList<ArrayList<LexerToken>> listOfTokenLists;
+        listOfTokenLists = breakDownLexerList(tokens);
+
+        ArrayList<ParserASTNode> astTrees = new ArrayList<>();
+
+        // Create an AST for each part / line
+        for (ArrayList<LexerToken> tokenList : listOfTokenLists) {
+            ParserASTNode head = new ParserASTNodePlaceholder();
+            head.setOriginToken(new LexerToken(LexerTokenIdentifier.TOKEN_HEAD));
+
+            try {
+                head = twinPassAddNodes(tokenList, head);
+            } catch (ParserException e) {
+                e.print();
+            }
+
+            astTrees.add(head);
+        }
+
+        return astTrees;
     }
 
     public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier) throws ParserException {
@@ -274,10 +329,6 @@ public class Parser {
             if (Main.BE_VERBOSE) System.out.println("LexerToken has no value when one is expected");
             throw new ParserException();
         }
-    }
-
-    public static ParserASTNode parseInput(ArrayList<LexerToken> list) throws ParserException {
-        return parse(list);
     }
 
 

@@ -128,7 +128,7 @@ public class Main {
         }
 
         ArrayList<LexerToken> lexerList = new ArrayList<>();
-        ParserASTNode head = null;
+        ArrayList<ParserASTNode> trees = new ArrayList<>();
 
         if (runLexer) {
             System.out.println("");
@@ -151,18 +151,20 @@ public class Main {
             System.out.println("RUNNING PARSER");
             System.out.println("Running org.tessera_lang.parser.Parser: "+parserInputFile);
             try {
-                 head = Parser.parseInput(lexerList);
+                 trees = Parser.parse(lexerList);
 
-                if  (Main.BE_VERBOSE) {
-                    ParserDebugger.printDebugOutput(head);
-                }
+                for (ParserASTNode head : trees) {
+                    if  (Main.BE_VERBOSE) {
+                        ParserDebugger.printDebugOutput(head);
+                    }
 
-                if (head == null && Main.BE_VERBOSE) {
-                    System.out.println("Head is null!");
-                }
+                    if (head == null && Main.BE_VERBOSE) {
+                        System.out.println("Head is null!");
+                    }
 
-                if (Main.BE_VERBOSE) {
-                    ParserDebugger.printDebugTraversal(Parser.getHeadRecursive(head));
+                    if (Main.BE_VERBOSE) {
+                        ParserDebugger.printDebugTraversal(Parser.getHeadRecursive(head));
+                    }
                 }
             } catch (ParserException e) {
                 System.out.println("Parser Failure");
@@ -176,7 +178,7 @@ public class Main {
             System.out.println("RUNNING INTERPRETER");
 
             try {
-                Interpreter.run(head);
+                Interpreter.run(trees, System.out);
             } catch (InterpreterException e) {
                 System.out.println(e.getMessage());
             }
