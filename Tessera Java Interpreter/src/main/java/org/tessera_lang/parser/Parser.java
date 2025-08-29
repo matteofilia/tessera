@@ -330,9 +330,4 @@ public class Parser {
             throw new ParserException();
         }
     }
-
-
-    public static void parseFile(String inputFile, String outputFile) throws ParserException {
-        // TODO
-    }
 }
