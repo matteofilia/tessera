@@ -89,3 +89,7 @@ Still not making much progress. Lacking motivation, lacking energy. But motivati
 ## August 26, 2025
 
 Everything is broken... Nothing works. Still, at least I am feeling a little better in terms of energy. A fluke, maybe? Only time will tell. Still hoping to actually complete this project. Have started getting things setup on AWS.
+
+## August 29, 2025
+
+Don't need for things to be perfect, just need for things to do things. Going to do my best to continue making slow and steady progress, if that is even possible. Fixed an error with the parser today. Small steps like that are exactly the kind of slow progress that I should continue making.
