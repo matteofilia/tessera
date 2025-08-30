@@ -215,7 +215,7 @@ public class Parser {
         for (LexerToken tokenFirst : firstPassList) {
             ParserASTNode node = convertTokenToNode(tokenFirst);
 
-            if (head == null){
+            if (head == null) {
                 head = node;
             } else {
                 addNodeLeftOnly(head, node);
@@ -225,7 +225,12 @@ public class Parser {
         // Construct Second Pass, Right Assignment Only
         for (LexerToken tokenSecond : secondPassList) {
             ParserASTNode node = convertTokenToNode(tokenSecond);
-            addNodeRightOnly(head, node);
+
+            if (head == null) {
+                head = node;
+            } else {
+                addNodeRightOnly(head, node);
+            }
         }
 
         return head;
