@@ -11,6 +11,10 @@ import org.tessera_lang.parser.ParserASTNode;
 import org.tessera_lang.parser.ParserDebugger;
 import org.tessera_lang.parser.ParserException;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
@@ -44,6 +48,7 @@ public class Main {
         System.out.println("  -p --parse --- Run Lexer AND Parser");
         System.out.println("  -i --interpreter --- Run Lexer AND Parser AND Interpreter");
         System.out.println("  -w --web --- Run In Web Mode");
+        System.out.println("  -c --code --- Print Out Code (For Reference)");
         System.out.println("");
         System.out.println("  -h --help --- Display Help");
         System.out.println("  -v --verbose --- Display Output Verbosely");
@@ -80,6 +85,8 @@ public class Main {
         boolean runParser = false;
         boolean runInterpreter = false;
 
+        boolean printCode = false;
+
         String lexerInputFile = "code.tess";
         String parserInputFile = "tokens.t";
 
@@ -99,6 +106,8 @@ public class Main {
                 runLexer = true;
                 runParser = true;
                 runInterpreter = true;
+            } else if (arg.equals("-c") || arg.equals("--code")) {
+                printCode = true;
             } else if (arg.equals("-v") || arg.equals("--verbose")) {
                 Main.BE_VERBOSE = true;
                 System.out.println("Output mode: verbose");
@@ -129,6 +138,32 @@ public class Main {
 
         ArrayList<LexerToken> lexerList = new ArrayList<>();
         ArrayList<ParserASTNode> trees = new ArrayList<>();
+
+        if (printCode) {
+            StringBuilder input = new StringBuilder();
+            System.out.println("");
+            System.out.println("CODE " + "(" + lexerInputFile + ")");
+
+            try {
+                FileReader fileReader = new FileReader(lexerInputFile);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                try {
+                    String line = bufferedReader.readLine();
+                    while (line != null) {
+                        input.append(line + "\n");
+                        line = bufferedReader.readLine();
+                    }
+
+                    System.out.println(input.toString());
+
+                } catch (IOException e) {
+                    System.out.println("Error: IO Exception");
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         if (runLexer) {
             System.out.println("");
