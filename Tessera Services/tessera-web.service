@@ -1,0 +1,11 @@
+[Unit]
+Description=Tessera Web
+After=network-online.target
+Wants=network-online.target
+
+# TODO: make this actually work
+
+[Service]
+Type=simple
+User=vampire
+Group=vampire

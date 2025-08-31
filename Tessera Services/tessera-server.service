@@ -1,0 +1,13 @@
+[Unit]
+Description=Tessera Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vampire
+Group=vampire
+WorkingDirectory=/opt/tessera-server
+ExecStart=/opt/tessera-server/run-server.sh
+Restart=on-failure
+RestartSec=5
