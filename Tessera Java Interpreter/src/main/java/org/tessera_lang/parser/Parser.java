@@ -271,8 +271,10 @@ public class Parser {
 
         // If the list of LexerTokens doesn't end with TOKEN_SEMICOLON, add the list anyway
         // Essentially, effectively add an implied ; to the end of the token list
-        if (tokens.get(tokens.size()-1).getIdentifier() != LexerTokenIdentifier.TOKEN_SEMICOLON) {
-            listOfTokenLists.add(currentTokenList);
+        if (tokens.size() != 0) {
+            if (tokens.get(tokens.size() - 1).getIdentifier() != LexerTokenIdentifier.TOKEN_SEMICOLON) {
+                listOfTokenLists.add(currentTokenList);
+            }
         }
 
         return listOfTokenLists;
