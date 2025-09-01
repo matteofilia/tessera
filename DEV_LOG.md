@@ -93,3 +93,7 @@ Everything is broken... Nothing works. Still, at least I am feeling a little bet
 ## August 29, 2025
 
 Don't need for things to be perfect, just need for things to do things. Going to do my best to continue making slow and steady progress, if that is even possible. Fixed an error with the parser today. Small steps like that are exactly the kind of slow progress that I should continue making.
+
+## August 31, 2025
+
+Just some low-hanging fruit. Still, that's better than nothing. Feeling hopeful for tomorrow. Really hoping that we can keep things going and get a lot of work done on the interpreter. Next step? Global variables.
