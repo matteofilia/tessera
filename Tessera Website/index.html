@@ -58,9 +58,19 @@
 				});
 				
 				$("#popup-close-button").click(function(){
-					$("#popup").hide()
+					$("#popup").hide();
 				})
 				
+				$("#settings-popup-close-button").click(function(){
+					$("#settings-popup").hide();
+				})
+				
+				$("#button-open-settings").click(function(){
+					$("#settings-popup").show();
+				})
+				
+				
+				$("#settings-popup").hide()
 				load_file()
 			})
 		</script>
@@ -82,6 +92,17 @@
 				<p id="popup-text">Tessera is a <span class="span-bold"> work in progress</span> programming language. Not all features have been currently implemented. You are free to try the language in its current state. <span class="span-newline">-Matteo</span></p>
 			</div>
 		</div>
+		
+		<div id="settings-popup">
+			<div id="settings-popup-header">
+				<p id="settings-popup-header-title">Settings</p>
+				<p id="settings-popup-close-button">x</p>
+			</div>
+			<div id="settings-popup-container">
+				<p id="settings-popup-text">No settings to display <span class="span-newline"></p>
+			</div>
+		</div>
+		
 		<div id="content-holder">
 			<div>
 				<p class="header">Input</p>
@@ -97,6 +118,10 @@
 			<div>
 				<p class="header">Output</p>
 				<div id="output-box">
+				</div>
+				
+				<div id="action-bar-2">
+					<input class="button" id="button-open-settings" type="button" value="Open Settings"/>
 				</div>
 			</div>
 		</div>

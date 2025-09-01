@@ -143,6 +143,70 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 
+/* TODO: 
+ * Maybe do something smarter for the settings popup.
+ * At the very least, tidy up this code a little bit.*/
+
+
+#settings-popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    background-color: rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#settings-popup-header {
+    padding: 8px;
+    display: flex;
+    
+    background-color: pink;
+    width: 100%;
+    max-width: 350px;
+    height: 24px;
+    
+    justify-content: space-between;
+    align-items: center;
+}
+
+#settings-popup-header-title {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+#settings-popup-close-button {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#settings-popup-container {
+    padding: 8px;
+    background-color: #ffffff;
+
+    max-width: 350px;
+    width: 100%;
+    max-height: 200px;
+    height: 100%;
+}
+
+#settings-popup-text {
+    margin: 0;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+}
+
 .bottom-content-item {
     margin: 0;
     font-size: 14px;
@@ -181,5 +245,11 @@ body {
     display: block;
 }
 
-
+#action-bar-2 {
+    margin-top: 4px;
+    
+    width: 324px;
+    display: flex;
+    justify-content: flex-end;
+}
 
