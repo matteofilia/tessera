@@ -48,3 +48,7 @@ Tessera Code -> Lexer -> Tokens
 Tokens -> Parser -> Abstract Syntax Tree (AST)
 
 AST -> Intepreter -> Tessera Program (Interpreted)
+
+## Version History
+
+Please see VERSION_HISTORY.md
