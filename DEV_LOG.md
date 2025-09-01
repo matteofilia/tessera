@@ -97,3 +97,7 @@ Don't need for things to be perfect, just need for things to do things. Going to
 ## August 31, 2025
 
 Just some low-hanging fruit. Still, that's better than nothing. Feeling hopeful for tomorrow. Really hoping that we can keep things going and get a lot of work done on the interpreter. Next step? Global variables.
+
+## September 01, 2025
+
+Well, one commit was made. That's about all that I can say, as of right. Not feeling like I have very much energy, unfortunately. This may very well be the end of development work for now. All I can hope is that in the future things will improve somewhat.
