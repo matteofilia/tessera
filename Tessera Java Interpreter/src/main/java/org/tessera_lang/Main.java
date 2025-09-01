@@ -159,9 +159,11 @@ public class Main {
 
                 } catch (IOException e) {
                     System.out.println("Error: IO Exception");
+                    System.exit(CODE_FAIL);
                 }
             } catch (FileNotFoundException e) {
                 System.out.println(e.getMessage());
+                System.exit(CODE_FAIL);
             }
         }
 
@@ -216,6 +218,7 @@ public class Main {
                 Interpreter.run(trees, System.out);
             } catch (InterpreterException e) {
                 System.out.println(e.getMessage());
+                System.exit(CODE_FAIL);
             }
         }
 

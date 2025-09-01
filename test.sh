@@ -1,17 +1,40 @@
 echo "Running tests..."
 
-./run.sh code.tess -c
+echo "Script Location: $0"
+DIR="$(dirname $0)"
 
-./run.sh code2.tess -c
+RED="\033[0;31m"
+RESET="\033[0m"
+GREEN="\033[0;32m"
 
-./run.sh code3.tess -c
+cd "Tessera Demo Code"
+FILES=$(ls *.tess)
 
-./run.sh code4.tess -c
+echo "Running tests using the following files: "
+echo $FILES
 
-./run.sh code5.tess -c
+for file in $FILES; do ../run.sh "../Tessera Demo Code/$file" -c
+	res=$?	
+	echo "Ran ../Tessera Demo Code/$file"
+	
+	if [ $res -eq 0 ]; then
+		echo -e ${GREEN} TEST OK ${RESET}
+	else
+		echo -e ${RED} TEST FAILURE ${RESET}	
+	fi
+done
 
-./run.sh code6.tess -c
 
-./run.sh code7.tess -c
 
-./run.sh code8.tess -c
+
+
+
+
+
+
+
+
+
+
+
+
