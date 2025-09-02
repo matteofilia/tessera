@@ -139,9 +139,12 @@ public class Main {
         }
 
         if (runConfig.shouldRunLexer()) {
-            out.println("");
-            out.println("RUNNING LEXER");
-            out.println("Running org.tessera_lang.lexer.Lexer: " + runConfig.getLexerInputFile() + " -> " + runConfig.getParserInputFile());
+            if (runConfig.shouldBeVerbose()) {
+                out.println("");
+                out.println("RUNNING LEXER");
+                out.println("Running org.tessera_lang.lexer.Lexer: " + runConfig.getLexerInputFile() + " -> " + runConfig.getParserInputFile());
+            }
+
             try {
                 lexerList = Lexer.lexFile(runConfig.getLexerInputFile(), runConfig.getParserInputFile());
 
@@ -155,9 +158,12 @@ public class Main {
             }
         }
         if (runConfig.shouldRunParser()) {
-            out.println("");
-            out.println("RUNNING PARSER");
-            out.println("Running org.tessera_lang.parser.Parser: "+runConfig.getParserInputFile());
+            if (runConfig.shouldBeVerbose()) {
+                out.println("");
+                out.println("RUNNING PARSER");
+                out.println("Running org.tessera_lang.parser.Parser: " + runConfig.getParserInputFile());
+            }
+
             try {
                 trees = Parser.parse(lexerList);
 
@@ -182,8 +188,10 @@ public class Main {
 
         // Run Interpreter
         if (runConfig.shouldRunInterpreter()) {
-            out.println("");
-            out.println("RUNNING INTERPRETER");
+            if (runConfig.shouldBeVerbose()) {
+                out.println("");
+                out.println("RUNNING INTERPRETER");
+            }
 
             try {
                 Interpreter.run(trees, System.out);
