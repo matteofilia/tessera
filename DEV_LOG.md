@@ -101,3 +101,7 @@ Just some low-hanging fruit. Still, that's better than nothing. Feeling hopeful 
 ## September 01, 2025
 
 Well, one commit was made. That's about all that I can say, as of right. Not feeling like I have very much energy, unfortunately. This may very well be the end of development work for now. All I can hope is that in the future things will improve somewhat.
+
+## September 02, 2025
+
+Progress is being made, exciting! Right now I am working on setting up things for the online interpreter. So far, things are coming along fairly well. I am thinking that the online interpreter should be the default. The online interpreter should have the same capabalities as the command line version of Tessera.
