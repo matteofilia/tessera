@@ -89,8 +89,24 @@
 				$("#button-run-parser").on("change", function() {
 					if (this.checked) {
 						$("#button-run-lexer").prop("checked", true);
+					} else {
+						$("#button-run-interpreter").prop("checked", false);
 					}
 				});
+				
+				$("#button-run-lexer").on("change", function() {
+					if (!this.checked) {
+						$("#button-run-parser").prop("checked", false);
+						$("#button-run-interpreter").prop("checked", false);
+					}
+				});
+				
+				$("#button-be-verbose").on("change", function() {
+					if (!this.checked) {
+						$("#button-be-very-verbose").prop("checked", false);
+					}
+				});
+			
 				
 				$("#button-be-very-verbose").on("change", function() {
 					if (this.checked) {
