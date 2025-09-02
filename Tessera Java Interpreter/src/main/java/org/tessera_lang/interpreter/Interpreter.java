@@ -1,9 +1,9 @@
 package org.tessera_lang.interpreter;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.parser.Parser;
 import org.tessera_lang.parser.ParserASTNode;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class Interpreter {
@@ -13,25 +13,25 @@ public class Interpreter {
      * @param trees A list of ASTs
      * @throws InterpreterException
      */
-    public static void run(ArrayList<ParserASTNode> trees, PrintStream output) throws InterpreterException {
+    public static void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
         for (ParserASTNode tree : trees) {
             // TODO: double check if this is needed
             tree = Parser.getHeadRecursive(tree);
 
             if (tree == null) {
-                output.println("NULL");
+                runConfig.getOut().println("NULL");
                 return;
             }
 
             if (!tree.isValid()) {
-                output.println("Tree is not valid!");
+                runConfig.getOut().println("Tree is not valid!");
                 throw new InterpreterException("Tree is not valid!");
             }
 
             if (tree.hasValue()) {
-                output.println(tree.getValue().toString());
+                runConfig.getOut().println(tree.getValue().toString());
             } else {
-                output.println("NO VALUE");
+                runConfig.getOut().println("NO VALUE");
             }
         }
     }

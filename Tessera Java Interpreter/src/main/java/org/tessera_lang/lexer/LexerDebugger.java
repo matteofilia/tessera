@@ -1,6 +1,6 @@
 package org.tessera_lang.lexer;
 
-import org.tessera_lang.Main;
+import org.tessera_lang.RunConfiguration;
 
 import java.util.ArrayList;
 
@@ -19,13 +19,13 @@ public class LexerDebugger {
         return output.toString();
     }
 
-    public static void debugLexerTokenList(ArrayList<LexerToken> list) {
-        if (Main.BE_VERBOSE) {
-            System.out.print("\n");
+    public static void debugLexerTokenList(ArrayList<LexerToken> list, RunConfiguration runConfig) {
+        if (runConfig.shouldBeVerbose()) {
+            runConfig.getOut().print("\n");
             for (LexerToken token : list) {
-                System.out.print(tokenDebugString(token));
+                runConfig.getOut().print(tokenDebugString(token));
             }
-            System.out.print("\n");
+            runConfig.getOut().print("\n");
         }
     }
 }

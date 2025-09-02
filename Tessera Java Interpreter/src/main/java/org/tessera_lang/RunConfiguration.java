@@ -1,5 +1,7 @@
 package org.tessera_lang;
 
+import java.io.PrintStream;
+
 public class RunConfiguration {
     private boolean beVerbose;
     private boolean beVeryVerbose;
@@ -11,6 +13,8 @@ public class RunConfiguration {
     private boolean printCode = false;
 
     private boolean web = false;
+
+    private PrintStream out = null;
 
     public RunConfiguration() {
         // Do Nothing
@@ -70,5 +74,13 @@ public class RunConfiguration {
 
     public void setWeb(boolean web) {
         this.web = web;
+    }
+
+    public PrintStream getOut() {
+        return out;
+    }
+
+    public void setOut(PrintStream out) {
+        this.out = out;
     }
 }

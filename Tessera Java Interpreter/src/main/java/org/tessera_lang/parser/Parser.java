@@ -39,7 +39,7 @@ public class Parser {
             currToken = list.remove(0);
 
             if (runConfig.shouldBeVerbose()) {
-                System.out.println("Parsing token "+currToken.getIdentifier().getName()+" to AST tree");
+                runConfig.getOut().println("Parsing token "+currToken.getIdentifier().getName()+" to AST tree");
             }
         } else {
             throw new ParserException();
@@ -302,7 +302,7 @@ public class Parser {
             try {
                 head = twinPassAddNodes(tokenList, head);
             } catch (ParserException e) {
-                e.print();
+                e.print(runConfig);
             }
 
             astTrees.add(head);
@@ -313,7 +313,7 @@ public class Parser {
 
     public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier, RunConfiguration runConfig) throws ParserException {
         if (list.isEmpty()) {
-            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken list is empty! (should have value)");
+            if (runConfig.shouldBeVerbose()) runConfig.getOut().println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
@@ -326,7 +326,7 @@ public class Parser {
 
     public static String expectRawValue(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
         if (list.isEmpty()) {
-            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken list is empty! (should have value)");
+            if (runConfig.shouldBeVerbose()) runConfig.getOut().println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
@@ -334,7 +334,7 @@ public class Parser {
         if (token.hasValue()) {
             return token.getValue();
         } else {
-            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken has no value when one is expected");
+            if (runConfig.shouldBeVerbose()) runConfig.getOut().println("LexerToken has no value when one is expected");
             throw new ParserException();
         }
     }

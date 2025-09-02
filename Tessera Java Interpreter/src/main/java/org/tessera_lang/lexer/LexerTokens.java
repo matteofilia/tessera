@@ -1,6 +1,7 @@
 package org.tessera_lang.lexer;
 
 import org.tessera_lang.Main;
+import org.tessera_lang.RunConfiguration;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -89,9 +90,9 @@ public class LexerTokens {
         return allTemplates;
     }
 
-    public static ArrayList<LexerToken> checkMatches(String line) throws LexerException {
+    public static ArrayList<LexerToken> checkMatches(String line, RunConfiguration runConfig) throws LexerException {
         ArrayList<LexerToken> list = new ArrayList<>();
-        if (Main.BE_VERBOSE) System.out.println("Checking match: "+line);
+        if (runConfig.shouldBeVerbose()) runConfig.getOut().println("Checking match: "+line);
 
         // Check all tokens for match
         int columnIndex = 0;
@@ -113,11 +114,11 @@ public class LexerTokens {
                 Matcher matcher = template.getPattern().matcher(line);
 
                 if (matcher.find(columnIndex) && matcher.start() == columnIndex) {
-                    if (Main.BE_VERY_VERBOSE)System.out.println("Index = " + columnIndex);
+                    if (runConfig.shouldRunLexer()) runConfig.getOut().println("Index = " + columnIndex);
 
                     int length = matcher.end() - matcher.start();
-                    if (Main.BE_VERY_VERBOSE) {
-                        System.out.println("Potential match found! ("+template.getIdentifier() + ")");
+                    if (runConfig.shouldBeVerbose()) {
+                        runConfig.getOut().println("Potential match found! ("+template.getIdentifier() + ")");
                     }
 
 
@@ -131,7 +132,7 @@ public class LexerTokens {
             }
 
             if (longestMatchingTemplate != null) {
-                if (Main.BE_VERBOSE) System.out.println("Template match found!"+" ("+ longestMatchingTemplate.getIdentifier().getName()+")");
+                if (runConfig.shouldBeVerbose()) runConfig.getOut().println("Template match found!"+" ("+ longestMatchingTemplate.getIdentifier().getName()+")");
 
                 LexerToken token = new LexerToken(longestMatchingTemplate.getIdentifier());
                 token.setOriginColumn(columnIndex);
@@ -140,7 +141,7 @@ public class LexerTokens {
                 if (longestMatchingTemplate.shouldHaveValue()) {
                     token.setValue(value);
 
-                    if (Main.BE_VERBOSE) LexerDebugger.tokenDebugString(token);
+                    if (runConfig.shouldBeVerbose()) LexerDebugger.tokenDebugString(token);
                 }
 
                 list.add(token);

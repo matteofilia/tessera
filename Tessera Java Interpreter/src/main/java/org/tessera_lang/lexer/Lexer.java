@@ -28,8 +28,8 @@ public class Lexer {
             String line = lines[indexRow];
             line = line.trim();
 
-            if (runConfig.shouldBeVerbose()) System.out.println("Checking line: "+line);
-            for (LexerToken token : LexerTokens.checkMatches(line)) {
+            if (runConfig.shouldBeVerbose()) runConfig.getOut().println("Checking line: "+line);
+            for (LexerToken token : LexerTokens.checkMatches(line, runConfig)) {
                 // Set origin row
                 token.setOriginRow(indexRow);
 

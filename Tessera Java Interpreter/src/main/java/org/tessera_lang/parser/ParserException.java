@@ -1,5 +1,6 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.lexer.LexerDebugger;
 import org.tessera_lang.lexer.LexerToken;
 
@@ -20,9 +21,9 @@ public class ParserException extends Exception {
         return originToken;
     }
 
-    public void print() {
-        System.out.println(getMessage());
-        System.out.println("Error Origin: ");
-        System.out.print(LexerDebugger.tokenDebugString(originToken));
+    public void print(RunConfiguration runConfig) {
+        runConfig.getOut().println(getMessage());
+        runConfig.getOut().println("Error Origin: ");
+        runConfig.getOut().print(LexerDebugger.tokenDebugString(originToken));
     }
 }

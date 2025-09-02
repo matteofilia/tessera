@@ -31,14 +31,17 @@ public class Main {
         return "Thank you for programming with Tessera, "+name;
     }
 
-    private static void printCoolAsciiThing(PrintStream out) {
+    private static void printCoolAsciiThing(RunConfiguration runConfig) {
         String name = "user";
+        PrintStream out = runConfig.getOut();
 
         out.println(asciiArt);
         out.println(generateThankYouMessage(name));
     }
 
-    private static void printHelp(PrintStream out) {
+    private static void printHelp(RunConfiguration runConfig) {
+        PrintStream out = runConfig.getOut();
+
         out.println("");
         out.println("*** TESSERA INTERPRETER HELP ***");
         out.println("");
@@ -76,28 +79,28 @@ public class Main {
         out.println("");
     }
 
-    public static void run(PrintStream out, RunConfiguration runConfig, String input) {
+    public static void run(String input, RunConfiguration runConfig) {
 
         if (runConfig.shouldBeVerbose()) {
-            printCoolAsciiThing(out);
+            printCoolAsciiThing(runConfig);
         }
 
         if (!runConfig.isWeb()) {
-            out.println("For help, please use -h or --help");
+            runConfig.getOut().println("For help, please use -h or --help");
         }
 
         if (runConfig.shouldBeVerbose()) {
-            out.println("Output mode: verbose");
+            runConfig.getOut().println("Output mode: verbose");
 
             if (runConfig.shouldBeVeryVerbose()) {
-                out.println("Output mode: very verbose");
+                runConfig.getOut().println("Output mode: very verbose");
             }
         }
 
         if (!runConfig.shouldRunLexer() && !runConfig.shouldRunParser() && !runConfig.shouldRunInterpreter()) {
             if (runConfig.shouldBeVerbose()) {
-                out.println("No Action Specified");
-                out.println("Running Lexer AND Parser AND Interpreter");
+                runConfig.getOut().println("No Action Specified");
+                runConfig.getOut().println("Running Lexer AND Parser AND Interpreter");
             }
 
             runConfig.setRunLexer(true);
@@ -109,31 +112,31 @@ public class Main {
         ArrayList<ParserASTNode> trees = new ArrayList<>();
 
         if (runConfig.shouldPrintCode()) {
-
+            runConfig.getOut().println(input.toString());
         }
 
         if (runConfig.shouldRunLexer()) {
             if (runConfig.shouldBeVerbose()) {
-                out.println("");
-                out.println("RUNNING LEXER");
+                runConfig.getOut().println("");
+                runConfig.getOut().println("RUNNING LEXER");
             }
 
             try {
                 lexerList = Lexer.lexText(input, runConfig);
 
                 if (runConfig.shouldBeVerbose()) {
-                    out.print("Lexer Output: ");
-                    LexerDebugger.debugLexerTokenList(lexerList);
+                    runConfig.getOut().print("Lexer Output: ");
+                    LexerDebugger.debugLexerTokenList(lexerList, runConfig);
                 }
             } catch (LexerException e) {
-                out.println("Lexer Failure");
+                runConfig.getOut().println("Lexer Failure");
                 System.exit(CODE_FAIL);
             }
         }
         if (runConfig.shouldRunParser()) {
             if (runConfig.shouldBeVerbose()) {
-                out.println("");
-                out.println("RUNNING PARSER");
+                runConfig.getOut().println("");
+                runConfig.getOut().println("RUNNING PARSER");
             }
 
             try {
@@ -141,19 +144,19 @@ public class Main {
 
                 for (ParserASTNode head : trees) {
                     if  (runConfig.shouldBeVerbose()) {
-                        ParserDebugger.printDebugOutput(head);
+                        ParserDebugger.printDebugOutput(head, runConfig);
                     }
 
                     if (head == null && runConfig.shouldBeVerbose()) {
-                        out.println("Head is null!");
+                        runConfig.getOut().println("Head is null!");
                     }
 
                     if (runConfig.shouldBeVeryVerbose()) {
-                        ParserDebugger.printDebugTraversal(Parser.getHeadRecursive(head));
+                        ParserDebugger.printDebugTraversal(Parser.getHeadRecursive(head), runConfig);
                     }
                 }
             } catch (ParserException e) {
-                out.println("Parser Failure");
+                runConfig.getOut().println("Parser Failure");
                 System.exit(CODE_FAIL);
             }
         }
@@ -161,14 +164,14 @@ public class Main {
         // Run Interpreter
         if (runConfig.shouldRunInterpreter()) {
             if (runConfig.shouldBeVerbose()) {
-                out.println("");
-                out.println("RUNNING INTERPRETER");
+                runConfig.getOut().println("");
+                runConfig.getOut().println("RUNNING INTERPRETER");
             }
 
             try {
                 Interpreter.run(trees, System.out);
             } catch (InterpreterException e) {
-                out.println(e.getMessage());
+                runConfig.getOut().println(e.getMessage());
                 System.exit(CODE_FAIL);
             }
         }
@@ -178,7 +181,8 @@ public class Main {
 
     public static void main(String[] args){
         RunConfiguration runConfig = new RunConfiguration();
-        PrintStream out = System.out;
+        runConfig.setOut(System.out);
+
         StringBuilder input = new StringBuilder();
         String file = null;
 
@@ -207,12 +211,12 @@ public class Main {
                 runConfig.setWeb(true);
 
             } else if (arg.equals("-h") || arg.equals("--help")) {
-                printHelp(System.out);
+                printHelp(runConfig);
             } else {
                 file = arg;
 
                 if (runConfig.shouldBeVerbose()) {
-                    out.println("Using file: " + file);
+                    runConfig.getOut().println("Using file: " + file);
                 }
             }
         }
@@ -228,22 +232,19 @@ public class Main {
                     input.append(line + "\n");
                     line = bufferedReader.readLine();
                 }
-
-                out.println(input.toString());
-
             } catch (IOException e) {
                 if (runConfig.shouldBeVerbose()) {
-                    out.println("Error: IO Exception");
+                    runConfig.getOut().println("Error: IO Exception");
                 }
                 System.exit(CODE_FAIL);
             }
         } catch (FileNotFoundException e) {
             if (runConfig.shouldBeVerbose()) {
-                out.println(e.getMessage());
+                runConfig.getOut().println(e.getMessage());
             }
             System.exit(CODE_FAIL);
         }
 
-        run(out, runConfig, input.toString());
+        run(input.toString(), runConfig);
     }
 }
