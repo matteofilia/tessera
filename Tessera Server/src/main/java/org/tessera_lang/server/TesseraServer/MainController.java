@@ -2,7 +2,6 @@ package org.tessera_lang.server.TesseraServer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.tessera_lang.Main;
@@ -15,10 +14,7 @@ import org.tessera_lang.parser.Parser;
 import org.tessera_lang.parser.ParserASTNode;
 import org.tessera_lang.parser.ParserException;
 
-import java.awt.*;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -34,8 +30,8 @@ public class MainController {
     }
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
-    @PostMapping("/run_interpreter")
-    public String runInterpreter(
+    @PostMapping("/run")
+    public String run(
             @RequestBody String rawInput,
             @RequestParam(defaultValue = "true") boolean runLexer,
             @RequestParam(defaultValue = "true") boolean runParser,

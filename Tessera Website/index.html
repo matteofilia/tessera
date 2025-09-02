@@ -43,7 +43,16 @@
 					// Clear Box
 					$("#output-box").text("working...");
 					
-					var req_url = API_URL+"/run_interpreter";
+					var req_url = API_URL+"/run";
+					
+					req_url += "?runLexer="+$("#button-run-lexer").is(":checked");
+					req_url += "&runParser="+$("#button-run-parser").is(":checked");
+					req_url += "&runInterpreter="+$("#button-run-interpreter").is(":checked");
+					
+					req_url += "&beVerbose="+$("#button-be-verbose").is(":checked");
+					req_url += "&beVeryVerbose="+$("#button-be-very-verbose").is(":checked");
+						
+					
 					var data = $("#input-box").val();
 					console.log("Sending POST request to "+req_url +" with data "+data);
 
@@ -69,7 +78,26 @@
 					$("#settings-popup").show();
 				})
 				
+				// By default, setting runInterpreter should ALSO enable runParser and runLexer
+				$("#button-run-interpreter").on("change", function() {
+					if (this.checked) {
+						$("#button-run-lexer").prop("checked", true);
+						$("#button-run-parser").prop("checked", true);
+					}
+				});
 				
+				$("#button-run-parser").on("change", function() {
+					if (this.checked) {
+						$("#button-run-lexer").prop("checked", true);
+					}
+				});
+				
+				$("#button-be-very-verbose").on("change", function() {
+					if (this.checked) {
+						$("#button-be-verbose").prop("checked", true);
+					}
+				});
+			
 				$("#settings-popup").hide();
 				load_file()
 			})
@@ -100,26 +128,26 @@
 			</div>
 			<div id="settings-popup-container">
 				<h3 class="cool-checkbox-header">GENERAL</h3>
-				<label id="button-run-lexer" class="cool-checkbox">
-			  		<input type="checkbox" checked> Run Lexer 
+				<label class="cool-checkbox">
+			  		<input id="button-run-lexer" type="checkbox" checked> Run Lexer 
 				</label>
 					
-				<label id="button-run-parser" class="cool-checkbox">
-			  		<input type="checkbox" checked> Run Parser 
+				<label class="cool-checkbox">
+			  		<input id="button-run-parser" type="checkbox" checked> Run Parser 
 				</label>
 					
-				<label id="button-run-interpreter" class="cool-checkbox">
-			  		<input type="checkbox" checked> Run Interpreter 
+				<label class="cool-checkbox">
+			  		<input id="button-run-interpreter" type="checkbox" checked> Run Interpreter 
 				</label>
 				
 				<br>
 				<h3 class="cool-checkbox-header">DEBUG</h3>
 				
-				<label id="button-run-verbose" class="cool-checkbox">
-			  		<input type="checkbox" checked> Be Verbose 
+				<label class="cool-checkbox">
+			  		<input id="button-be-verbose" type="checkbox" checked> Be Verbose 
 				</label>
-				<label id="button-run-very-verbose" class="cool-checkbox">
-			  		<input type="checkbox"> Be Very Verbose 
+				<label class="cool-checkbox">
+			  		<input id="button-be-very-verbose"  type="checkbox"> Be Very Verbose 
 				</label>
 			</div>
 		</div>
