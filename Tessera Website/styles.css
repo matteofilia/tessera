@@ -252,3 +252,13 @@ body {
     justify-content: flex-end;
 }
 
+.cool-checkbox {
+    margin: 0;
+    
+    display: block;
+}
+
+.cool-checkbox-header {
+    margin-top: 32px;
+    margin-bottom: 4px;
+}
