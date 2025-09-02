@@ -85,7 +85,7 @@ public class Main {
             printCoolAsciiThing(runConfig);
         }
 
-        if (!runConfig.isWeb()) {
+        if (!runConfig.isWeb() && runConfig.shouldBeVerbose()) {
             runConfig.getOut().println("For help, please use -h or --help");
         }
 
@@ -169,7 +169,7 @@ public class Main {
             }
 
             try {
-                Interpreter.run(trees, System.out);
+                Interpreter.run(trees, runConfig);
             } catch (InterpreterException e) {
                 runConfig.getOut().println(e.getMessage());
                 System.exit(CODE_FAIL);

@@ -1,5 +1,6 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.interpreter.InterpreterException;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
@@ -30,7 +31,7 @@ public class ParserASTNodeBinaryOperation extends ParserASTNodePlaceholder {
     private OperatorType operatorType;
 
     @Override
-    public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
+    public ParserASTNode parse(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
         return this;
     }
 

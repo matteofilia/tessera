@@ -1,5 +1,6 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.interpreter.InterpreterValueInt;
@@ -21,9 +22,9 @@ public class ParserASTNodeInteger extends ParserASTNodePlaceholder {
     }
 
     @Override
-    public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
-        Parser.expect(list, LexerTokenIdentifier.TOKEN_INTEGER);
-        this.setValueString(Parser.expectRawValue(list));
+    public ParserASTNode parse(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
+        Parser.expect(list, LexerTokenIdentifier.TOKEN_INTEGER, runConfig);
+        this.setValueString(Parser.expectRawValue(list, runConfig));
 
         return this;
     }

@@ -1,5 +1,6 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
 import org.tessera_lang.lexer.LexerTokens;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class ParserASTNodePrint extends ParserASTNodePlaceholder {
 
     @Override
-    public ParserASTNode parse(ArrayList<LexerToken> list) throws ParserException {
+    public ParserASTNode parse(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
         // TODO
         throw new ParserException();
     }

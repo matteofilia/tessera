@@ -3,10 +3,6 @@ package org.tessera_lang.parser;
 import org.tessera_lang.interpreter.InterpreterException;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
-import org.tessera_lang.interpreter.InterpreterValueInt;
-
-import static org.tessera_lang.parser.ParserASTNodeBinaryOperation.OperatorType.*;
-import static org.tessera_lang.parser.ParserASTNodeBinaryOperation.OperatorType.DIVIDE;
 
 public class ParserASTNodePlaceholder extends ParserASTNode {
 

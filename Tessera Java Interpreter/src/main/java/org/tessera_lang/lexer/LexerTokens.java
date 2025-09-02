@@ -114,7 +114,7 @@ public class LexerTokens {
                 Matcher matcher = template.getPattern().matcher(line);
 
                 if (matcher.find(columnIndex) && matcher.start() == columnIndex) {
-                    if (runConfig.shouldRunLexer()) runConfig.getOut().println("Index = " + columnIndex);
+                    if (runConfig.shouldRunLexer() && runConfig.shouldBeVeryVerbose()) runConfig.getOut().println("Index = " + columnIndex);
 
                     int length = matcher.end() - matcher.start();
                     if (runConfig.shouldBeVerbose()) {
