@@ -124,7 +124,7 @@ public class Main {
             try {
                 lexerList = Lexer.lexText(input, runConfig);
 
-                if (runConfig.shouldBeVerbose()) {
+                if (runConfig.shouldBeVerbose() || runConfig.shouldDisplayLexerOnly()) {
                     runConfig.getOut().print("Lexer Output: ");
                     LexerDebugger.debugLexerTokenList(lexerList, runConfig);
                 }
@@ -133,6 +133,7 @@ public class Main {
                 if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         }
+
         if (runConfig.shouldRunParser()) {
             if (runConfig.shouldBeVerbose()) {
                 runConfig.getOut().println("");
@@ -143,11 +144,11 @@ public class Main {
                 trees = Parser.parse(lexerList, runConfig);
 
                 for (ParserASTNode head : trees) {
-                    if  (runConfig.shouldBeVerbose()) {
+                    if  (runConfig.shouldBeVerbose() || runConfig.shouldDisplayParserOnly()) {
                         ParserDebugger.printDebugOutput(head, runConfig);
                     }
 
-                    if (head == null && runConfig.shouldBeVerbose()) {
+                    if (head == null && (runConfig.shouldBeVerbose() || runConfig.shouldDisplayParserOnly())) {
                         runConfig.getOut().println("Head is null!");
                     }
 

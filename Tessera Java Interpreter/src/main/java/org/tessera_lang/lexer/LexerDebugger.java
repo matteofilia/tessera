@@ -20,12 +20,13 @@ public class LexerDebugger {
     }
 
     public static void debugLexerTokenList(ArrayList<LexerToken> list, RunConfiguration runConfig) {
-        if (runConfig.shouldBeVerbose()) {
-            runConfig.getOut().print("\n");
+        if (runConfig.shouldBeVerbose() || runConfig.shouldDisplayLexerOnly()) {
+            if (!runConfig.shouldDisplayLexerOnly()) runConfig.getOut().print("\n");
+
             for (LexerToken token : list) {
                 runConfig.getOut().print(tokenDebugString(token));
             }
-            runConfig.getOut().print("\n");
+            if (!runConfig.shouldDisplayLexerOnly()) runConfig.getOut().print("\n");
         }
     }
 }

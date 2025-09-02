@@ -34,7 +34,7 @@ public class ParserDebugger {
                 counter++;
             }
 
-            if (runConfig.shouldBeVerbose()) {
+            if (runConfig.shouldBeVerbose() || runConfig.shouldDisplayParserOnly()) {
                 String name = node.getOriginToken().getIdentifier().getName();
 
                 if (node.getOriginToken().hasValue()) {
@@ -55,12 +55,12 @@ public class ParserDebugger {
     }
 
     public static void printDebugOutput(ParserASTNode anyNode, RunConfiguration runConfig) {
-        if (runConfig.shouldBeVerbose()) {
-            runConfig.getOut().print("\n");
+        if (runConfig.shouldBeVerbose() || runConfig.shouldDisplayParserOnly()) {
+            if (!runConfig.shouldDisplayParserOnly()) runConfig.getOut().print("\n");
             runConfig.getOut().println("AST Tree Debug:");
 
             printNodeDebugOutput(Parser.getHeadRecursive(anyNode), 0, "Head", runConfig);
-            runConfig.getOut().print("\n");
+            if (!runConfig.shouldDisplayParserOnly()) runConfig.getOut().print("\n");
         }
     }
 }

@@ -83,4 +83,18 @@ public class RunConfiguration {
     public void setOut(PrintStream out) {
         this.out = out;
     }
+
+    /**
+     * If ONLY runLexer is set, then display the lexer output
+     */
+    public boolean shouldDisplayLexerOnly() {
+        return this.runLexer && !this.runParser && !this.runInterpreter;
+    }
+
+    /**
+     * If ONLY runParser is set, then display the parser output
+     */
+    public boolean shouldDisplayParserOnly() {
+        return this.runParser && !this.runInterpreter;
+    }
 }
