@@ -13,8 +13,6 @@ import java.io.PrintStream;
 @RestController
 public class MainController {
 
-    Logger logger = LoggerFactory.getLogger(MainController.class);
-
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
     @GetMapping(value="/hello_world", produces= MediaType.TEXT_PLAIN_VALUE)
     public String helloWorld(@RequestParam(defaultValue = "user") String name) {
@@ -45,6 +43,7 @@ public class MainController {
         runConfig.setBeVeryVerbose(beVeryVerbose);
 
         runConfig.setOut(out);
+        runConfig.setWeb(true);
 
         Main.run(rawInput, runConfig);
         return baos.toString();

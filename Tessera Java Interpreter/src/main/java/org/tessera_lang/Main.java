@@ -130,7 +130,7 @@ public class Main {
                 }
             } catch (LexerException e) {
                 runConfig.getOut().println("Lexer Failure");
-                System.exit(CODE_FAIL);
+                if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         }
         if (runConfig.shouldRunParser()) {
@@ -157,7 +157,7 @@ public class Main {
                 }
             } catch (ParserException e) {
                 runConfig.getOut().println("Parser Failure");
-                System.exit(CODE_FAIL);
+                if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         }
 
@@ -172,11 +172,11 @@ public class Main {
                 Interpreter.run(trees, runConfig);
             } catch (InterpreterException e) {
                 runConfig.getOut().println(e.getMessage());
-                System.exit(CODE_FAIL);
+                if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         }
 
-        System.exit(CODE_OK);
+        if (!runConfig.isWeb()) System.exit(CODE_OK);
     }
 
     public static void main(String[] args){
@@ -236,13 +236,13 @@ public class Main {
                 if (runConfig.shouldBeVerbose()) {
                     runConfig.getOut().println("Error: IO Exception");
                 }
-                System.exit(CODE_FAIL);
+                if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         } catch (FileNotFoundException e) {
             if (runConfig.shouldBeVerbose()) {
                 runConfig.getOut().println(e.getMessage());
             }
-            System.exit(CODE_FAIL);
+            if (!runConfig.isWeb()) System.exit(CODE_FAIL);
         }
 
         run(input.toString(), runConfig);
