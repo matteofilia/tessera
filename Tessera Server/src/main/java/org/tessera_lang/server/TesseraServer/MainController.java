@@ -5,18 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.tessera_lang.Main;
-import org.tessera_lang.interpreter.Interpreter;
-import org.tessera_lang.interpreter.InterpreterException;
-import org.tessera_lang.lexer.Lexer;
-import org.tessera_lang.lexer.LexerException;
-import org.tessera_lang.lexer.LexerToken;
-import org.tessera_lang.parser.Parser;
-import org.tessera_lang.parser.ParserASTNode;
-import org.tessera_lang.parser.ParserException;
+import org.tessera_lang.RunConfiguration;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 @RestController
 public class MainController {
@@ -43,39 +35,16 @@ public class MainController {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(baos);
 
-        ArrayList<LexerToken> lexerList = new ArrayList<>();
-        ArrayList<ParserASTNode> trees = new ArrayList<>();
-        try {
-            try {
-                lexerList = Lexer.lexText(rawInput);
-            } catch (LexerException e) {
-                return "Error: LexerException (lexing failure)";
-            }
+        RunConfiguration runConfig = new RunConfiguration();
 
-            try {
-                trees = Parser.parse(lexerList);
-            } catch (ParserException p) {
-                // If parsing fails, print lexer output
-                String fullOutput = "";
-                fullOutput += "Error: ParserException (parser failure) \n";
-                fullOutput += "Here is the lexing output: \n";
-                fullOutput += Lexer.toText(lexerList);
+        runConfig.setRunLexer(runLexer);
+        runConfig.setRunParser(runParser);
+        runConfig.setRunInterpreter(runInterpreter);
 
-                return fullOutput;
-            }
+        runConfig.setBeVerbose(beVerbose);
+        runConfig.setBeVeryVerbose(beVeryVerbose);
 
-            // Run Interpreter
-            try {
-                Interpreter.run(trees, out);
-            } catch (InterpreterException e) {
-                return e.getMessage();
-            }
-
-            return baos.toString();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            return "ERROR";
-        }
+        Main.run(out, runConfig);
+        return baos.toString();
     }
 }
