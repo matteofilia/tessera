@@ -32,11 +32,17 @@ public class Main {
             "|_   _|__  ___ ___  ___ _ __ __ _ \n" +
             "  | |/ _ \\/ __/ __|/ _ \\ '__/ _` |\n" +
             "  | |  __/\\__ \\__ \\  __/ | | (_| |\n" +
-            "  |_|\\___||___/___/\\___|_|  \\__,_|\n\n" +
-            "  * Thank you for using Tessera! * \n";
+            "  |_|\\___||___/___/\\___|_|  \\__,_|\n";
+
+    public static final String generateThankYouMessage(String name) {
+        return "Thank you for programming with Tessera, "+name;
+    }
 
     private static void printCoolAsciiThing() {
+        String name = "user";
+
         System.out.println(asciiArt);
+        System.out.println(generateThankYouMessage(name));
     }
 
     private static void printHelp() {

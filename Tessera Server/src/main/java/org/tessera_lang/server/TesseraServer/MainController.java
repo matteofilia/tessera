@@ -29,13 +29,20 @@ public class MainController {
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
     @GetMapping(value="/hello_world", produces= MediaType.TEXT_PLAIN_VALUE)
-    public String helloWorld() {
-        return "Hello Tessera! \n" + Main.asciiArt;
+    public String helloWorld(@RequestParam(defaultValue = "user") String name) {
+        return Main.asciiArt + "\n" + Main.generateThankYouMessage(name);
     }
 
     @CrossOrigin(origins = {"${TESSERA_WEB_HOST}", "${TESSERA_WEB_HOST_B}"})
     @PostMapping("/run_interpreter")
-    public String runInterpreter(@RequestBody String rawInput) {
+    public String runInterpreter(
+            @RequestBody String rawInput,
+            @RequestParam(defaultValue = "true") boolean runLexer,
+            @RequestParam(defaultValue = "true") boolean runParser,
+            @RequestParam(defaultValue = "true") boolean runInterpreter,
+            @RequestParam(defaultValue = "true") boolean beVerbose,
+            @RequestParam(defaultValue = "false") boolean beVeryVerbose
+    ) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(baos);
