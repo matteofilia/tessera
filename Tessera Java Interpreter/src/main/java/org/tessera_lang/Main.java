@@ -76,7 +76,7 @@ public class Main {
         out.println("");
     }
 
-    public static void run(PrintStream out, RunConfiguration runConfig) {
+    public static void run(PrintStream out, RunConfiguration runConfig, String input) {
 
         if (runConfig.shouldBeVerbose()) {
             printCoolAsciiThing(out);
@@ -87,8 +87,6 @@ public class Main {
         }
 
         if (runConfig.shouldBeVerbose()) {
-            out.println("Using file: "+runConfig.getLexerInputFile());
-
             out.println("Output mode: verbose");
 
             if (runConfig.shouldBeVeryVerbose()) {
@@ -111,42 +109,17 @@ public class Main {
         ArrayList<ParserASTNode> trees = new ArrayList<>();
 
         if (runConfig.shouldPrintCode()) {
-            StringBuilder input = new StringBuilder();
-            out.println("");
-            out.println("CODE " + "(" + runConfig.getLexerInputFile() + ")");
 
-            try {
-                FileReader fileReader = new FileReader(runConfig.getLexerInputFile());
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                try {
-                    String line = bufferedReader.readLine();
-                    while (line != null) {
-                        input.append(line + "\n");
-                        line = bufferedReader.readLine();
-                    }
-
-                    out.println(input.toString());
-
-                } catch (IOException e) {
-                    out.println("Error: IO Exception");
-                    System.exit(CODE_FAIL);
-                }
-            } catch (FileNotFoundException e) {
-                out.println(e.getMessage());
-                System.exit(CODE_FAIL);
-            }
         }
 
         if (runConfig.shouldRunLexer()) {
             if (runConfig.shouldBeVerbose()) {
                 out.println("");
                 out.println("RUNNING LEXER");
-                out.println("Running org.tessera_lang.lexer.Lexer: " + runConfig.getLexerInputFile() + " -> " + runConfig.getParserInputFile());
             }
 
             try {
-                lexerList = Lexer.lexFile(runConfig.getLexerInputFile(), runConfig.getParserInputFile());
+                lexerList = Lexer.lexText(input, runConfig);
 
                 if (runConfig.shouldBeVerbose()) {
                     out.print("Lexer Output: ");
@@ -161,11 +134,10 @@ public class Main {
             if (runConfig.shouldBeVerbose()) {
                 out.println("");
                 out.println("RUNNING PARSER");
-                out.println("Running org.tessera_lang.parser.Parser: " + runConfig.getParserInputFile());
             }
 
             try {
-                trees = Parser.parse(lexerList);
+                trees = Parser.parse(lexerList, runConfig);
 
                 for (ParserASTNode head : trees) {
                     if  (runConfig.shouldBeVerbose()) {
@@ -206,8 +178,9 @@ public class Main {
 
     public static void main(String[] args){
         RunConfiguration runConfig = new RunConfiguration();
-        run(System.out, runConfig);
-
+        PrintStream out = System.out;
+        StringBuilder input = new StringBuilder();
+        String file = null;
 
         // Parse Args
         for (String arg : args) {
@@ -236,9 +209,41 @@ public class Main {
             } else if (arg.equals("-h") || arg.equals("--help")) {
                 printHelp(System.out);
             } else {
-                String file = arg;
-                runConfig.setLexerInputFile(file);
+                file = arg;
+
+                if (runConfig.shouldBeVerbose()) {
+                    out.println("Using file: " + file);
+                }
             }
         }
+
+        // Load File
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            try {
+                String line = bufferedReader.readLine();
+                while (line != null) {
+                    input.append(line + "\n");
+                    line = bufferedReader.readLine();
+                }
+
+                out.println(input.toString());
+
+            } catch (IOException e) {
+                if (runConfig.shouldBeVerbose()) {
+                    out.println("Error: IO Exception");
+                }
+                System.exit(CODE_FAIL);
+            }
+        } catch (FileNotFoundException e) {
+            if (runConfig.shouldBeVerbose()) {
+                out.println(e.getMessage());
+            }
+            System.exit(CODE_FAIL);
+        }
+
+        run(out, runConfig, input.toString());
     }
 }

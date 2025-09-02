@@ -44,7 +44,7 @@ public class MainController {
         runConfig.setBeVerbose(beVerbose);
         runConfig.setBeVeryVerbose(beVeryVerbose);
 
-        Main.run(out, runConfig);
+        Main.run(out, runConfig, rawInput);
         return baos.toString();
     }
 }

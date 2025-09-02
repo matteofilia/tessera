@@ -1,6 +1,7 @@
 package org.tessera_lang.lexer;
 
 import org.tessera_lang.Main;
+import org.tessera_lang.RunConfiguration;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Lexer {
         return output.toString();
     }
 
-    public static ArrayList<LexerToken> lexText(String input) throws LexerException {
+    public static ArrayList<LexerToken> lexText(String input, RunConfiguration runConfig) throws LexerException {
         ArrayList<LexerToken> list = new ArrayList<>();
 
         String[] lines = input.split("\\r?\\n");
@@ -27,7 +28,7 @@ public class Lexer {
             String line = lines[indexRow];
             line = line.trim();
 
-            if (Main.BE_VERBOSE) System.out.println("Checking line: "+line);
+            if (runConfig.shouldBeVerbose()) System.out.println("Checking line: "+line);
             for (LexerToken token : LexerTokens.checkMatches(line)) {
                 // Set origin row
                 token.setOriginRow(indexRow);
@@ -38,44 +39,5 @@ public class Lexer {
         }
 
         return list;
-    }
-
-    public static ArrayList<LexerToken> lexFile(String inputFile, String outputFile) throws LexerException {
-        StringBuilder input = new StringBuilder();
-        String output = "";
-        ArrayList<LexerToken> tokens = new ArrayList<>();
-
-        try {
-            FileReader fileReader = new FileReader(inputFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            try {
-                String line = bufferedReader.readLine();
-                while (line != null) {
-                    input.append(line + "\n");
-                    line = bufferedReader.readLine();
-                }
-            } catch (IOException e){
-                System.out.println("Error: IO Exception");
-            }
-
-            tokens = Lexer.lexText(input.toString());
-            output = Lexer.toText(tokens);
-
-            try {
-                Writer writer = new FileWriter(outputFile);
-                writer.write(output);
-                writer.close();;
-            } catch (IOException e) {
-                System.out.println("Error: IO Exception");
-            }
-
-            return tokens;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: file not found");
-        }
-
-        return null;
     }
 }

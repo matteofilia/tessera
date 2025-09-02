@@ -10,9 +10,6 @@ public class RunConfiguration {
 
     private boolean printCode = false;
 
-    private String lexerInputFile = "code.tess";
-    private String parserInputFile = "tokens.t";
-
     private boolean web = false;
 
     public RunConfiguration() {
@@ -65,22 +62,6 @@ public class RunConfiguration {
 
     public void setPrintCode(boolean printCode) {
         this.printCode = printCode;
-    }
-
-    public String getLexerInputFile() {
-        return lexerInputFile;
-    }
-
-    public void setLexerInputFile(String lexerInputFile) {
-        this.lexerInputFile = lexerInputFile;
-    }
-
-    public String getParserInputFile() {
-        return parserInputFile;
-    }
-
-    public void setParserInputFile(String parserInputFile) {
-        this.parserInputFile = parserInputFile;
     }
 
     public boolean isWeb() {

@@ -1,6 +1,7 @@
 package org.tessera_lang.parser;
 
 import org.tessera_lang.Main;
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
 
@@ -27,7 +28,7 @@ public class Parser {
         return null;
     }
 
-    private static ParserASTNode reallyAwfulParseNode(ArrayList<LexerToken> list, ParserASTNode currNode) throws ParserException {
+    private static ParserASTNode reallyAwfulParseNode(ArrayList<LexerToken> list, ParserASTNode currNode, RunConfiguration runConfig) throws ParserException {
         // TODO: fix terrible WIP function
 
         LexerToken currToken = null;
@@ -37,7 +38,7 @@ public class Parser {
         if (!list.isEmpty()) {
             currToken = list.remove(0);
 
-            if (Main.BE_VERBOSE) {
+            if (runConfig.shouldBeVerbose()) {
                 System.out.println("Parsing token "+currToken.getIdentifier().getName()+" to AST tree");
             }
         } else {
@@ -286,7 +287,7 @@ public class Parser {
      * @return A list of AbstractSyntaxTrees, with each tree representing one statement / line
      * @throws ParserException
      */
-    public static ArrayList<ParserASTNode> parse(ArrayList<LexerToken> tokens) throws ParserException {
+    public static ArrayList<ParserASTNode> parse(ArrayList<LexerToken> tokens, RunConfiguration runConfig) throws ParserException {
         // First, start by breaking the token list down into its separate parts / lines
         ArrayList<ArrayList<LexerToken>> listOfTokenLists;
         listOfTokenLists = breakDownLexerList(tokens);
@@ -310,9 +311,9 @@ public class Parser {
         return astTrees;
     }
 
-    public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier) throws ParserException {
+    public static void expect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier, RunConfiguration runConfig) throws ParserException {
         if (list.isEmpty()) {
-            if (Main.BE_VERBOSE) System.out.println("LexerToken list is empty! (should have value)");
+            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
@@ -323,9 +324,9 @@ public class Parser {
         }
     }
 
-    public static String expectRawValue(ArrayList<LexerToken> list) throws ParserException {
+    public static String expectRawValue(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
         if (list.isEmpty()) {
-            if (Main.BE_VERBOSE) System.out.println("LexerToken list is empty! (should have value)");
+            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken list is empty! (should have value)");
             throw new ParserException();
         }
 
@@ -333,7 +334,7 @@ public class Parser {
         if (token.hasValue()) {
             return token.getValue();
         } else {
-            if (Main.BE_VERBOSE) System.out.println("LexerToken has no value when one is expected");
+            if (runConfig.shouldBeVerbose()) System.out.println("LexerToken has no value when one is expected");
             throw new ParserException();
         }
     }
