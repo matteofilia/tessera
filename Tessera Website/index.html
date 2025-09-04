@@ -51,7 +51,7 @@
 					
 					req_url += "&beVerbose="+$("#button-be-verbose").is(":checked");
 					req_url += "&beVeryVerbose="+$("#button-be-very-verbose").is(":checked");
-						
+					req_url += "&displayAsciiArt="+$("#button-display-ascii-art").is(":checked");
 					
 					var data = $("#input-box").val();
 					console.log("Sending POST request to "+req_url +" with data "+data);
@@ -164,6 +164,12 @@
 				</label>
 				<label class="cool-checkbox">
 			  		<input id="button-be-very-verbose"  type="checkbox"> Be Very Verbose 
+				</label>
+				
+				<br>
+				<h3 class="cool-checkbox-header">OTHER</h3>
+				<label class="cool-checkbox">
+			  		<input id="button-display-ascii-art"  type="checkbox"> Display ASCII Art 
 				</label>
 			</div>
 		</div>

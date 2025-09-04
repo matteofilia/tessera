@@ -27,7 +27,8 @@ public class MainController {
             @RequestParam(defaultValue = "true") boolean runParser,
             @RequestParam(defaultValue = "true") boolean runInterpreter,
             @RequestParam(defaultValue = "true") boolean beVerbose,
-            @RequestParam(defaultValue = "false") boolean beVeryVerbose
+            @RequestParam(defaultValue = "false") boolean beVeryVerbose,
+            @RequestParam(defaultValue = "false") boolean displayAsciiArt
     ) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -44,6 +45,8 @@ public class MainController {
 
         runConfig.setOut(out);
         runConfig.setWeb(true);
+
+        runConfig.setDisplayAsciiArt(displayAsciiArt);
 
         Main.run(rawInput, runConfig);
         return baos.toString();

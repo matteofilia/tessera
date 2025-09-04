@@ -81,7 +81,7 @@ public class Main {
 
     public static void run(String input, RunConfiguration runConfig) {
 
-        if (runConfig.shouldBeVerbose()) {
+        if (runConfig.shouldDisplayAsciiArt()) {
             printCoolAsciiThing(runConfig);
         }
 
@@ -220,6 +220,8 @@ public class Main {
                     runConfig.getOut().println("Using file: " + file);
                 }
             }
+
+            runConfig.setDisplayAsciiArt(true);
         }
 
         // Load File

@@ -13,6 +13,7 @@ public class RunConfiguration {
     private boolean printCode = false;
 
     private boolean web = false;
+    private boolean displayAsciiArt = false;
 
     private PrintStream out = null;
 
@@ -96,5 +97,13 @@ public class RunConfiguration {
      */
     public boolean shouldDisplayParserOnly() {
         return this.runParser && !this.runInterpreter;
+    }
+
+    public boolean shouldDisplayAsciiArt() {
+        return displayAsciiArt;
+    }
+
+    public void setDisplayAsciiArt(boolean displayAsciiArt) {
+        this.displayAsciiArt = displayAsciiArt;
     }
 }
