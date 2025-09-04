@@ -105,3 +105,7 @@ Well, one commit was made. That's about all that I can say, as of right. Not fee
 ## September 02, 2025
 
 Progress is being made, exciting! Right now I am working on setting up things for the online interpreter. So far, things are coming along fairly well. I am thinking that the online interpreter should be the default. The online interpreter should have the same capabalities as the command line version of Tessera.
+
+## September 04, 2025
+
+Have been making good progress, slowly but surely. Slow and steady wins the race, right? Thinking that I may try to add GoJS for AST visualization sometime soon. Beyond that, also need to get global variables to work. That is the next big step!
