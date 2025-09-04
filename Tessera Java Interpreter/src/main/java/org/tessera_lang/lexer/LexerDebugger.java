@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class LexerDebugger {
 
+    public static String simpleTokenDebugString(LexerToken token) {
+        return token.getIdentifier().getName();
+    }
+
     public static String tokenDebugString(LexerToken token) {
         StringBuilder output = new StringBuilder();
         if (token.hasValue()) {
@@ -13,8 +17,8 @@ public class LexerDebugger {
         } else {
             output.append("LexerToken " + token.getIdentifier().getName() + "\n");
         }
-        output.append(" - Origin "+"R"+String.valueOf(token.getOriginRow()) + ":" + "C" + String.valueOf(token.getOriginColumn()+"\n"));
-        output.append(" - Origin Line: "+ token.getOriginLine()+"\n");
+        output.append(" - Origin " + "R" + String.valueOf(token.getOriginRow()) + ":" + "C" + String.valueOf(token.getOriginColumn() + "\n"));
+        output.append(" - Origin Line: " + token.getOriginLine() + "\n");
 
         return output.toString();
     }
@@ -24,7 +28,12 @@ public class LexerDebugger {
             if (!runConfig.shouldDisplayLexerOnly()) runConfig.getOut().print("\n");
 
             for (LexerToken token : list) {
-                runConfig.getOut().print(tokenDebugString(token));
+                if (runConfig.shouldBeVerbose() || runConfig.shouldBeVeryVerbose()) {
+                    runConfig.getOut().print(tokenDebugString(token));
+                } else {
+                    runConfig.getOut().print(simpleTokenDebugString(token));
+                    runConfig.getOut().print(" ");
+                }
             }
             if (!runConfig.shouldDisplayLexerOnly()) runConfig.getOut().print("\n");
         }
