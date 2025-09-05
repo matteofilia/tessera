@@ -1,4 +1,5 @@
-# This code example should fail with a LexerException
--aeuo htnsaeuohte
-@ceuoaurh
-|ueohaeuttnheeuos
+# Simple piece of code that references a preset global variable
+# weed = 420 (of course)
+weed + 5;
+weed / 10;
+weed - 4 + 7 - 2 + 6;
