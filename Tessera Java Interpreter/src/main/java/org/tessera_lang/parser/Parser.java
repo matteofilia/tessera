@@ -192,6 +192,7 @@ public class Parser {
 
             // Second Pass Items
             if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER) secondPassList.add(token);
+            if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_IDENTIFIER) secondPassList.add(token);
         }
 
         // Reverse The List (Proper Left to Right Ordering)

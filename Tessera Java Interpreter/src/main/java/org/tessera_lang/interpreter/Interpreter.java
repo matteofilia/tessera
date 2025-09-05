@@ -8,12 +8,22 @@ import java.util.ArrayList;
 
 public class Interpreter {
 
+    // This context is where global variables go
+    private InterpreterStackIdentifierContext context;
+
+    public Interpreter() {
+        context = new InterpreterStackIdentifierContext();
+    }
+
     /**
      * Runs the interpreter
      * @param trees A list of ASTs
      * @throws InterpreterException
      */
-    public static void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
+    public void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
+        // TODO: remove
+        context.put("weed", new InterpreterValueInt(420));
+
         for (ParserASTNode tree : trees) {
             // TODO: double check if this is needed
             tree = Parser.getHeadRecursive(tree);

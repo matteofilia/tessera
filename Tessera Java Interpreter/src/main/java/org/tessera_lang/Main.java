@@ -163,6 +163,7 @@ public class Main {
         }
 
         // Run Interpreter
+        Interpreter interpreter = new Interpreter();
         if (runConfig.shouldRunInterpreter()) {
             if (runConfig.shouldBeVerbose()) {
                 runConfig.getOut().println("");
@@ -170,7 +171,7 @@ public class Main {
             }
 
             try {
-                Interpreter.run(trees, runConfig);
+                interpreter.run(trees, runConfig);
             } catch (InterpreterException e) {
                 runConfig.getOut().println(e.getMessage());
                 if (!runConfig.isWeb()) System.exit(CODE_FAIL);
