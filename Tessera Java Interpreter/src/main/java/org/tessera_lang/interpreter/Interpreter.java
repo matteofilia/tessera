@@ -9,10 +9,13 @@ import java.util.ArrayList;
 public class Interpreter {
 
     // This context is where global variables go
-    private InterpreterStackIdentifierContext context;
+    private InterpreterStackIdentifierContext rootContext;
 
     public Interpreter() {
-        context = new InterpreterStackIdentifierContext();
+        rootContext = new InterpreterStackIdentifierContext();
+
+        // TODO: remove
+        rootContext.put("weed", new InterpreterValueInt(420));
     }
 
     /**
@@ -21,8 +24,6 @@ public class Interpreter {
      * @throws InterpreterException
      */
     public void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
-        // TODO: remove
-        context.put("weed", new InterpreterValueInt(420));
 
         for (ParserASTNode tree : trees) {
             // TODO: double check if this is needed

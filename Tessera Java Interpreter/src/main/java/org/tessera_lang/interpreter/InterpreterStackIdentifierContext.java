@@ -10,6 +10,8 @@ public class InterpreterStackIdentifierContext {
 
     /**
      * Checks ALL context instances at or below this one in the stack to see if identifier exists
+     * Checks TOP / current instance FIRST
+     * This means that global variables will be shadowed by local variables, and so forth
      * @param identifier
      * @return
      */
@@ -28,6 +30,8 @@ public class InterpreterStackIdentifierContext {
 
     /**
      * Checks ALL context instances at or below this one in the stack to see if identifier exists
+     * Checks TOP / current instance FIRST
+     * This means that global variables will be shadowed by local variables, and so forth
      * @param identifier
      * @return
      */
@@ -94,11 +98,10 @@ public class InterpreterStackIdentifierContext {
      * Removes a context from the context stack
      */
     public void popFromStack() {
-        InterpreterStackIdentifierContext context = findTopRecursive(this);
+        InterpreterStackIdentifierContext top = findTopRecursive(this);
 
         // Remove the context
-        context.above.below = null;
-        context.above = null;
+        top.below.above = null;
     }
 
 }
