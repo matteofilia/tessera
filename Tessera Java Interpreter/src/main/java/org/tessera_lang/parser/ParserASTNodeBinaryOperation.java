@@ -35,8 +35,8 @@ public class ParserASTNodeBinaryOperation extends ParserASTNodePlaceholder {
     @Override
     public InterpreterValue getValue(InterpreterStackIdentifierContext context) throws InterpreterException {
         if (getType(context) == InterpreterType.INTEGER) {
-            InterpreterValueInt a = (InterpreterValueInt) getLeft().getValue(context);
-            InterpreterValueInt b = (InterpreterValueInt) getRight().getValue(context);
+            InterpreterValueInt a = (InterpreterValueInt) getRight().getValue(context);
+            InterpreterValueInt b = (InterpreterValueInt) getLeft().getValue(context);
 
             if (operatorType == ADD) {
                 return InterpreterValueInt.add(a, b);
