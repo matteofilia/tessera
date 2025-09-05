@@ -1,10 +1,7 @@
 package org.tessera_lang.parser;
 
 import org.tessera_lang.RunConfiguration;
-import org.tessera_lang.interpreter.InterpreterException;
-import org.tessera_lang.interpreter.InterpreterType;
-import org.tessera_lang.interpreter.InterpreterValue;
-import org.tessera_lang.interpreter.InterpreterValueInt;
+import org.tessera_lang.interpreter.*;
 import org.tessera_lang.lexer.LexerToken;
 
 import java.util.ArrayList;
@@ -36,10 +33,10 @@ public class ParserASTNodeBinaryOperation extends ParserASTNodePlaceholder {
     }
 
     @Override
-    public InterpreterValue getValue() throws InterpreterException {
-        if (getType() == InterpreterType.INTEGER) {
-            InterpreterValueInt a = (InterpreterValueInt) getLeft().getValue();
-            InterpreterValueInt b = (InterpreterValueInt) getRight().getValue();
+    public InterpreterValue getValue(InterpreterStackIdentifierContext context) throws InterpreterException {
+        if (getType(context) == InterpreterType.INTEGER) {
+            InterpreterValueInt a = (InterpreterValueInt) getLeft().getValue(context);
+            InterpreterValueInt b = (InterpreterValueInt) getRight().getValue(context);
 
             if (operatorType == ADD) {
                 return InterpreterValueInt.add(a, b);

@@ -1,6 +1,7 @@
 package org.tessera_lang.parser;
 
 import org.tessera_lang.RunConfiguration;
+import org.tessera_lang.interpreter.InterpreterStackIdentifierContext;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.interpreter.InterpreterValueInt;
@@ -10,14 +11,14 @@ import org.tessera_lang.lexer.LexerTokenIdentifier;
 import java.util.ArrayList;
 
 public class ParserASTNodeIdentifier extends ParserASTNode {
-    private int value;
+    private String value;
 
-    public void setValue(int value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
     public void setValueString(String value) {
-        Integer.valueOf(value);
+        this.value = value;
     }
 
     @Override
@@ -29,23 +30,23 @@ public class ParserASTNodeIdentifier extends ParserASTNode {
     }
 
     @Override
-    public boolean hasValue() {
+    public boolean hasValue(InterpreterStackIdentifierContext context) {
+        return context.has(this.value);
+    }
+
+    @Override
+    public boolean hasType(InterpreterStackIdentifierContext context) {
         return true;
     }
 
     @Override
-    public boolean hasType() {
-        return true;
-    }
-
-    @Override
-    public InterpreterType getType() {
+    public InterpreterType getType(InterpreterStackIdentifierContext context) {
         return InterpreterType.INTEGER;
     }
 
     @Override
-    public InterpreterValue getValue() {
-        return new InterpreterValueInt(value);
+    public InterpreterValue getValue(InterpreterStackIdentifierContext context) {
+        return context.get(value);
     }
 
     @Override

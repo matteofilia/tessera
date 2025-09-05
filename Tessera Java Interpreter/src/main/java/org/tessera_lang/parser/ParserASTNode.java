@@ -2,6 +2,7 @@ package org.tessera_lang.parser;
 
 import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.interpreter.InterpreterException;
+import org.tessera_lang.interpreter.InterpreterStackIdentifierContext;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.lexer.LexerToken;
@@ -72,10 +73,10 @@ public abstract class ParserASTNode {
         this.parent = parent;
     }
 
-    public abstract boolean hasValue() throws InterpreterException;
-    public abstract boolean hasType() throws InterpreterException;
-    public abstract InterpreterValue getValue() throws InterpreterException;
-    public abstract InterpreterType getType() throws InterpreterException;
+    public abstract boolean hasValue(InterpreterStackIdentifierContext context) throws InterpreterException;
+    public abstract boolean hasType(InterpreterStackIdentifierContext context) throws InterpreterException;
+    public abstract InterpreterValue getValue(InterpreterStackIdentifierContext context) throws InterpreterException;
+    public abstract InterpreterType getType(InterpreterStackIdentifierContext context) throws InterpreterException;
     public abstract boolean isValid() throws InterpreterException ;
 
     public LexerToken getOriginToken() {

@@ -1,6 +1,7 @@
 package org.tessera_lang.parser;
 
 import org.tessera_lang.RunConfiguration;
+import org.tessera_lang.interpreter.InterpreterStackIdentifierContext;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
 import org.tessera_lang.interpreter.InterpreterValueInt;
@@ -30,22 +31,22 @@ public class ParserASTNodeInteger extends ParserASTNodePlaceholder {
     }
 
     @Override
-    public boolean hasValue() {
+    public boolean hasValue(InterpreterStackIdentifierContext context) {
         return true;
     }
 
     @Override
-    public boolean hasType() {
+    public boolean hasType(InterpreterStackIdentifierContext context) {
         return true;
     }
 
     @Override
-    public InterpreterType getType() {
+    public InterpreterType getType(InterpreterStackIdentifierContext context) {
         return InterpreterType.INTEGER;
     }
 
     @Override
-    public InterpreterValue getValue() {
+    public InterpreterValue getValue(InterpreterStackIdentifierContext context) {
         return new InterpreterValueInt(value);
     }
 

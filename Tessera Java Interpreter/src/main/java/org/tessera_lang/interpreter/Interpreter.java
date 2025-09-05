@@ -39,8 +39,8 @@ public class Interpreter {
                 throw new InterpreterException("Tree is not valid!");
             }
 
-            if (tree.hasValue()) {
-                runConfig.getOut().println(tree.getValue().toString());
+            if (tree.hasValue(rootContext)) {
+                runConfig.getOut().println(tree.getValue(rootContext).toString());
             } else {
                 runConfig.getOut().println("NO VALUE");
             }

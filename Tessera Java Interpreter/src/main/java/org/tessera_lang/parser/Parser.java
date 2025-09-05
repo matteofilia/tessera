@@ -139,6 +139,9 @@ public class Parser {
         } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_INTEGER){
             node = new ParserASTNodeInteger();
             ((ParserASTNodeInteger) node).setValue(Integer.parseInt(token.getValue()));
+        } else if (token.getIdentifier() == LexerTokenIdentifier.TOKEN_IDENTIFIER) {
+            node = new ParserASTNodeIdentifier();
+            ((ParserASTNodeIdentifier) node).setValue(token.getValue());
         }
 
         // Don't forget to add the origin token
