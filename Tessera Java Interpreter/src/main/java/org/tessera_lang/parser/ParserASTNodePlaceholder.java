@@ -37,8 +37,8 @@ public class ParserASTNodePlaceholder extends ParserASTNode {
 
     @Override
     public void visit(InterpreterStackIdentifierContext context) {
-        getRight().visit(context);
-        getLeft().visit(context);
+        if (right != null) right.visit(context);
+        if (left != null) left.visit(context);
     }
 
     @Override

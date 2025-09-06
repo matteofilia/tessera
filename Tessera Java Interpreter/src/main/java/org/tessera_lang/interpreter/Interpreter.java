@@ -24,33 +24,37 @@ public class Interpreter {
      * @throws InterpreterException
      */
     public void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
-
-        // First, start by visiting all nodes
-        for (ParserASTNode tree: trees) {
-            tree = Parser.getHeadRecursive(tree);
-            tree.visit(rootContext);
-        }
-
-        // Now, once nodes are visited, we can get the value of them
-        for (ParserASTNode tree : trees) {
-            // TODO: double check if this is needed
-            tree = Parser.getHeadRecursive(tree);
-
-            if (tree == null) {
-                runConfig.getOut().println("NULL");
-                return;
+        try {
+            // First, start by visiting all nodes
+            for (ParserASTNode tree : trees) {
+                tree = Parser.getHeadRecursive(tree);
+                tree.visit(rootContext);
             }
 
-            if (!tree.isValid()) {
-                runConfig.getOut().println("Tree is not valid!");
-                throw new InterpreterException("Tree is not valid!");
-            }
+            // Now, once nodes are visited, we can get the value of them
+            for (ParserASTNode tree : trees) {
+                // TODO: double check if this is needed
+                tree = Parser.getHeadRecursive(tree);
 
-            if (tree.hasValue(rootContext)) {
-                runConfig.getOut().println(tree.getValue(rootContext).toString());
-            } else {
-                runConfig.getOut().println("NO VALUE");
+                if (tree == null) {
+                    runConfig.getOut().println("NULL");
+                    return;
+                }
+
+                if (!tree.isValid()) {
+                    runConfig.getOut().println("Tree is not valid!");
+                    throw new InterpreterException("Tree is not valid!");
+                }
+
+                if (tree.hasValue(rootContext)) {
+                    runConfig.getOut().println(tree.getValue(rootContext).toString());
+                } else {
+                    runConfig.getOut().println("NO VALUE");
+                }
             }
+        } catch (Exception e) {
+            // TODO: actually throw and catch an InterpreterException properly
+            runConfig.getOut().println("Generic Interpreter Error");
         }
     }
 }

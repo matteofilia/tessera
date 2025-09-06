@@ -300,6 +300,14 @@ public class Parser {
 
         // Create an AST for each part / line
         for (ArrayList<LexerToken> tokenList : listOfTokenLists) {
+            if (tokenList.get(0).getIdentifier() == LexerTokenIdentifier.TOKEN_GLOBAL_VAR) {
+                ParserASTNodeGlobalVar head = new ParserASTNodeGlobalVar();
+                head.parse(tokenList, runConfig);
+
+                astTrees.add(head);
+                continue;
+            }
+
             ParserASTNode head = new ParserASTNodePlaceholder();
             head.setOriginToken(new LexerToken(LexerTokenIdentifier.TOKEN_HEAD));
 
@@ -340,6 +348,7 @@ public class Parser {
 
         if (list.isEmpty()) {
             // This is ok
+            return;
         }
 
         LexerTokenIdentifier token = list.get(0).getIdentifier();
