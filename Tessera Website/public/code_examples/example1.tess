@@ -1,5 +1,8 @@
 # Simple piece of code that references a preset global variable
+# This code also declares a global variable (hello)
 # weed = 420 (of course)
 weed + 5;
 weed / 10;
 weed - 4 + 7 - 2 + 6;
+global var hello = 360;
+weed - hello;
