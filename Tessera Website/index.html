@@ -45,6 +45,11 @@
 					// Clear Box
 					$("#output-box").text("working...");
 					
+					// Show Loading Logo
+					// TODO: can this be done in a better way?
+					$("#loading-logo").show();
+					$("#loading-logo").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
+					
 					var req_url = API_URL+"/run";
 					
 					req_url += "?runLexer="+$("#button-run-lexer").is(":checked");
@@ -66,12 +71,15 @@
 						timeout: 10000,
 						success: function(data) {
 							$("#output-box").text(data);
+							$("#loading-logo").stop().hide();
 						},
 						error: function(xhr, status, error) {
 							if (status === "timeout") {
 								$("#output-box").text("Request Timeout");
+								$("#loading-logo").stop().hide();
 							} else {
 								$("#output-box").text("Error");
+								$("#loading-logo").stop().hide();
 							}
 						}
 					});
@@ -217,8 +225,12 @@
 			</div>
 			<div>
 				<p class="header">Output</p>
-				<div id="output-box">
+				<div id="output-box-container">
+					<div id="output-box"></div>
+					<img id="loading-logo" src="public/tessera_logo_c.png"/>
 				</div>
+				
+				
 				
 				<div id="action-bar-2">
 					<input class="button" id="button-open-settings" type="button" value="Open Settings"/>
@@ -231,7 +243,7 @@
 			<p class='bottom-content-item' id="label">Matteo's Programming Language</p>
 		</div>
 		
-		<img id="logo" src="public/tessera_logo_c.png"></img>
+		<img id="logo" src="public/tessera_logo_c.png"/>
 		<p class="tip">Press Me!</p>
 	</body>
 </html>
