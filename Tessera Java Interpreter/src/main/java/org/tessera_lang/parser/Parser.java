@@ -306,6 +306,12 @@ public class Parser {
 
                 astTrees.add(head);
                 continue;
+            } else if (tokenList.get(0).getIdentifier() == LexerTokenIdentifier.TOKEN_LOCAL_VAR) {
+                ParserASTNodeLocalVar head = new ParserASTNodeLocalVar();
+                head.parse(tokenList, runConfig);
+
+                astTrees.add(head);
+                continue;
             }
 
             ParserASTNode head = new ParserASTNodePlaceholder();
@@ -340,10 +346,10 @@ public class Parser {
      * Assumes that a token exists implicitly if it isn't found
      * Typically, this is used for TOKEN_SEMICOLON
      * @param list The list of tokens
-     * @param expectedIndentifier The token
+     * @param expectedIdentifier The token
      * @param runConfig The RunConfiguration
      */
-    public static void weakExpect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIndentifier, RunConfiguration runConfig) {
+    public static void weakExpect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIdentifier, RunConfiguration runConfig) {
         // TODO: add better logic here
 
         if (list.isEmpty()) {
@@ -352,7 +358,7 @@ public class Parser {
         }
 
         LexerTokenIdentifier token = list.get(0).getIdentifier();
-        if (!(token == expectedIndentifier)) {
+        if (!(token == expectedIdentifier)) {
             // This is also ok
         }
     }
