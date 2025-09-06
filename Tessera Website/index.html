@@ -13,6 +13,8 @@
 			$(document).ready(function() {
 				var counter = 0;
 				var total_files = 5;
+				var counter_secret = 0;
+				var total_secret_files = 3;
 
 				var API_URL = "http://localhost:8080"
 				
@@ -87,6 +89,24 @@
 					$("#settings-popup").show();
 				})
 				
+				load_file_secret = function() {
+					secret_index = (counter_secret % total_secret_files)+1
+					example_url = "public/code_examples/example_secret"+secret_index+".tess"
+					
+					$.ajax({
+						url : example_url,
+						dataType: "text",
+						success : function(data) {
+							$("#input-box").val(data);
+						}
+					});
+				}
+				
+				$("#logo").click(function() {
+					counter_secret += 1;
+					load_file_secret()
+				})
+				
 				// By default, setting runInterpreter should ALSO enable runParser and runLexer
 				$("#button-run-interpreter").on("change", function() {
 					if (this.checked) {
@@ -134,7 +154,7 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="public/tessera_logo_c.png">
 	</head>
 
-	<body>
+	<body>		
 		<h1 id="title">Tessera</h1>
 		<div id="popup">
 			<div id="popup-header">
@@ -211,6 +231,7 @@
 			<p class='bottom-content-item' id="label">Matteo's Programming Language</p>
 		</div>
 		
-		<img id="logo" src="public/tessera_logo_c.png"/>
+		<img id="logo" class="tooltip" src="public/tessera_logo_c.png"/>
+		<span class="tooltiptext">Tooltip text</span>
 	</body>
 </html>

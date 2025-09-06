@@ -245,6 +245,8 @@ body {
     margin-right: auto;
     
     display: block;
+    
+    cursor: pointer;
 }
 
 #action-bar-2 {
@@ -272,4 +274,14 @@ body {
 .cool-checkbox {
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
+}
+
+.tip {
+    margin: 0 0;
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.2);
+    
+    width: 100%;
+    text-align-last: center;
 }
