@@ -60,9 +60,18 @@
 						type: "POST",
 						url: req_url,
 						data: data,
-						contentType: 'text/plain'
-					}).done(function(data) {
-						$("#output-box").text(data);
+						contentType: 'text/plain',
+						timeout: 10000,
+						success: function(data) {
+							$("#output-box").text(data);
+						},
+						error: function(xhr, status, error) {
+							if (status === "timeout") {
+								$("#output-box").text("Request Timeout");
+							} else {
+								$("#output-box").text("Error");
+							}
+						}
 					});
 				});
 				
