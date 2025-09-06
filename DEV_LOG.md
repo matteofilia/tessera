@@ -109,3 +109,7 @@ Progress is being made, exciting! Right now I am working on setting up things fo
 ## September 04, 2025
 
 Have been making good progress, slowly but surely. Slow and steady wins the race, right? Thinking that I may try to add GoJS for AST visualization sometime soon. Beyond that, also need to get global variables to work. That is the next big step!
+
+## September 05, 2025
+
+Making a programming language is a lot harder than it looks! Progress as of right now is slow... Probably need to hit the books.
