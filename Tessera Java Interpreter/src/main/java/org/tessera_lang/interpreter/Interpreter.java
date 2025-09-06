@@ -25,6 +25,13 @@ public class Interpreter {
      */
     public void run(ArrayList<ParserASTNode> trees, RunConfiguration runConfig) throws InterpreterException {
 
+        // First, start by visiting all nodes
+        for (ParserASTNode tree: trees) {
+            tree = Parser.getHeadRecursive(tree);
+            tree.visit(rootContext);
+        }
+
+        // Now, once nodes are visited, we can get the value of them
         for (ParserASTNode tree : trees) {
             // TODO: double check if this is needed
             tree = Parser.getHeadRecursive(tree);

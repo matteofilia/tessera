@@ -4,13 +4,12 @@ import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.interpreter.InterpreterStackIdentifierContext;
 import org.tessera_lang.interpreter.InterpreterType;
 import org.tessera_lang.interpreter.InterpreterValue;
-import org.tessera_lang.interpreter.InterpreterValueInt;
 import org.tessera_lang.lexer.LexerToken;
 import org.tessera_lang.lexer.LexerTokenIdentifier;
 
 import java.util.ArrayList;
 
-public class ParserASTNodeIdentifier extends ParserASTNode {
+public class ParserASTNodeIdentifier extends ParserASTNodePlaceholder {
     private String value;
 
     public void setValue(String value) {

@@ -328,6 +328,26 @@ public class Parser {
         }
     }
 
+    /**
+     * Assumes that a token exists implicitly if it isn't found
+     * Typically, this is used for TOKEN_SEMICOLON
+     * @param list The list of tokens
+     * @param expectedIndentifier The token
+     * @param runConfig The RunConfiguration
+     */
+    public static void weakExpect(ArrayList<LexerToken> list, LexerTokenIdentifier expectedIndentifier, RunConfiguration runConfig) {
+        // TODO: add better logic here
+
+        if (list.isEmpty()) {
+            // This is ok
+        }
+
+        LexerTokenIdentifier token = list.get(0).getIdentifier();
+        if (!(token == expectedIndentifier)) {
+            // This is also ok
+        }
+    }
+
     public static String expectRawValue(ArrayList<LexerToken> list, RunConfiguration runConfig) throws ParserException {
         if (list.isEmpty()) {
             if (runConfig.shouldBeVerbose()) runConfig.getOut().println("LexerToken list is empty! (should have value)");
