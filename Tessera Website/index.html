@@ -48,7 +48,7 @@
 					// Show Loading Logo
 					// TODO: can this be done in a better way?
 					$("#loading-logo").show();
-					$("#loading-logo").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
+					$("#loading-logo").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
 					
 					var req_url = API_URL+"/run";
 					
@@ -71,15 +71,15 @@
 						timeout: 10000,
 						success: function(data) {
 							$("#output-box").text(data);
-							$("#loading-logo").stop().hide();
+							$("#loading-logo").stop(true, true).hide();
 						},
 						error: function(xhr, status, error) {
 							if (status === "timeout") {
 								$("#output-box").text("Request Timeout");
-								$("#loading-logo").stop().hide();
+								$("#loading-logo").stop(true, true).hide();
 							} else {
 								$("#output-box").text("Error");
-								$("#loading-logo").stop().hide();
+								$("#loading-logo").stop(true, true).hide();
 							}
 						}
 					});
