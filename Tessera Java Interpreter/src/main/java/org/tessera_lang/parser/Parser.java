@@ -335,10 +335,14 @@ public class Parser {
             throw new ParserException();
         }
 
-        LexerTokenIdentifier token = list.remove(0).getIdentifier();
+        LexerToken token = list.remove(0);
 
-        if (!(token == expectedIdentifier)) {
-            throw new ParserException();
+        if (!(token.getIdentifier() == expectedIdentifier)) {
+            String error = "Token Does Not Match Expected Token";
+            error += "\n  Expected Token Identifier: " + expectedIdentifier.getName();
+            error += "\n  Actual Token: "+token.getIdentifier().getName();
+
+            throw new ParserException(error, token);
         }
     }
 

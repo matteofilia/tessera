@@ -157,7 +157,7 @@ public class Main {
                     }
                 }
             } catch (ParserException e) {
-                runConfig.getOut().println("Parser Failure");
+                e.print(runConfig);
                 if (!runConfig.isWeb()) System.exit(CODE_FAIL);
             }
         }
