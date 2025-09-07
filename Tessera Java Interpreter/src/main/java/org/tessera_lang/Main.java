@@ -51,6 +51,7 @@ public class Main {
         out.println("  -i --interpreter --- Run Lexer AND Parser AND Interpreter");
         out.println("  -w --web --- Run In Web Mode");
         out.println("  -c --code --- Print Out Code (For Reference)");
+        out.println("  -n --no-art --- Don't Show Cool ASCII Art");
         out.println("");
         out.println("  -h --help --- Display Help");
         out.println("  -v --verbose --- Display Output Verbosely");
@@ -187,6 +188,8 @@ public class Main {
 
         StringBuilder input = new StringBuilder();
         String file = null;
+        
+        runConfig.setDisplayAsciiArt(true);
 
         // Parse Args
         for (String arg : args) {
@@ -211,9 +214,10 @@ public class Main {
                 runConfig.setBeVeryVerbose(true);
             } else if (arg.equals("-w") || arg.equals(("--web"))) {
                 runConfig.setWeb(true);
-
             } else if (arg.equals("-h") || arg.equals("--help")) {
                 printHelp(runConfig);
+            } else if (arg.equals("-n") || arg.equals("--no-art")) {
+                runConfig.setDisplayAsciiArt(false);
             } else {
                 file = arg;
 
@@ -221,8 +225,6 @@ public class Main {
                     runConfig.getOut().println("Using file: " + file);
                 }
             }
-
-            runConfig.setDisplayAsciiArt(true);
         }
 
         // Load File
