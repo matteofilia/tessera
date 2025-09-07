@@ -25,7 +25,7 @@ public class ParserASTNodeLocalVar extends ParserASTNodePlaceholder {
     }
 
     @Override
-    public void visit(InterpreterStackIdentifierContext context) {
+    public void visit(InterpreterStackIdentifierContext context, RunConfiguration runConfig) {
         // TODO: fix this, assumes Int value
         InterpreterValueInt ivi = new InterpreterValueInt(Integer.valueOf(value));
         context.put(identifier, ivi);

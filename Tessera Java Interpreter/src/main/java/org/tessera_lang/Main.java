@@ -188,7 +188,7 @@ public class Main {
 
         StringBuilder input = new StringBuilder();
         String file = null;
-        
+
         runConfig.setDisplayAsciiArt(true);
 
         // Parse Args

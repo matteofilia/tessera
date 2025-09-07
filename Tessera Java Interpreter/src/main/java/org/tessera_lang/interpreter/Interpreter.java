@@ -28,7 +28,7 @@ public class Interpreter {
             // First, start by visiting all nodes
             for (ParserASTNode tree : trees) {
                 tree = Parser.getHeadRecursive(tree);
-                tree.visit(rootContext);
+                tree.visit(rootContext, runConfig);
             }
 
             // Now, once nodes are visited, we can get the value of them

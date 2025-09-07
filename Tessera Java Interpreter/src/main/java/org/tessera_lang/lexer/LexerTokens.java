@@ -20,6 +20,10 @@ public class LexerTokens {
         // Test Tokens For Debug
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("test\\b"), TOKEN_TEST));
 
+        // Special Function Tokens
+        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("print\\b"),  TOKEN_PRINT));
+        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("exit\\b"),  TOKEN_EXIT));
+
         // Data Type Tokens
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("[0-9]+\\b"),  TOKEN_INTEGER, true));
 
@@ -49,10 +53,6 @@ public class LexerTokens {
 
         // Identifier Tokens
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("[a-zA-Z_]\\w*\\b"),  TOKEN_IDENTIFIER, true));
-
-        // Special Function Tokens
-        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("print\\b"),  TOKEN_PRINT));
-        LexerTokens.add(new LexerTokenTemplate(Pattern.compile("exit\\b"),  TOKEN_EXIT));
 
         // Equality Tokens
         LexerTokens.add(new LexerTokenTemplate(Pattern.compile("\\="),  TOKEN_EQUALS));
@@ -152,7 +152,7 @@ public class LexerTokens {
                 maxLength = 0;
             } else {
                 // No match
-                throw new LexerException();
+                throw new LexerException("No Match");
             }
         }
 

@@ -79,7 +79,7 @@ public abstract class ParserASTNode {
     public abstract InterpreterType getType(InterpreterStackIdentifierContext context) throws InterpreterException;
     public abstract boolean isValid() throws InterpreterException ;
 
-    public abstract void visit(InterpreterStackIdentifierContext context);
+    public abstract void visit(InterpreterStackIdentifierContext context, RunConfiguration runConfig);
 
     public LexerToken getOriginToken() {
         return originToken;

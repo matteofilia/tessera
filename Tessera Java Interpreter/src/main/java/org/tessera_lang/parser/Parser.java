@@ -213,9 +213,6 @@ public class Parser {
             throw new ParserException("Parser Exception: too few items", secondPassList.get(secondPassList.size()-1));
         }
 
-        // Set head to null
-        head = null;
-
         // Construct First Pass, Left Assignment Only
         for (LexerToken tokenFirst : firstPassList) {
             ParserASTNode node = convertTokenToNode(tokenFirst);

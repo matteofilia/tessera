@@ -1,5 +1,6 @@
 package org.tessera_lang.parser;
 
+import org.tessera_lang.RunConfiguration;
 import org.tessera_lang.interpreter.InterpreterException;
 import org.tessera_lang.interpreter.InterpreterStackIdentifierContext;
 import org.tessera_lang.interpreter.InterpreterType;
@@ -36,9 +37,9 @@ public class ParserASTNodePlaceholder extends ParserASTNode {
     }
 
     @Override
-    public void visit(InterpreterStackIdentifierContext context) {
-        if (right != null) right.visit(context);
-        if (left != null) left.visit(context);
+    public void visit(InterpreterStackIdentifierContext context, RunConfiguration runConfig) {
+        if (right != null) right.visit(context, runConfig);
+        if (left != null) left.visit(context, runConfig);
     }
 
     @Override
