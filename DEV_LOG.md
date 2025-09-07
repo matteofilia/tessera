@@ -113,3 +113,7 @@ Have been making good progress, slowly but surely. Slow and steady wins the race
 ## September 05, 2025
 
 Making a programming language is a lot harder than it looks! Progress as of right now is slow... Probably need to hit the books.
+
+## September 07, 2025
+
+Honestly? Starting to become concerned. This is just sloppy code on top of more sloppy code. Still, we need to keep moving forward. I will do my best to do things the "right" way.
