@@ -117,3 +117,7 @@ Making a programming language is a lot harder than it looks! Progress as of righ
 ## September 07, 2025
 
 Honestly? Starting to become concerned. This is just sloppy code on top of more sloppy code. Still, we need to keep moving forward. I will do my best to do things the "right" way.
+
+## September 09, 2025
+
+Thinking about skipping creating test cases. I know, I know, probably not the "ideal" approach. That being said, creating test cases is complicated and difficult. This project isn't meant to be perfect, it is meant to work and do cool things. If it's messy? That's perfectly fine, so long as it actually works. Let's keep moving forwards as best as we can.
