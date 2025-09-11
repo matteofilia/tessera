@@ -5,3 +5,4 @@ target/classes
 code.ts
 tokens.t
 *.ts
+target/
