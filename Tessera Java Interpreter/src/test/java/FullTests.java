@@ -104,4 +104,30 @@ public class FullTests {
             }
         });
     }
+
+    @Test
+    void fullTestAInterpreterGlobalVars() {
+        assertDoesNotThrow(new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                // All we are doing is checking that an error is not thrown
+                RunConfiguration runConfig = new RunConfiguration();
+                runConfig.setOut(System.out);
+
+                runConfig.setBeVerbose(true);
+                runConfig.setBeVeryVerbose(true);
+
+                // VERY important, if this is false the tests WILL fail
+                runConfig.setWeb(true);
+
+                runConfig.setRunLexer(true);
+                runConfig.setRunParser(true);
+                runConfig.setRunInterpreter(true);
+
+                String input = "global var boeing = 777; boeing + 111;";
+
+                Main.run(input, runConfig);
+            }
+        });
+    }
 }
