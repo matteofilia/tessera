@@ -1,50 +1,82 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.tessera_lang.Main;
 import org.tessera_lang.RunConfiguration;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FullTests {
 
     @Test
+    void shouldFail() {
+        assertThrows(Exception.class, () -> Main.run("", null));
+    }
+
+    @Test
     void fullTestALexer() {
-        assertDoesNotThrow(new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                // All we are doing is checking that an error is not thrown
-                RunConfiguration runConfig = new RunConfiguration();
-                runConfig.setOut(System.out);
+        // All we are doing is checking that an error is not thrown
+        RunConfiguration runConfig = new RunConfiguration();
+        runConfig.setOut(System.out);
 
-                runConfig.setRunLexer(true);
-                runConfig.setRunParser(false);
-                runConfig.setRunInterpreter(false);
+        runConfig.setBeVerbose(true);
+        runConfig.setBeVeryVerbose(true);
 
-                String input = "4 * 2 + 5";
+        // VERY important, if this is false the tests WILL fail
+        runConfig.setWeb(true);
 
-                Main.run(input, runConfig);
-            }
-        });
+        runConfig.setRunLexer(true);
+        runConfig.setRunParser(false);
+        runConfig.setRunInterpreter(false);
+
+        String input = "4 * 2 + 5";
+
+        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> Main.run(input, runConfig));
     }
 
     @Test
     void fullTestAParser() {
-        assertDoesNotThrow(new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                // All we are doing is checking that an error is not thrown
-                RunConfiguration runConfig = new RunConfiguration();
-                runConfig.setOut(System.out);
+        // All we are doing is checking that an error is not thrown
+        RunConfiguration runConfig = new RunConfiguration();
+        runConfig.setOut(System.out);
 
-                runConfig.setRunLexer(true);
-                runConfig.setRunParser(true);
-                runConfig.setRunInterpreter(false);
+        runConfig.setBeVerbose(true);
+        runConfig.setBeVeryVerbose(true);
 
-                String input = "4 * 2 + 5";
+        // VERY important, if this is false the tests WILL fail
+        runConfig.setWeb(true);
 
-                Main.run(input, runConfig);
-            }
-        });
+        runConfig.setRunLexer(true);
+        runConfig.setRunParser(true);
+        runConfig.setRunInterpreter(false);
+
+        String input = "4 * 2 + 5";
+
+        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> Main.run(input, runConfig));
+    }
+
+    @Test
+    void fullTestAParser2() {
+        // All we are doing is checking that an error is not thrown
+        RunConfiguration runConfig = new RunConfiguration();
+        runConfig.setOut(System.out);
+
+        runConfig.setBeVerbose(true);
+        runConfig.setBeVeryVerbose(true);
+
+        // VERY important, if this is false the tests WILL fail
+        runConfig.setWeb(true);
+
+        runConfig.setRunLexer(true);
+        runConfig.setRunParser(true);
+        runConfig.setRunInterpreter(false);
+
+        String input = "8 + 6 - 3";
+
+        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> Main.run(input, runConfig));
     }
 
     @Test
@@ -55,6 +87,12 @@ public class FullTests {
                 // All we are doing is checking that an error is not thrown
                 RunConfiguration runConfig = new RunConfiguration();
                 runConfig.setOut(System.out);
+
+                runConfig.setBeVerbose(true);
+                runConfig.setBeVeryVerbose(true);
+
+                // VERY important, if this is false the tests WILL fail
+                runConfig.setWeb(true);
 
                 runConfig.setRunLexer(true);
                 runConfig.setRunParser(true);
