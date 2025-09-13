@@ -1,3 +1,3 @@
 # By default, an ending ; is implied
-# This can be ommitted and the code won't break
+# This can be omitted and the code won't break
 4 * 4; 6 + 2; 5; 5 + 5 + 4
