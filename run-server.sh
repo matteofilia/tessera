@@ -4,7 +4,7 @@ echo "Script Location: $0"
 DIR="$(dirname $0)"
 
 # Set this to the location of the web host
-export TESSERA_WEB_HOST="http://localhost"
+export TESSERA_WEB_HOST="http://localhost:64184"
 export TESSERA_WEB_HOST_B="http://localhost:8000"
 
 echo "Using $TESSERA_WEB_HOST..."

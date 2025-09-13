@@ -26,6 +26,7 @@ public class ParserASTNodePrint extends ParserASTNodePlaceholder {
             runConfig.getOut().println(getValue(context));
         } catch (InterpreterException e) {
             runConfig.getOut().println("Generic Interpreter Error");
+            e.printStackTrace(runConfig.getOut());
         }
     }
 }

@@ -55,6 +55,7 @@ public class Interpreter {
         } catch (Exception e) {
             // TODO: actually throw and catch an InterpreterException properly
             runConfig.getOut().println("Generic Interpreter Error");
+            e.printStackTrace(runConfig.getOut());
         }
     }
 }
