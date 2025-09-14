@@ -46,6 +46,10 @@ public class ParserASTNodeBinaryOperation extends ParserASTNodePlaceholder {
                 return InterpreterValueInt.multiply(a, b);
             } else if (operatorType == DIVIDE) {
                 return InterpreterValueInt.divide(a, b);
+            } else if (operatorType == MODULUS) {
+                return InterpreterValueInt.modulus(a, b);
+            } else if (operatorType == POWER) {
+                return InterpreterValueInt.power(a, b);
             }
         }
 
