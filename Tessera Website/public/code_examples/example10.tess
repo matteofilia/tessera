@@ -1,0 +1,13 @@
+# An Even Cooler Example
+# TODO: add if statements
+
+global var var_a = 40;
+global var var_b = 20;
+
+if (var_a == 40) {
+  print(var_a);
+}
+
+if (var_b == 12345) {
+  print(var_b);
+}
