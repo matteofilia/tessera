@@ -1,0 +1,8 @@
+# Another Cool Example
+# TODO: add print statement
+
+global var var_a = 30;
+global var var_b = 15;
+
+print(var_a);
+print(var_b);

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://tessera-lang.org/$1 [R=301,L]

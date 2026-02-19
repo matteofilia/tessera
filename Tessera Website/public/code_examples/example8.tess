@@ -1,0 +1,5 @@
+# Two Local Variables
+local var var_a = 20;
+local var var_b = 4;
+
+var_a ** var_b;

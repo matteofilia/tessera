@@ -35,6 +35,10 @@ public class ParserDebugger {
             }
 
             if (runConfig.shouldBeVerbose() || runConfig.shouldDisplayParserOnly()) {
+                if (node.getOriginToken() == null) {
+                    return;
+                }
+
                 String name = node.getOriginToken().getIdentifier().getName();
 
                 if (node.getOriginToken().hasValue()) {

@@ -31,6 +31,14 @@ public class InterpreterValueInt extends InterpreterValue {
         return new InterpreterValueInt(a.value / b.value);
     }
 
+    public static InterpreterValueInt modulus(InterpreterValueInt a, InterpreterValueInt b){
+        return new InterpreterValueInt(a.value % b.value);
+    }
+
+    public static InterpreterValueInt power(InterpreterValueInt a, InterpreterValueInt b){
+        return new InterpreterValueInt((int) Math.pow(a.value, b.value));
+    }
+
     @Override
     public String toString() {
         return String.valueOf(value);
