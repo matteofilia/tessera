@@ -25,3 +25,7 @@ In the same /resources directory in Tessera Server/src/main/resources put the ke
 ## Web Setup
 
 In index.html, set API_URL to "https://www.tessera-lang.org:8443" (by default it is set to localhost)
+
+## Server Setup
+
+In run-server.sh, set the URL to https://www.tessera-lang.org
