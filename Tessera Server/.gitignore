@@ -7,6 +7,9 @@ target/
 ### Spring Boot Stuff ###
 **/application.properties
 
+**/*.p12
+**/*.key
+
 ### STS ###
 .apt_generated
 .classpath
